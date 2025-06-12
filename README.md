@@ -237,3 +237,163 @@ This repo contains all hw for courses in NYCU CS.
   </tr>
 </table>
 </div>
+
+## HW list
+```bash
+.
+├── 人工智慧概論
+│   ├── AI_Final_Project
+│   ├── AI_HW1
+│   ├── AI_HW2
+│   ├── AI_HW3
+│   ├── AI_HW4
+│   └── AI_HW5
+├── 人工智慧總整與實作
+│   ├── hw1
+│   ├── hw2
+│   └── short essay
+├── 作業系統概論
+│   ├── HW1 - Process Forking
+│   ├── HW2 - CPU Scheduling
+│   ├── HW3 - Multithreading
+│   └── HW4 - Cache Simulation
+├── 密碼學概論
+│   └── hw
+├── 平行程式設計
+│   ├── HW0
+│   ├── HW1
+│   ├── HW2
+│   ├── HW3
+│   ├── HW4
+│   ├── HW5
+│   ├── HW6
+│   └── final project
+├── 強化學習專論
+│   ├── final project
+│   ├── lab1
+│   ├── lab2
+│   ├── lab3
+│   └── lab4
+├── 影像處理概論
+│   ├── IP final project
+│   ├── IP hw1
+│   ├── IP hw2
+│   ├── IP hw3
+│   └── IP hw4
+├── 微處理機系統原理與實作
+│   ├── lab1
+│   ├── lab2
+│   ├── lab3
+│   ├── lab4
+│   └── lab5
+├── 數位電路設計
+│   ├── Lab0
+│   ├── Lab1
+│   ├── Lab2
+│   └── Lab3
+├── 數值方法
+│   ├── HW1
+│   ├── HW2
+│   ├── HW3
+│   ├── HW4
+│   └── HW5
+├── 機器學習概論
+│   ├── ML_final_project
+│   ├── ML_hw1
+│   ├── ML_hw2
+│   ├── ML_hw3
+│   └── ML_hw4
+├── 機率
+│   ├── hw1
+│   ├── hw2
+│   ├── hw3
+│   └── hw4
+├── 深度學習
+│   ├── DLP final project
+│   ├── DLP lab1
+│   ├── DLP lab2
+│   ├── DLP lab3
+│   ├── DLP lab4
+│   ├── DLP lab5
+│   └── DLP lab6
+├── 演算法概論
+│   ├── HW1
+│   ├── HW2
+│   ├── HW3
+│   └── HW4
+├── 競技程式設計(一)
+│   ├── hw_week3
+│   ├── hw_week4
+│   ├── hw_week5
+│   ├── hw_week6
+│   ├── hw_week8
+│   ├── hw_week11
+│   ├── hw_week12
+│   └── hw_week13
+├── 網路規劃與管理實務
+│   ├── ccna_hw1
+│   ├── ccna_hw2
+│   ├── ccna_hw3
+│   └── ccna_hw4
+├── 計算機系統管理
+│   ├── SA hw1
+│   ├── SA hw2
+│   ├── SA hw3
+│   └── SA hw4
+├── 計算機組織
+│   ├── hw1
+│   ├── hw2
+│   ├── hw3
+│   ├── hw4
+│   └── hw5
+├── 計算機網路管理
+│   ├── na_hw1
+│   ├── na_hw2
+│   ├── na_hw3
+│   └── na_hw4
+├── 資料庫系統概論
+│   ├── HW1
+│   ├── HW2
+│   └── final project
+├── 資料探勘
+│   ├── DM final project
+│   ├── DM hw1
+│   ├── DM hw2
+│   └── DM hw3
+├── 資料結構與物件導向程式設計
+│   ├── HW1
+│   └── HW2
+├── 資料視覺化與視覺分析
+│   ├── FinalProject
+│   ├── HW1 - scattered plot
+│   ├── HW2 - parrallel coordinate plot
+│   ├── HW3 - correlation matrix
+│   ├── HW4 - brushable scattered plot
+│   ├── HW5 - stacked bar chart
+│   ├── HW6 - stream graph
+│   ├── HW7 - horizon chart
+│   ├── HW8 - Sankey diagram
+│   └── HW9 - Spotify track dataset
+├── 軟體定義網路及網路功能虛擬化
+│   ├── SDNFV_Final_Project
+│   ├── SDNFV_Lab1
+│   ├── SDNFV_Lab2
+│   ├── SDNFV_Lab3
+│   ├── SDNFV_Lab4
+│   └── SDNFV_Lab5
+├── 金融科技導論
+│   ├── final_project
+│   ├── hw1
+│   ├── hw2
+│   ├── hw3
+│   └── hw4
+├── 雲原生軟體開發與最佳實踐
+│   ├── final_project
+│   ├── hw1
+│   ├── hw2
+│   └── hw34
+└── 電腦視覺
+    ├── CV final project
+    ├── CV hw1
+    └── CV hw2
+```
