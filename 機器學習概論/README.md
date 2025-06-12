@@ -7,4 +7,4 @@ Spec, report and code. Code for final project can not work because I already rem
 - hw2: linear classification with logistic regression and Fisher's linear discriminant using numpy
 - hw3: classification with dicistion tree and adaboost using numpy
 - hw4: SVM kernel functions using numpy
-- final project: fine-grained image classification for birds
+- final project: fine-grained image classification for birds, full data in [repo](https://github.com/stanleyshen2003/Intro.-to-ML)
