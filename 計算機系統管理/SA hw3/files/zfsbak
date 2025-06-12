@@ -1,0 +1,143 @@
+#!/bin/sh
+
+usage(){
+        printf "Usage:\n- create: zfsbak DATASET [ROTATION_CNT]\n- list: zfsbak -l|--list [DATASET|ID|DATASET ID...]\n\
+- delete: zfsbak -d|--delete [DATASET|ID|DATASET ID...]\n\
+- export: zfsbak -e|--export DATASET [ID]\n\
+- import: zfsbak -i|--import FILENAME DATASET\n"
+        exit 1
+}
+
+# convert the format (to be removed)
+datetime() {
+  date '+%Y-%m-%d-%H:%M:%S'
+}
+
+take_snap() {
+  echo "Snap $1"
+  zfs snapshot "$1"
+}
+
+destroy_snap() {
+  echo "Destroy $1"
+  zfs destroy "$1"
+}
+
+zfs_list() {
+  # get snapshots and sort them
+  out=$(zfs list -H -o name -r -t snapshot "$1" | sort -t '@' -k 2)
+
+  # filter them with prefix zfsbak_
+  filtered=$(echo "$out" | grep '@zfsbak_')
+# get number count
+  if [ ! -z "$filtered" ]; then
+    out=$(echo "$filtered" | awk '{print NR "\t" $0}')
+    # echo entered
+  fi
+
+
+  # grep lines started same as id
+  if [ -n "$2" ]; then
+    out=$(echo "$out" | grep "^$2")
+  fi
+
+  echo "$out"
+}
+
+zfsbak_create() {
+  dataset="$1"
+  # if rotation un specified, use 12
+  rotation="${2-12}"
+
+  take_snap "$dataset@zfsbak_$(datetime)"
+
+  for snap in $(zfs_list "$dataset" | awk '{ print $2 }' | tail -r | tail -n "+$((rotation+1))" | tail -r); do
+    destroy_snap "$snap"
+  done
+}
+
+get_dataset_id() {
+  dataset="$1"
+
+  if [ -z "$dataset" ]; then
+    dataset="mypool"
+    id=""
+    # echo "nothing sent"
+  elif [ "${dataset#mypool}" == "$dataset" ]; then
+    id="$dataset"
+    dataset="mypool"
+    # echo "id sent"
+  elif [ "$#" -eq 2 ]; then
+    id="$2"
+    # echo "data id sent"
+  elif [ "$#" -gt 2 ]; then
+    shift;
+    id="$@"
+  else
+    id=""
+    # echo "datasent"
+  fi
+  # echo "dataset: $dataset ; id: $id"
+}
+
+zfsbak_list() {
+  get_dataset_id "$@"
+  echo -e "ID\tDATASET\t\tTIME"
+  zfs_list "$dataset" "$id" | tr '@' '\t' | grep 'zfsbak' |sed 's/zfsbak_//'
+}
+
+zfsbak_delete() {
+  get_dataset_id "$@"
+  if [ "$#" -gt 2 ]; then
+    all=$(zfs_list "$dataset" "")
+    for ids in `echo $id | sed 's/ /\n/g'`; do
+      snap=$(echo "$all" | grep "^$ids"  | awk '{ print $2 }')
+      destroy_snap "$snap"
+    done
+  else
+    for snap in $(zfs_list "$dataset" "$id" | awk '{ print $2 }'); do
+      destroy_snap "$snap"
+    done
+  fi
+}
+
+zfsbak_export() {
+  dataset="$1"
+  id="${2-1}"
+
+  snapname="$(zfs_list "$dataset" "$id" | awk '{ print $2 }')"
+  home_var=`getent passwd "$SUDO_USER" | cut -d':' -f6`
+  # pathname="$(getent passwd "$SUDO_USER" | cut -d':' -f6)/${snapname}.zstd.gpg"
+  filename=$(echo "$snapname" | sed "s/\//_/g")
+  pathname="${home_var}/${filename}"
+
+  # echo "$pathname"
+  rm -fr "$pathname"
+  zfs send "$snapname" | zstd -qc - | openssl enc -e -aes-256-cbc -pbkdf2 -pass env:ZFSBAK_PASS > "$pathname"
+  echo "Export $snapname to ~/$filename"
+}
+
+zfsbak_import() {
+  filename="$1"
+  dataset="$2"
+  # cp "$filename" /tmp
+  # home_var=`getent passwd "$SUDO_USER" | cut -d':' -f6`
+  # echo "$home_var"
+
+  echo "Import $filename to $dataset"
+  zstd -qcd "$filename" | zfs receive "$dataset@$(datetime)"
+}
+
+case "$1" in
+  -l|--list)   shift; zfsbak_list   "$@" ;;
+  -d|--delete) shift; zfsbak_delete "$@" ;;
+  -e|--export) shift; zfsbak_export "$@" ;;
+  -i|--import) shift; zfsbak_import "$@" ;;
+  *)
+    if [ $# == 0 ]; then
+        usage
+    else
+      zfsbak_create "$@"
+    fi
+    ;;
+esac

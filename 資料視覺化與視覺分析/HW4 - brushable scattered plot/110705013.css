@@ -1,0 +1,104 @@
+body{
+	margin:0px;
+
+}
+/*
+circle {
+  fill:steelblue
+}*/
+
+text {
+ font-family: sans-serif; 
+}
+
+.tick line{
+ stroke: #c0c0BB; 
+}
+
+.axis-label {
+  font-size: 2em;
+  fill: #8E8883;
+}
+
+.title {
+  font-size:1.5em;
+  fill:#635F5D;
+}
+
+/* Apply styles to the container */
+.container {
+  position: absolute; /* Position it relative to the viewport */
+  left: 25%; /* Adjust the horizontal position */
+  width: 10vh;
+  height: 100vh;
+}
+
+
+.showclass{
+	 font-family: sans-serif; 
+  font-size:0.5em;
+}
+
+/* Apply styles to each radio option */
+.radio-option {
+  margin: 5px 0; 
+}
+input[type='radio']{
+    transform: scale(1.5);
+    margin-bottom: 10px; 
+  	margin-right: 3px;
+}
+
+.custom-radio {
+  font-family: sans-serif;
+}
+
+.d-flex{
+  position: absolute; /* Position it relative to the viewport */
+  left: 75%; /* Adjust the horizontal position */
+  top: 38%; /* Adjust the vertical position */
+  display: flex;
+  anchor: center;
+  flex-direction: column;
+  justify-content: space-around;
+/*   align-items: flex-start; */
+  height: 20vh;
+}
+
+
+.legend {
+	display: flex;
+	align-items: center;
+  margin-top: 5vh;
+}
+
+.dot {
+	margin: 0 3px 0px 10px;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.Iris-versicolor {
+	background-color: #FF8849;
+  fill: #FF8849;
+}
+
+.Iris-virginica {
+	background-color: #69BE28;
+  fill: #69BE28;
+}
+
+.Iris-setosa {
+	background-color: #3CB7E4;
+  fill: #3CB7E4;
+}
+.notselected {
+	background-color: #000000;
+  fill: #000000;
+}
+
+
+
+

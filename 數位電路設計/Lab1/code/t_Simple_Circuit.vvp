@@ -1,0 +1,89 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_000002e1e8dd4b40 .scope module, "t_Simple_Circuit" "t_Simple_Circuit" 2 1;
+ .timescale 0 0;
+v000002e1e8e2d9d0_0 .var "A", 0 0;
+v000002e1e8e2ded0_0 .var "B", 0 0;
+v000002e1e8e2e290_0 .var "C", 0 0;
+v000002e1e8e2e1f0_0 .net "D1", 0 0, L_000002e1e8efd720;  1 drivers
+v000002e1e8e2db10_0 .net "D2", 0 0, L_000002e1e8db2d30;  1 drivers
+v000002e1e8e2e6f0_0 .net "E1", 0 0, L_000002e1e8db3430;  1 drivers
+v000002e1e8e2e330_0 .net "E2", 0 0, L_000002e1e8db3190;  1 drivers
+S_000002e1e8efdef0 .scope module, "M1" "Simple_Circuit" 2 6, 3 1 0, S_000002e1e8dd4b40;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "A";
+    .port_info 1 /INPUT 1 "B";
+    .port_info 2 /INPUT 1 "C";
+    .port_info 3 /OUTPUT 1 "D";
+    .port_info 4 /OUTPUT 1 "E";
+L_000002e1e8efe300 .functor AND 1, v000002e1e8e2d9d0_0, v000002e1e8e2ded0_0, C4<1>, C4<1>;
+L_000002e1e8db3430 .functor NOT 1, v000002e1e8e2e290_0, C4<0>, C4<0>, C4<0>;
+L_000002e1e8efd720 .functor OR 1, L_000002e1e8efe300, L_000002e1e8db3430, C4<0>, C4<0>;
+v000002e1e8db2eb0_0 .net "A", 0 0, v000002e1e8e2d9d0_0;  1 drivers
+v000002e1e8dd4cd0_0 .net "B", 0 0, v000002e1e8e2ded0_0;  1 drivers
+v000002e1e8dd4d70_0 .net "C", 0 0, v000002e1e8e2e290_0;  1 drivers
+v000002e1e8efe080_0 .net "D", 0 0, L_000002e1e8efd720;  alias, 1 drivers
+v000002e1e8efe120_0 .net "E", 0 0, L_000002e1e8db3430;  alias, 1 drivers
+v000002e1e8efe1c0_0 .net "w1", 0 0, L_000002e1e8efe300;  1 drivers
+S_000002e1e8db2770 .scope module, "M2" "Simple_Circuit_prop_delay" 2 7, 4 1 0, S_000002e1e8dd4b40;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "A";
+    .port_info 1 /INPUT 1 "B";
+    .port_info 2 /INPUT 1 "C";
+    .port_info 3 /OUTPUT 1 "D";
+    .port_info 4 /OUTPUT 1 "E";
+L_000002e1e8db2d30/d .functor OR 1, L_000002e1e8db3030, L_000002e1e8db3190, C4<0>, C4<0>;
+L_000002e1e8db2d30 .delay 1 (20,20,20) L_000002e1e8db2d30/d;
+L_000002e1e8db3030/d .functor AND 1, v000002e1e8e2d9d0_0, v000002e1e8e2ded0_0, C4<1>, C4<1>;
+L_000002e1e8db3030 .delay 1 (30,30,30) L_000002e1e8db3030/d;
+L_000002e1e8db3190/d .functor NOT 1, v000002e1e8e2e290_0, C4<0>, C4<0>, C4<0>;
+L_000002e1e8db3190 .delay 1 (10,10,10) L_000002e1e8db3190/d;
+v000002e1e8efe260_0 .net "A", 0 0, v000002e1e8e2d9d0_0;  alias, 1 drivers
+v000002e1e8db2900_0 .net "B", 0 0, v000002e1e8e2ded0_0;  alias, 1 drivers
+v000002e1e8db29a0_0 .net "C", 0 0, v000002e1e8e2e290_0;  alias, 1 drivers
+v000002e1e8db2a40_0 .net "D", 0 0, L_000002e1e8db2d30;  alias, 1 drivers
+v000002e1e8db2ae0_0 .net "E", 0 0, L_000002e1e8db3190;  alias, 1 drivers
+v000002e1e8e2e650_0 .net "w1", 0 0, L_000002e1e8db3030;  1 drivers
+    .scope S_000002e1e8dd4b40;
+T_0 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000002e1e8e2d9d0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000002e1e8e2ded0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000002e1e8e2e290_0, 0, 1;
+    %delay 100, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000002e1e8e2d9d0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000002e1e8e2ded0_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v000002e1e8e2e290_0, 0, 1;
+    %end;
+    .thread T_0;
+    .scope S_000002e1e8dd4b40;
+T_1 ;
+    %delay 200, 0;
+    %vpi_call 2 14 "$finish" {0 0 0};
+    %end;
+    .thread T_1;
+    .scope S_000002e1e8dd4b40;
+T_2 ;
+    %vpi_call 2 18 "$dumpfile", "Lab1_Simple_Circuit.vcd" {0 0 0};
+    %vpi_call 2 19 "$dumpvars" {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "t_Simple_Circuit.v";
+    "Simple_Circuit.v";
+    "Simple_Circuit_Prop_delay_modified.v";

@@ -1,0 +1,72 @@
+body {
+  overflow-x: hidden;
+  margin-left:0;
+  margin-right:0;
+}
+.button-label {
+  display: flex;
+  align-items: center;
+}
+
+.button-label .label {
+  margin-right: 10px;
+}
+text {
+  font-family: sans-serif;
+}
+#button-container {
+  position: absolute;
+  left: 85%;
+  top: 28%;
+  width: 10%;
+}
+.shift{
+  margin-left: 30px;  
+}
+.down{
+  margin-top: 2.5vh;
+
+}
+.first{
+
+  margin-left: 2vw;
+}
+.sortable-button {
+  background-color: transparent;
+  color: #000;
+  border: 0px;
+  padding: 5px;
+  margin-top: 1vh;
+  cursor: grab;
+  text-align: left;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+#space{
+  height: 7vh;
+
+}
+.legend {
+  display: flex;
+  align-items: center;
+}
+
+#select_container{
+	/* margin-left: 5vw;
+  margin-top: 5vh;
+  margin-bottom: 3vh; */
+  position: absolute; /* Initially absolute positioning */
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100vw;
+  height: 7vh;
+  background-color: #fff; /* Set your desired background color here */
+
+}
+
+#band{
+	margin-left: 30px;  
+  
+}
+

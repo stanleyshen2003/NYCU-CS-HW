@@ -1,0 +1,17 @@
+dn: cn=pwdDefault,ou=Ppolicy,dc=51,dc=nasa
+objectClass: top
+objectClass: device
+objectClass: pwdPolicy
+objectClass: pwdPolicyChecker
+cn: pwdDefault
+pwdAttribute: userPassword
+pwdMinLength: 8
+pwdInHistory: 2
+pwdMaxFailure: 5
+pwdLockout: TRUE
+pwdLockoutDuration: 300
+pwdMustChange: TRUE
+pwdAllowUserChange: TRUE
+pwdSafeModify: TRUE
+pwdCheckQuality: 1
+pwdCheckModule: check_pwquality.so

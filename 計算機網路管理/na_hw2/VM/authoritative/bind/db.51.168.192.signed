@@ -1,0 +1,70 @@
+; File written on Sun Mar 23 14:17:49 2025
+; dnssec_signzone version 9.18.30-0ubuntu0.22.04.2-Ubuntu
+51.168.192.in-addr.arpa. 86400	IN SOA	ns1.51.nasa. root.ns1.51.nasa. (
+					2025032201 ; serial
+					3600       ; refresh (1 hour)
+					1800       ; retry (30 minutes)
+					1209600    ; expire (2 weeks)
+					6400       ; minimum (1 hour 46 minutes 40 seconds)
+					)
+			86400	RRSIG	SOA 13 5 86400 (
+					20250422131749 20250323131749 993 51.168.192.in-addr.arpa.
+					4y7qHhVmBybbElH8dbvo6uZroVNevL/srX4n
+					TaAlRQwZJ24xqjp9oULW/uVGvhESyNTN/yR7
+					zGW2mzS67hdy9Q== )
+			86400	NS	ns1.51.nasa.
+			86400	RRSIG	NS 13 5 86400 (
+					20250422131749 20250323131749 993 51.168.192.in-addr.arpa.
+					nR+oekgmPasLgzMlPQcJY5mF02wLD1IQT6GH
+					hIRdA7A0Eq8/SySw8WMMPlP+5QOW5/hzRsgq
+					MSQa3/pf893K3w== )
+			6400	NSEC	153.51.168.192.in-addr.arpa. NS SOA RRSIG NSEC DNSKEY
+			6400	RRSIG	NSEC 13 5 6400 (
+					20250422131749 20250323131749 993 51.168.192.in-addr.arpa.
+					wsTHFX/K/rqtIv40Yom0DE5TwTv6PydMaZ2Z
+					d/sTNwt4c7W92+REMe0RBiDLr32GAc87Cc66
+					4LN1ww6h9o5R6g== )
+			86400	DNSKEY	256 3 13 (
+					3jDzVyFFQ7+JMhddNHkMPxiMcj2a1C//COxX
+					BH1ROAbmkY7LoPf/8L78APtvWBY5YCLFJyMk
+					MgYr3EDfaS7Q6w==
+					) ; ZSK; alg = ECDSAP256SHA256 ; key id = 993
+			86400	DNSKEY	257 3 13 (
+					RZTrxJ6EAts5bUdbD56x+U29TgqBoshZSqqo
+					etepSRvssgawes3bnw8dWBBuZwLphaOqiC7X
+					PJQY/tDmPpolOw==
+					) ; KSK; alg = ECDSAP256SHA256 ; key id = 7797
+			86400	RRSIG	DNSKEY 13 5 86400 (
+					20250422131749 20250323131749 993 51.168.192.in-addr.arpa.
+					9B13nYy12cdfAjX/LOpWwhSCTJ0L+dIn9s4E
+					lPdrsii0+k/AzO72HCUwhAbHOUi98KFp/uaI
+					kqpDCuDovGeX5g== )
+			86400	RRSIG	DNSKEY 13 5 86400 (
+					20250422131749 20250323131749 7797 51.168.192.in-addr.arpa.
+					yFlcFxdw7TKLjuTSeU9wKihsYBAERv2zF66+
+					/48hNfhyxM1FyUvrCv9ln1f1HVEercmwNM3G
+					LH3MhhZdmNUOyA== )
+153.51.168.192.in-addr.arpa. 86400 IN PTR dns.51.nasa.
+			86400	RRSIG	PTR 13 6 86400 (
+					20250422131749 20250323131749 993 51.168.192.in-addr.arpa.
+					jJzg5lz0Q7fbgqmqheP7KnqYZEx+cdNHu8gV
+					hvkdxdlWMxkQ4jilxZlPs9/V/tuggy1jDsX+
+					uIDGk12b5SNpiA== )
+			6400	NSEC	53.51.168.192.in-addr.arpa. PTR RRSIG NSEC
+			6400	RRSIG	NSEC 13 6 6400 (
+					20250422131749 20250323131749 993 51.168.192.in-addr.arpa.
+					Aiet2bS7qE9BQ7MVIBHKxRcxhr63hQ5qtH/A
+					PEhSsBp96+VSaAQLCxEAGiQVpy33+fqga+1A
+					fOHqQSB9oA0OUw== )
+53.51.168.192.in-addr.arpa. 86400 IN PTR ns1.51.nasa.
+			86400	RRSIG	PTR 13 6 86400 (
+					20250422131749 20250323131749 993 51.168.192.in-addr.arpa.
+					tryqt61vSbFO1sh8sZ/he2Pxk+hnnwB+P8jC
+					HB+svM/OR42+3U478bajpfAnQ/Z7VW9ieAP5
+					rHlVy34EVlwJ5Q== )
+			6400	NSEC	51.168.192.in-addr.arpa. PTR RRSIG NSEC
+			6400	RRSIG	NSEC 13 6 6400 (
+					20250422131749 20250323131749 993 51.168.192.in-addr.arpa.
+					hXUsKMLJunV3XNzBXQ5qZfC6z0Vq8OHweo/D
+					exbulw1fzJzdwJo96064481NsMTY858CdBaY
+					A1cEmFc2kGxRKw== )

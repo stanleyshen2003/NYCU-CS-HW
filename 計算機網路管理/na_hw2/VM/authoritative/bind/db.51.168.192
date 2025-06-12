@@ -1,0 +1,17 @@
+$TTL 86400
+@   IN  SOA ns1.51.nasa. root.ns1.51.nasa. (
+    2025032201 ; Serial
+    3600       ; Refresh
+    1800       ; Retry
+    1209600    ; Expire
+    6400 )    ; Minimum TTL
+
+; Nameservers
+@   IN  NS   ns1.51.nasa.
+
+; PTR Records
+53  IN  PTR  ns1.51.nasa.
+153  IN  PTR  dns.51.nasa.
+
+51.168.192.in-addr.arpa. IN DNSKEY 257 3 13 RZTrxJ6EAts5bUdbD56x+U29TgqBoshZSqqoetepSRvssgawes3bnw8d WBBuZwLphaOqiC7XPJQY/tDmPpolOw==
+51.168.192.in-addr.arpa. IN DNSKEY 256 3 13 3jDzVyFFQ7+JMhddNHkMPxiMcj2a1C//COxXBH1ROAbmkY7LoPf/8L78 APtvWBY5YCLFJyMkMgYr3EDfaS7Q6w==

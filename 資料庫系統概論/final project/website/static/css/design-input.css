@@ -1,0 +1,98 @@
+.hero1{
+    height: 100%;
+    width: 100%;
+    background-image: url(bg2.jpg);
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+}
+.login-icon2{
+    margin:0px auto;
+    text-align: center;
+    position: absolute;
+    top : 30;
+    left: 550;
+}
+.login-icon2 img{
+    width: 300px;
+    height: 600px;
+    margin-top: 0;
+
+}
+.form-box1{
+    width: 380px;
+    height: 480px;
+    position: relative;
+    margin: 6% auto;
+    background: transparent;
+    padding: 5px;
+}
+.input-field1{
+    width:80%;
+    padding:2px 0;
+    margin: 0px 0;
+    margin-bottom: 15;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 2px solid #999;
+    margin-left: 25px;
+    outline: none;
+    background: transparent;
+    font-size: 15px;
+}
+.words1{
+    color: #777;
+    font-size: 17px;
+    height: 16px;
+    font-weight: bolder;
+    margin-top: 10;
+    margin-left: 25;
+    margin-bottom: 5;
+}
+.loginwords{
+    color: #01499f;
+    font-size: 50px;
+    position: absolute;
+    top : 30px;
+    left: 145;
+    font-weight: bolder;
+    font-family: "Brush Script MT",cursive;
+}
+.errwords1{
+    color: #FF0000;
+    font-size: 15px;
+    position: absolute;
+    top : 165px;
+    left: 27px;
+}
+.submit-btn1{
+    width: 50%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30;
+    background: linear-gradient(to right, #ff105f,#ffad06);
+    border: 0;
+    outline: 0;
+    border-radius: 30px;
+}
+.input-group1{
+    top:380px;
+    position: absolute;
+    width: 280px;
+    transition: .5s;
+}
+.words2{
+    color: #000;
+    font-size: 10px;
+    height: 18px;
+    font-weight: 60%;
+    margin-top: 0;
+    margin-left: 0;
+    margin-bottom: 0;
+    text-decoration: none;
+}

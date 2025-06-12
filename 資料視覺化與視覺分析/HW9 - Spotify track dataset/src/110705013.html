@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spotify</title>
+  <link rel="stylesheet" href="110705013.css">
+  <script src="https://unpkg.com/d3@7/dist/d3.min.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+  <script src="https://unpkg.com/jeezy@1.12.11/lib/jeezy.min.js"></script>
+  <script src="https://unpkg.com/data2grid@1.0.0/build/data2grid.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/1.3.5/chroma.min.js"></script>
+
+  <!-- Js for plot  -->
+  <script src="SortableBar.js"></script>
+  <script src="Radar.js"></script>
+  <script src="Heatmap.js"></script>
+
+</head>
+
+<body>
+  <div class="container">
+    <div id="NavigationBar">
+      <div id="Button">
+        <button id="LBtn">Popularity Leaderboard</button>
+        <button id="ABtn">Radar</button>
+        <button id="HBtn">Correlation Matrix</button>
+      </div>
+
+      <div id="L">
+        <text>Setting:</text>
+        <br>
+        <text> ．Range:</text> min: <input type="number" id="head" value="1" min="1"> max: <input type="number" id="tail" value="20">
+        <br>
+        <div id="LRangeDiv">
+          <label for="LRange"> ．For: </label>
+          <div class="radio-group">
+            <label><input type="radio" name="L_option" value="song" checked> Song</label>
+            <label><input type="radio" name="L_option" value="artist"> Artist</label>
+            <label><input type="radio" name="L_option" value="genre"> Genre</label>
+            <label><input type="radio" name="L_option" value="specific-genre" id="specific-genre"> Song of
+            </label>
+            <div id="input container">
+              <input id="input_g" type="text" placeholder="Input genre">
+              <div id="g_sug" style="display:none"></div>
+            </div>
+            <label><input type="radio" name="L_option" value="specific-artist" id="specific-artist"> Song of
+              </label>
+            <div id="input container">
+              <input id="input_a" type="text" placeholder="Input Artist">
+              <div id="a_sug" style="display:none"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="A" style="display: none">
+        <text>Setting:</text>
+        <br>
+        <div id="ARangeDiv">
+          <label for="ARange"> ．Sort by: </label>
+          <div class="radio-group">
+            <label><input type="radio" name="A_option" value="pop" checked> Popularity</label>
+            <label><input type="radio" name="A_option" value="gen"> Genre name (a-z)</label>
+            <label><input type="radio" name="A_option" value="idx"> Shape similarity</label>
+          </div>
+        </div>
+      </div>
+
+      <div id="svg-container"></div>
+    </div>
+  </div>
+
+  <script src="Navigate.js"></script>
+  <script src="110705013.js"></script>
+  <script src="Search.js"></script>
+</body>
+
+</html>

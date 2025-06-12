@@ -1,0 +1,304 @@
+$date
+	Sat Apr 15 22:46:22 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module t_Lab1 $end
+$var wire 1 ! F3 $end
+$var wire 1 " F2 $end
+$var wire 1 # F1 $end
+$var reg 1 $ A $end
+$var reg 1 % B $end
+$var reg 1 & C $end
+$var reg 1 ' D $end
+$var integer 32 ( i [31:0] $end
+$scope module M1 $end
+$var wire 1 $ A $end
+$var wire 1 % B $end
+$var wire 1 ) B_invert $end
+$var wire 1 & C $end
+$var wire 1 ' D $end
+$var wire 1 * D_invert $end
+$var wire 1 # F $end
+$var wire 1 + and_AB $end
+$var wire 1 , and_ABC $end
+$var wire 1 - nor_D $end
+$var wire 1 . nor_noD $end
+$var wire 1 / or_AC $end
+$upscope $end
+$scope module M2 $end
+$var wire 1 $ A $end
+$var wire 1 % B $end
+$var wire 1 0 B_invert $end
+$var wire 1 & C $end
+$var wire 1 ' D $end
+$var wire 1 1 D_invert $end
+$var wire 1 " F $end
+$var wire 1 2 and_AB $end
+$var wire 1 3 and_ABC $end
+$var wire 1 4 nor_D $end
+$var wire 1 5 nor_noD $end
+$var wire 1 6 or_AC $end
+$upscope $end
+$scope module M3 $end
+$var wire 1 $ A $end
+$var wire 1 % B $end
+$var wire 1 7 B_invert $end
+$var wire 1 & C $end
+$var wire 1 ' D $end
+$var wire 1 8 D_invert $end
+$var wire 1 ! F $end
+$var wire 1 9 nor_D $end
+$var wire 1 : nor_noD $end
+$var wire 1 ; or_AC $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+0;
+1:
+09
+18
+17
+06
+15
+04
+03
+02
+11
+10
+0/
+1.
+0-
+0,
+0+
+1*
+1)
+bx (
+0'
+0&
+0%
+0$
+1#
+1"
+1!
+$end
+#50
+b0 (
+#58
+14
+1-
+19
+0*
+01
+08
+1'
+b1 (
+#66
+0"
+0#
+04
+0!
+0-
+09
+05
+1*
+11
+18
+0.
+1/
+16
+0:
+1;
+0'
+1&
+b10 (
+#74
+1"
+1#
+14
+1!
+1-
+19
+0*
+01
+08
+1'
+b11 (
+#82
+04
+15
+0-
+1*
+11
+18
+1.
+0/
+06
+1:
+0;
+0)
+0,
+00
+03
+07
+09
+0'
+0&
+1%
+b100 (
+#90
+14
+1-
+19
+0*
+01
+08
+1'
+b101 (
+#98
+0"
+0#
+04
+0-
+1,
+05
+13
+0!
+09
+1*
+11
+18
+0.
+1/
+16
+0:
+1;
+0'
+1&
+b110 (
+#106
+0*
+01
+08
+1'
+b111 (
+#114
+0"
+0#
+05
+1+
+12
+0!
+1*
+11
+18
+0.
+1)
+0,
+10
+03
+17
+09
+0'
+0&
+0%
+1$
+b1000 (
+#122
+1"
+1#
+14
+1!
+1-
+19
+0*
+01
+08
+1'
+b1001 (
+#130
+0"
+0#
+04
+0!
+0-
+09
+1*
+11
+18
+0'
+1&
+b1010 (
+#138
+1"
+1#
+14
+1!
+1-
+19
+0*
+01
+08
+1'
+b1011 (
+#146
+15
+1"
+1.
+1#
+04
+0+
+0-
+02
+1:
+1!
+1*
+11
+18
+0)
+1,
+00
+13
+07
+09
+0'
+0&
+1%
+b1100 (
+#154
+0*
+01
+08
+1'
+b1101 (
+#162
+0"
+0#
+05
+0!
+1*
+11
+18
+0.
+0:
+0'
+1&
+b1110 (
+#170
+0*
+01
+08
+1'
+b1111 (
+#178
+b10000 (
+#200

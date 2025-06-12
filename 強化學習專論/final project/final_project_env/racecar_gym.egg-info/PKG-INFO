@@ -1,0 +1,8 @@
+Metadata-Version: 2.1
+Name: racecar-gym
+Version: 0.0.1
+Summary: An RL environment for a miniature racecar using the pybullet physics engine.
+Home-page: https://github.com/axelbr/racecar_gym
+Author: Axel Brunnbauer
+Author-email: axel.brunnbauer@gmx.at
+License-File: LICENSE

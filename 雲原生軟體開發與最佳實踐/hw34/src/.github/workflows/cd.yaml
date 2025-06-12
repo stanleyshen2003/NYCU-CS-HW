@@ -1,0 +1,33 @@
+name: Deploy to GCP
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.GCE_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.GCE_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Copy files to GCE
+        run: |
+          scp -o StrictHostKeyChecking=no -r ./* ${{ secrets.GCE_USERNAME }}@${{ secrets.GCE_HOST }}:/home/stanley_shen2003_c/testing_lab
+
+      - name: SSH into GCE and deploy
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.GCE_USERNAME }}@${{ secrets.GCE_HOST }} << 'EOF'
+            cd /home/stanley_shen2003_c/testing_lab
+            docker-compose down
+            docker-compose up -d --build 
+          EOF

@@ -1,0 +1,15 @@
+dn: cn=ta-sudo,ou=SUDOers,dc=51,dc=nasa
+objectClass: top
+objectClass: sudoRole
+cn: ta-sudo
+sudoUser: %ta
+sudoHost: ALL
+sudoCommand: ALL
+
+dn: cn=stu-sudo,ou=SUDOers,dc=51,dc=nasa
+objectClass: top
+objectClass: sudoRole
+cn: stu-sudo
+sudoUser: %stu
+sudoHost: ALL
+sudoCommand: /bin/ls

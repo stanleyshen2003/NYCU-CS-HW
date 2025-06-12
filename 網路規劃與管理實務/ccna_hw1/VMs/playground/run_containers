@@ -1,0 +1,3 @@
+systemd-nspawn -b -D /var/lib/machines/container1 --network-bridge br0 &
+systemd-nspawn -b -D /var/lib/machines/container2 --network-bridge br0 &
+systemd-nspawn -b -D /var/lib/machines/container4 --network-bridge br0 &

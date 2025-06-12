@@ -1,0 +1,6 @@
+spanning-tree mode rapid-pvst
+
+interface [INTERFACE]
+spanning-tree portfast
+spanning-tree bpduguard enable
+exit

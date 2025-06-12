@@ -1,0 +1,16 @@
+interface fa 0/1
+switchport mode trunk
+switchport trunk allowed vlan 30,101
+exit
+
+interface fa 0/2
+switchport mode access
+switchport access vlan 102
+exit
+
+interface gigabitEthernet 0/1
+switchport mode trunk
+switchport trunk allowed vlan 30,101,102
+exit
+
+copy running-config startup-config

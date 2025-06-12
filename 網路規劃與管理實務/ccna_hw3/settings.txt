@@ -1,0 +1,194 @@
+# NYCU IT
+// default route
+ip route 0.0.0.0 0.0.0.0 GigabitEthernet 1/0/24
+// ospf
+router ospf 100
+router-id 140.113.0.1
+network 10.0.0.0 0.0.0.255 area 0
+network 10.0.1.0 0.0.0.255 area 0
+network 10.0.2.0 0.0.0.255 area 0
+network 10.0.3.0 0.0.0.255 area 0
+default-information originate
+exit
+
+# YM-Dorm-Core
+// ospf
+router ospf 100
+router-id 140.113.0.2
+network 10.0.0.0 0.0.0.255 area 0
+network 10.1.1.0 0.0.0.255 area 20
+network 10.1.2.0 0.0.0.255 area 20
+area 20 stub no-summary
+exit
+
+# Dorm A1
+// ospf
+router ospf 100
+router-id 140.113.0.11
+network 10.1.1.0 0.0.0.255 area 20
+network 140.113.21.0 0.0.0.255 area 20
+passive-interface GigabitEthernet 0/2
+area 20 stub
+exit
+
+# Dorm B1
+// ospf
+router ospf 100
+router-id 140.113.0.12
+network 10.1.2.0 0.0.0.255 area 20
+network 140.113.22.0 0.0.0.255 area 20
+passive-interface GigabitEthernet 0/2
+area 20 stub
+exit
+
+# YM-Dep-Core
+// ospf
+router ospf 100
+router-id 140.113.0.3
+network 10.0.1.0 0.0.0.255 area 0
+network 10.2.1.0 0.0.0.255 area 200
+network 10.2.2.0 0.0.0.255 area 200
+area 200 virtual-link 140.113.0.23
+exit
+
+# Meb-Lab1
+// ospf
+router ospf 100
+router-id 140.113.0.21
+network 10.2.1.0 0.0.0.255 area 200
+network 10.2.3.0 0.0.0.255 area 200
+network 10.2.4.0 0.0.0.255 area 200
+exit
+
+# Med-Lab2
+// ospf
+router ospf 100
+router-id 140.113.0.22
+network 10.2.2.0 0.0.0.255 area 200
+network 10.2.4.0 0.0.0.255 area 200
+network 140.113.201.0 0.0.0.255 area 200
+exit
+
+# Med-server-core
+// ospf
+router ospf 100
+router-id 140.113.0.23
+network 10.2.3.0 0.0.0.255 area 200
+network 140.113.251.0 0.0.0.255 area 250
+network 140.113.252.0 0.0.0.255 area 250
+area 200 virtual-link 140.113.0.3
+exit
+
+# CT-Dep-Core
+// ospf
+router ospf 100
+router-id 140.113.0.4
+network 10.0.2.0 0.0.0.255 area 0
+network 10.3.1.0 0.0.0.255 area 100
+network 10.3.2.0 0.0.0.255 area 100
+exit
+
+# CS-core1
+// make itself DR
+interface range GigabitEthernet 1/0/1-4
+ip ospf priority 255
+exit
+// avoid CS-intra
+interface GigabitEthernet 1/0/4
+ip ospf cost 100
+exit
+// ospf
+router ospf 100
+router-id 140.113.0.31
+network 10.3.1.0 0.0.0.255 area 100
+network 10.3.11.0 0.0.0.255 area 100
+network 10.3.12.0 0.0.0.255 area 100
+network 10.3.13.0 0.0.0.255 area 100
+exit
+
+# CS-core2
+// make itself DR
+interface range GigabitEthernet 1/0/1-4
+ip ospf priority 255
+exit
+// avoid CS-lab CS-colo
+interface range GigabitEthernet 1/0/2-3
+ip ospf cost 100
+exit
+// ospf
+router ospf 100
+router-id 140.113.0.32
+network 10.3.2.0 0.0.0.255 area 100
+network 10.3.21.0 0.0.0.255 area 100
+network 10.3.22.0 0.0.0.255 area 100
+network 10.3.23.0 0.0.0.255 area 100
+exit
+
+# CS-Lab
+interface GigabitEthernet 0/1
+ip ospf cost 100
+exit
+// ospf
+router ospf 100
+router-id 140.113.0.33
+network 10.3.11.0 0.0.0.255 area 100
+network 10.3.21.0 0.0.0.255 area 100
+network 140.113.110.0 0.0.0.255 area 100
+exit
+
+# CS-colo
+interface GigabitEthernet 0/1
+ip ospf cost 100
+exit
+// ospf
+router ospf 100
+router-id 140.113.0.34
+network 10.3.12.0 0.0.0.255 area 100
+network 10.3.22.0 0.0.0.255 area 100
+network 140.113.120.0 0.0.0.255 area 100
+exit
+
+# CS-intra
+ip route 140.113.151.0 255.255.255.0 GigabitEthernet 1/0/3
+interface GigabitEthernet 1/0/1
+ip ospf cost 100
+exit
+// ospf
+router ospf 100
+router-id 140.113.0.35
+network 10.3.13.0 0.0.0.255 area 100
+network 10.3.23.0 0.0.0.255 area 100
+network 140.113.150.0 0.0.0.255 area 100
+exit
+
+# CT-Dorm-Core
+// ospf
+router ospf 100
+router-id 140.113.0.5
+network 10.0.3.0 0.0.0.255 area 0
+network 10.4.1.0 0.0.0.255 area 10
+network 10.4.2.0 0.0.0.255 area 10
+exit
+
+# Dorm A
+// ospf
+router ospf 100
+router-id 140.113.0.41
+network 10.4.1.0 0.0.0.255 area 10
+network 140.113.11.0 0.0.0.255 area 10
+passive-interface GigabitEthernet 0/2
+exit
+
+# Dorm B
+// ospf
+router ospf 100
+router-id 140.113.0.42
+network 10.4.2.0 0.0.0.255 area 10
+network 10.4.3.0 0.0.0.255 area 10
+passive-interface GigabitEthernet 0/2
+redistribute rip subnets
+// rip
+router rip
+redistribute ospf 100 metric 1
+no auto-summary
+exit

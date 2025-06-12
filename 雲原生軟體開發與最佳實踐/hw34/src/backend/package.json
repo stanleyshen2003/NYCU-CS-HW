@@ -1,0 +1,28 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run --coverage",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "concurrently --raw \"tsc -w \" \"nodemon dist/index.js\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^4.26.2",
+    "mongoose": "^8.2.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "@vitest/coverage-v8": "^1.4.0",
+    "concurrently": "^8.2.2",
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.0",
+    "typescript": "^5.4.3",
+    "vitest": "^1.4.0"
+  }
+}

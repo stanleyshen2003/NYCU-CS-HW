@@ -1,0 +1,361 @@
+diff --git a/DDQN.py b/DDQN.py
+index a06a453..7c82c60 100644
+--- a/DDQN.py
++++ b/DDQN.py
+@@ -12,6 +12,7 @@ import buildEnv
+ import buildEnv_original
+ import math
+ import math
++from torch.utils.tensorboard import SummaryWriter
+ total_rewards = []
+ 
+ 
+@@ -226,26 +227,30 @@ def test(env):
+     Returns:
+         None (Don't need to return anything)
+     """
++    w = SummaryWriter('tb_record_1/comp_profit_train/DDQN')
+     testing_agent = Agent(env)
+     testing_agent.target_net.load_state_dict(torch.load("Tables/DDQN.pt"))
+     for _ in range(1):
+         state = env.reset().reshape(48)
++        t = 0
+         while True:
+             tempstate = state
+             for i in range(12):
+                 for j in range(4):
+                     tempstate[i*4+j] = (state[44+j] - state[i*4+j])/state[44+j]
+             Q = testing_agent.target_net(
+-                torch.FloatTensor(tempstate.reshape(48))).squeeze(0).detach()
++                torch.FloatTensor(tempstate.reshape(48)).to('cuda')).squeeze(0).cpu().detach()
+             action = int(torch.argmax(Q).numpy())
+             next_state, _, done, _ = env.step(action)
++            w.add_scalar('Profit', env._total_profit, t)
++            t+=1
+             if done:
+                 break
+             state = next_state.reshape(48)
+     print(env._total_profit)
+     print(env._total_reward)
+-    env.render()
+-    env.save_rendering('Images/DDQN.png')
++    #env.render()
++    #env.save_rendering('Images/DDQN.png')
+ 
+ def state_preprocess(state):
+     tempstate = state
+@@ -286,9 +291,9 @@ if __name__ == "__main__":
+     os.makedirs("./Rewards", exist_ok=True)
+     # training section:
+     
+-    train(env)
++    #train(env)
+         
+     # testing section:
+     test(env)
+-    env.close()
++    #env.close()
+     #np.save("./Rewards/DDQN_rewards.npy", np.array(total_rewards))
+\ No newline at end of file
+diff --git a/DQN.py b/DQN.py
+index 81e5e5a..7179895 100644
+--- a/DQN.py
++++ b/DQN.py
+@@ -10,6 +10,7 @@ import os
+ from tqdm import tqdm
+ import buildEnv
+ import math
++from torch.utils.tensorboard import SummaryWriter
+ total_rewards = []
+ 
+ 
+@@ -254,8 +255,10 @@ def test(env):
+     rewards = []
+     testing_agent = Agent(env)
+     testing_agent.target_net.load_state_dict(torch.load("Tables/DQN.pt"))
++    w = SummaryWriter('tb_record_1/comp_profit_train/DQN')
+     for _ in range(1):
+         state = env.reset().reshape(48)
++        t = 0
+         while True:
+             tempstate = state
+             for i in range(12):
+@@ -264,27 +267,29 @@ def test(env):
+             Q = testing_agent.target_net(
+                 torch.FloatTensor(tempstate.reshape(48))).squeeze(0).detach()
+             action = int(torch.argmax(Q).numpy())
+-            next_state, _, done, _ = env.step(action)
++            next_state, _, done, info = env.step(action)
++            w.add_scalar('Profit', env._total_profit, t)
++            t+=1
+             if done:
++                print(info)
+                 break
+             state = next_state.reshape(48)
+ 
+-    print(f"reward: {np.mean(rewards)}")
+-    print(f"max Q:{testing_agent.check_max_Q()}")
++    
+ 
+ 
+ if __name__ == "__main__":
+-    env = buildEnv.createEnv(2330) 
+-    os.makedirs("./Tables", exist_ok=True)
++    env = buildEnv.createEnv(2330, frame_bounds=(12, 1000)) 
++    #os.makedirs("./Tables", exist_ok=True)
+ 
+     # training section:
+-    for i in range(1):
+-        print(f"#{i + 1} training progress")
+-        train(env)
++    #for i in range(1):
++    #    print(f"#{i + 1} training progress")
++    #    train(env)
+ 
+     # testing section:
+-    #test(env)
+-    env.close()
++    test(env)
++    #env.close()
+ 
+     #os.makedirs("./Rewards", exist_ok=True)
+-    np.save("./Rewards/DQN_rewards.npy", np.array(total_rewards))
+\ No newline at end of file
++    #np.save("./Rewards/DQN_rewards.npy", np.array(total_rewards))
+\ No newline at end of file
+diff --git a/PG_GAE.py b/PG_GAE.py
+index fd580c2..36df319 100644
+--- a/PG_GAE.py
++++ b/PG_GAE.py
+@@ -12,6 +12,7 @@ import torch.optim.lr_scheduler as Scheduler
+ import buildEnv
+ from torch import Tensor
+ from torch.utils.tensorboard import SummaryWriter
++from buildEnv import state_preprocess
+ 
+ # Define a useful tuple (optional)
+ SavedAction = namedtuple('SavedAction', ['log_prob', 'value'])
+@@ -212,38 +213,33 @@ def train(lr=0.001, lr_decay=0.999, gamma=0.999, lambda_ = 0.999):
+     return -ewma_reward
+    
+ 
+-
+ def test(n_episodes=10):
+-    env = buildEnv.createEnv(2330)
++    w = SummaryWriter('tb_record_1/comp_profit_train/REINFORCE')
++    env = buildEnv.createEnv(2330, frame_bounds=(12, 1000))
+     model = Policy()
+     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+     model.to(device)
+     
+-    model.load_state_dict(torch.load('./Tables/PG_GAE-{}-{}.pth'.format(0.001, 0.999)))
++    model.load_state_dict(torch.load('./Tables/PG_GAE.pth'))
+     
+     render = True
+     max_episode_len = 10000
+-    
+-    for i_episode in range(1, n_episodes+1):
+-        state = env.reset()
+-        running_reward = 0
+-        for t in range(max_episode_len+1):
+-            action = model.select_action(state)
+-            state, reward, done, _ = env.step(action)
+-            running_reward += reward
+-            if render:
+-                env.render()
+-            if done:
+-                break
+-        print('Episode {}\tReward: {}\tProfit: {}'.format(i_episode, running_reward, env._total_profit))
++    state = env.reset()
++    for t in range(max_episode_len+1):
++        action = model.select_action(state)
++        state, reward, done, info = env.step(action)
++        w.add_scalar('Profit', env._total_profit, t)
++        if done:
++            break
++    print('Reward: {}\tProfit: {}'.format(env._total_reward, env._total_profit))
+     env.close()
+     
+ 
+ if __name__ == '__main__':
+     #lr = 0.001
+-    #env = buildEnv.createEnv(2330)
++    env = buildEnv.createEnv(2330)
+     
+     #env.seed(random_seed)  
+     #torch.manual_seed(random_seed)  
+-    train()
++    #train()
+     test()
+\ No newline at end of file
+diff --git a/Trajectory_Transformer/config/offline.py b/Trajectory_Transformer/config/offline.py
+index a3a9eb7..16e8fd4 100644
+--- a/Trajectory_Transformer/config/offline.py
++++ b/Trajectory_Transformer/config/offline.py
+@@ -17,7 +17,7 @@ args_to_watch = [
+ base = {
+ 
+     'train': {
+-        'N': 50,
++        'N': 100,
+         'discount': 0.99,
+         'n_layer': 4,
+         'n_head': 4,
+diff --git a/Trajectory_Transformer/scripts/plan.py b/Trajectory_Transformer/scripts/plan.py
+index 791434c..7e4b143 100644
+--- a/Trajectory_Transformer/scripts/plan.py
++++ b/Trajectory_Transformer/scripts/plan.py
+@@ -22,11 +22,11 @@ from trajectory.search import (
+     update_context,
+ )
+ os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+-os.environ["CUDA_VISIBLE_DEVICES"] = '2'
++os.environ["CUDA_VISIBLE_DEVICES"] = '3'
+ 
+ 
+ class Parser(utils.Parser):
+-    dataset: str = 'DDQN_1_2330'
++    dataset: str = 'DDQN_10_2330'
+     config: str = 'config.offline'
+ 
+ #######################
+@@ -72,9 +72,9 @@ value_fn = lambda x: discretizer.value_fn(x, args.percentile)
+ #######################
+ ###### main loop ######
+ #######################
+-
+-for test_ep in [100]:
+-    env = createEnv(code)
++w = SummaryWriter('tb_record_1/comp_profit/TT')
++for test_ep in [500]:
++    env = createEnv(code, frame_bounds=(1000, 1500))
+     env.seed(test_ep)
+     observation = env.reset()
+     observation = observation.reshape(-1)
+@@ -121,7 +121,7 @@ for test_ep in [100]:
+         
+         ## execute action in environment
+         next_observation, reward, terminal, info = env.step(np.argmax(action))
+-
++        w.add_scalar('Profit', env._total_profit, t)
+         ## update return
+         total_reward += reward
+         #score = env.get_normalized_score(total_reward)
+@@ -144,8 +144,8 @@ for test_ep in [100]:
+         observation = next_observation
+ 
+     ## Show result
+-    env.render_all()
+-    env.save_rendering('Images/TT_' + args.dataset + '_{}.png'.format(test_ep))
++    #env.render_all()
++    #env.save_rendering('Images/TT_' + args.dataset + '_{}.png'.format(test_ep))
+     ## save result as a json file
+     json_path = join(args.savepath, 'rollout.json')
+     json_data = {'step': t, 'return': total_reward, 'term': terminal, 'gpt_epoch': gpt_epoch}
+diff --git a/Trajectory_Transformer/scripts/train.py b/Trajectory_Transformer/scripts/train.py
+index 6fb3789..e9bfcde 100644
+--- a/Trajectory_Transformer/scripts/train.py
++++ b/Trajectory_Transformer/scripts/train.py
+@@ -92,7 +92,7 @@ trainer_config = utils.Config(
+ 
+ trainer = trainer_config()
+ 
+-n_epochs = 600
++n_epochs = 500
+ save_freq = 50
+ 
+ train_loss_writer = SummaryWriter(tb_save_path + '/train_loss/TT/' + args.dataset)
+diff --git a/baseline.py b/baseline.py
+index 054ea7c..9b64cd7 100644
+--- a/baseline.py
++++ b/baseline.py
+@@ -1,7 +1,7 @@
+ import buildEnv
+ import os
+ import numpy as np
+-
++from torch.utils.tensorboard import SummaryWriter
+ 
+ 
+ 
+@@ -26,11 +26,14 @@ def test(env):
+     env.reset()                                 
+     count1 = 0                                  # count the action buy
+     count0 = 0                                  # count the action sell
+-    
++    w = SummaryWriter('tb_record_1/comp_profit_train/baseline')
++    t = 0
+     while True:
+         if count<200:                           # skip to 201 th day
+             env.step(0)
+             count = count+1
++            w.add_scalar('Profit', env._total_profit, t)
++            t+=1
+             continue
+         # use the Moving Average Crossover method to decide whether to buy or not
+         if average50[count-200+150] > average200[count-200]:
+@@ -41,6 +44,8 @@ def test(env):
+             count0 += 1
+ 
+         next_state, _, done, _ = env.step(action)
++        w.add_scalar('Profit', env._total_profit, t)
++        t+=1
+         
+         count = count + 1
+         if done:
+@@ -54,5 +59,5 @@ def test(env):
+ 
+ 
+ if __name__ == "__main__":
+-    env = buildEnv.createEnv(2303,window_size=0, frame_bounds=(1200,1700))        
++    env = buildEnv.createEnv(2330, frame_bounds=(12,1000))        
+     test(env)
+\ No newline at end of file
+diff --git a/buildEnv.py b/buildEnv.py
+index 44f4154..211ddbd 100644
+--- a/buildEnv.py
++++ b/buildEnv.py
+@@ -107,6 +107,7 @@ class MyStocksEnv(StocksEnv):
+ 
+ 
+ def state_preprocess(state):
++    state = state.reshape(-1)
+     tempstate = state
+     for i in range(12):
+         for j in range(4):
+diff --git a/plot.py b/plot.py
+index 08b8f95..532e275 100644
+--- a/plot.py
++++ b/plot.py
+@@ -14,19 +14,19 @@ def initialize_plot():
+ 
+ def DDQN():
+     plt.figure(figsize=(10, 5))
+-    plt.title('Reward1')
++    plt.title('DQN')
+     plt.xlabel('epoch')
+     plt.ylabel('rewards')
+-    rewards = np.load("Rewards/DDQN_rewards.npy").reshape(-1)
++    rewards = np.load("Rewards/DQN_rewards.npy").reshape(-1)
+     '''
+     rewards2 = np.load(".\Rewards\DDQN_rewards_iter2_new4000.npy").reshape(150,1)
+     rewards = np.concatenate((rewards, rewards2), axis=0)
+     np.save(".\Rewards\DDQN_rewards.npy", rewards)
+     '''
+     rewards_avg = np.mean(rewards)
+-    plt.plot([i for i in range(len(rewards))], rewards, label='DDQN', color='gray')
++    plt.plot([i for i in range(len(rewards))], rewards, label='DQN', color='gray')
+     plt.legend(loc="best")
+-    plt.savefig("./Plots/reward1.png")
++    plt.savefig("./Plots/DQN.png")
+     #plt.show()
+     plt.close()
+ 
+@@ -46,5 +46,5 @@ if __name__ == "__main__":
+     '''   
+     #os.makedirs("./Plots", exist_ok=True)
+ 
+-    #DDQN()
+-    tb_plot()
++    DDQN()
++    #tb_plot()

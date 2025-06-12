@@ -1,0 +1,41 @@
+#button-container {
+    display: flex;
+    margin-left:2.1%;
+}
+
+.sortable-button {
+    background-color: #3498db;
+    color: #fff;
+    border: 0px solid #2980b9;
+    padding: 5px;
+    margin-top: 8vh;
+    cursor: pointer;
+    margin-left: 4.63%;
+    text-align: center; 
+    font-family: sans-serif; 
+  	width: 10vw;
+}
+body {
+  margin: 0;
+}
+
+.node rect {
+  cursor: move;
+  fill-opacity: .9;
+  shape-rendering: crispEdges;
+}
+
+.node text {
+  pointer-events: none;
+  text-shadow: 0 1px 0 #fff;
+}
+
+.link {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .2;
+}
+
+.link:hover {
+  stroke-opacity: .5;
+}

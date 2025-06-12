@@ -1,0 +1,16 @@
+Files:
+    cg.c : main function.
+    cg_impl.c: the implementation of conjugate gradient method.
+    globals.h : some data definitions.
+    common : functions for verification and time calculation.
+    bin : executable output directory.
+    Makefile, make.common : make systems.
+
+Build up:
+    make DATASIZE=[LARGE|MEDIUMN|SMALL]
+    (MEDIUMN by default)
+    Please make clean first if you want to change DATASIZE.
+    (Note: By now, we are only using medium-sized data)
+
+Check correctness:
+    Main function contains the verification procedure. It shows VERIFICATION SUCCESSFUL/FAILED on the screen to indicate the correctness of the program.

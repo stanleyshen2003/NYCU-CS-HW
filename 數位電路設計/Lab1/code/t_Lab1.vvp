@@ -1,0 +1,168 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_000001d5d665e610 .scope module, "t_Lab1" "t_Lab1" 2 1;
+ .timescale 0 0;
+v000001d5d66af520_0 .var "A", 0 0;
+v000001d5d66af2a0_0 .var "B", 0 0;
+v000001d5d66af200_0 .var "C", 0 0;
+v000001d5d66ae9e0_0 .var "D", 0 0;
+v000001d5d66aebc0_0 .net "F1", 0 0, L_000001d5d6649340;  1 drivers
+v000001d5d66aee40_0 .net "F2", 0 0, L_000001d5d66b8d20;  1 drivers
+v000001d5d66afb60_0 .net "F3", 0 0, L_000001d5d66b8e00;  1 drivers
+v000001d5d66aeee0_0 .var/i "i", 31 0;
+S_000001d5d665e7a0 .scope module, "M1" "Lab1_gatelevel" 2 6, 3 1 0, S_000001d5d665e610;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 1 "F";
+    .port_info 1 /INPUT 1 "A";
+    .port_info 2 /INPUT 1 "B";
+    .port_info 3 /INPUT 1 "C";
+    .port_info 4 /INPUT 1 "D";
+L_000001d5d66491f0 .functor NOT 1, v000001d5d66af2a0_0, C4<0>, C4<0>, C4<0>;
+L_000001d5d66492d0 .functor AND 1, v000001d5d66af520_0, L_000001d5d66491f0, C4<1>, C4<1>;
+L_000001d5d6648cb0 .functor NOR 1, L_000001d5d66492d0, v000001d5d66af200_0, C4<0>, C4<0>;
+L_000001d5d6649180 .functor NOT 1, v000001d5d66ae9e0_0, C4<0>, C4<0>, C4<0>;
+L_000001d5d6648f50 .functor OR 1, v000001d5d66af520_0, v000001d5d66af200_0, C4<0>, C4<0>;
+L_000001d5d6649260 .functor AND 1, v000001d5d66af2a0_0, L_000001d5d6648f50, C4<1>, C4<1>;
+L_000001d5d66493b0 .functor NOR 1, L_000001d5d6649260, L_000001d5d6649180, C4<0>, C4<0>;
+L_000001d5d6649340 .functor OR 1, L_000001d5d66493b0, L_000001d5d6648cb0, C4<0>, C4<0>;
+v000001d5d6649b40_0 .net "A", 0 0, v000001d5d66af520_0;  1 drivers
+v000001d5d664a2c0_0 .net "B", 0 0, v000001d5d66af2a0_0;  1 drivers
+v000001d5d664a5e0_0 .net "B_invert", 0 0, L_000001d5d66491f0;  1 drivers
+v000001d5d6649fa0_0 .net "C", 0 0, v000001d5d66af200_0;  1 drivers
+v000001d5d664a400_0 .net "D", 0 0, v000001d5d66ae9e0_0;  1 drivers
+v000001d5d664a540_0 .net "D_invert", 0 0, L_000001d5d6649180;  1 drivers
+v000001d5d6649dc0_0 .net "F", 0 0, L_000001d5d6649340;  alias, 1 drivers
+v000001d5d664a360_0 .net "and_AB", 0 0, L_000001d5d66492d0;  1 drivers
+v000001d5d6649a00_0 .net "and_ABC", 0 0, L_000001d5d6649260;  1 drivers
+v000001d5d6649e60_0 .net "nor_D", 0 0, L_000001d5d66493b0;  1 drivers
+v000001d5d664a720_0 .net "nor_noD", 0 0, L_000001d5d6648cb0;  1 drivers
+v000001d5d664a860_0 .net "or_AC", 0 0, L_000001d5d6648f50;  1 drivers
+S_000001d5d679dd90 .scope module, "M2" "Lab1_dataflow" 2 7, 4 1 0, S_000001d5d665e610;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 1 "F";
+    .port_info 1 /INPUT 1 "A";
+    .port_info 2 /INPUT 1 "B";
+    .port_info 3 /INPUT 1 "C";
+    .port_info 4 /INPUT 1 "D";
+L_000001d5d6648d20 .functor NOT 1, v000001d5d66af2a0_0, C4<0>, C4<0>, C4<0>;
+L_000001d5d6648d90 .functor AND 1, v000001d5d66af520_0, L_000001d5d6648d20, C4<1>, C4<1>;
+L_000001d5d6648fc0 .functor OR 1, L_000001d5d6648d90, v000001d5d66af200_0, C4<0>, C4<0>;
+L_000001d5d66b95e0 .functor NOT 1, L_000001d5d6648fc0, C4<0>, C4<0>, C4<0>;
+L_000001d5d66b9650 .functor NOT 1, v000001d5d66ae9e0_0, C4<0>, C4<0>, C4<0>;
+L_000001d5d66b9490 .functor OR 1, v000001d5d66af520_0, v000001d5d66af200_0, C4<0>, C4<0>;
+L_000001d5d66b91f0 .functor AND 1, v000001d5d66af2a0_0, L_000001d5d66b9490, C4<1>, C4<1>;
+L_000001d5d66b9500 .functor OR 1, L_000001d5d66b91f0, L_000001d5d66b9650, C4<0>, C4<0>;
+L_000001d5d66b90a0 .functor NOT 1, L_000001d5d66b9500, C4<0>, C4<0>, C4<0>;
+L_000001d5d66b8d20 .functor OR 1, L_000001d5d66b90a0, L_000001d5d66b95e0, C4<0>, C4<0>;
+v000001d5d6649aa0_0 .net "A", 0 0, v000001d5d66af520_0;  alias, 1 drivers
+v000001d5d664a040_0 .net "B", 0 0, v000001d5d66af2a0_0;  alias, 1 drivers
+v000001d5d6649be0_0 .net "B_invert", 0 0, L_000001d5d6648d20;  1 drivers
+v000001d5d6649c80_0 .net "C", 0 0, v000001d5d66af200_0;  alias, 1 drivers
+v000001d5d664a0e0_0 .net "D", 0 0, v000001d5d66ae9e0_0;  alias, 1 drivers
+v000001d5d664a180_0 .net "D_invert", 0 0, L_000001d5d66b9650;  1 drivers
+v000001d5d66afc00_0 .net "F", 0 0, L_000001d5d66b8d20;  alias, 1 drivers
+v000001d5d66af840_0 .net *"_ivl_14", 0 0, L_000001d5d66b9500;  1 drivers
+v000001d5d66af0c0_0 .net *"_ivl_4", 0 0, L_000001d5d6648fc0;  1 drivers
+v000001d5d66af3e0_0 .net "and_AB", 0 0, L_000001d5d6648d90;  1 drivers
+v000001d5d66aff20_0 .net "and_ABC", 0 0, L_000001d5d66b91f0;  1 drivers
+v000001d5d66b06a0_0 .net "nor_D", 0 0, L_000001d5d66b90a0;  1 drivers
+v000001d5d66ae940_0 .net "nor_noD", 0 0, L_000001d5d66b95e0;  1 drivers
+v000001d5d66aea80_0 .net "or_AC", 0 0, L_000001d5d66b9490;  1 drivers
+S_000001d5d679df20 .scope module, "M3" "Lab1_gatelevel_UDP" 2 8, 5 1 0, S_000001d5d665e610;
+ .timescale 0 0;
+    .port_info 0 /OUTPUT 1 "F";
+    .port_info 1 /INPUT 1 "A";
+    .port_info 2 /INPUT 1 "B";
+    .port_info 3 /INPUT 1 "C";
+    .port_info 4 /INPUT 1 "D";
+L_000001d5d66b92d0 .functor NOT 1, v000001d5d66af2a0_0, C4<0>, C4<0>, C4<0>;
+UDP_Lab1_UDP .udp/comb "Lab1_UDP", 3
+ ,"0001"
+ ,"0010"
+ ,"0101"
+ ,"0110"
+ ,"1001"
+ ,"1010"
+ ,"1100"
+ ,"1110";
+L_000001d5d66b8d90 .udp UDP_Lab1_UDP, v000001d5d66af520_0, L_000001d5d66b92d0, v000001d5d66af200_0;
+L_000001d5d66b9110 .functor NOT 1, v000001d5d66ae9e0_0, C4<0>, C4<0>, C4<0>;
+L_000001d5d66b9180 .functor OR 1, v000001d5d66af520_0, v000001d5d66af200_0, C4<0>, C4<0>;
+L_000001d5d66b9260 .udp UDP_Lab1_UDP, L_000001d5d66b9180, v000001d5d66af2a0_0, L_000001d5d66b9110;
+L_000001d5d66b8e00 .functor OR 1, L_000001d5d66b9260, L_000001d5d66b8d90, C4<0>, C4<0>;
+v000001d5d66b0740_0 .net "A", 0 0, v000001d5d66af520_0;  alias, 1 drivers
+v000001d5d66aeb20_0 .net "B", 0 0, v000001d5d66af2a0_0;  alias, 1 drivers
+v000001d5d66afac0_0 .net "B_invert", 0 0, L_000001d5d66b92d0;  1 drivers
+v000001d5d66affc0_0 .net "C", 0 0, v000001d5d66af200_0;  alias, 1 drivers
+v000001d5d66aec60_0 .net "D", 0 0, v000001d5d66ae9e0_0;  alias, 1 drivers
+v000001d5d66afe80_0 .net "D_invert", 0 0, L_000001d5d66b9110;  1 drivers
+v000001d5d66b0100_0 .net "F", 0 0, L_000001d5d66b8e00;  alias, 1 drivers
+v000001d5d66afa20_0 .net "nor_D", 0 0, L_000001d5d66b9260;  1 drivers
+v000001d5d66aed00_0 .net "nor_noD", 0 0, L_000001d5d66b8d90;  1 drivers
+v000001d5d66aeda0_0 .net "or_AC", 0 0, L_000001d5d66b9180;  1 drivers
+    .scope S_000001d5d665e610;
+T_0 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001d5d66af520_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001d5d66af2a0_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001d5d66af200_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001d5d66ae9e0_0, 0, 1;
+    %delay 50, 0;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v000001d5d66aeee0_0, 0, 32;
+T_0.0 ;
+    %load/vec4 v000001d5d66aeee0_0;
+    %cmpi/s 16, 0, 32;
+    %jmp/0xz T_0.1, 5;
+    %load/vec4 v000001d5d66aeee0_0;
+    %parti/s 1, 3, 3;
+    %store/vec4 v000001d5d66af520_0, 0, 1;
+    %load/vec4 v000001d5d66aeee0_0;
+    %parti/s 1, 2, 3;
+    %store/vec4 v000001d5d66af2a0_0, 0, 1;
+    %load/vec4 v000001d5d66aeee0_0;
+    %parti/s 1, 1, 2;
+    %store/vec4 v000001d5d66af200_0, 0, 1;
+    %load/vec4 v000001d5d66aeee0_0;
+    %parti/s 1, 0, 2;
+    %store/vec4 v000001d5d66ae9e0_0, 0, 1;
+    %delay 8, 0;
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v000001d5d66aeee0_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %store/vec4 v000001d5d66aeee0_0, 0, 32;
+    %jmp T_0.0;
+T_0.1 ;
+    %end;
+    .thread T_0;
+    .scope S_000001d5d665e610;
+T_1 ;
+    %delay 200, 0;
+    %vpi_call 2 22 "$finish" {0 0 0};
+    %end;
+    .thread T_1;
+    .scope S_000001d5d665e610;
+T_2 ;
+    %vpi_call 2 26 "$dumpfile", "Lab1.vcd" {0 0 0};
+    %vpi_call 2 27 "$dumpvars" {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 6;
+    "N/A";
+    "<interactive>";
+    "t_Lab1.v";
+    "Lab1_gatelevel.v";
+    "Lab1_dataflow.v";
+    "Lab1_gatelevel_UDP.v";

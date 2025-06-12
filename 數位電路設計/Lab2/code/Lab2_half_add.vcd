@@ -1,0 +1,50 @@
+$date
+	Thu Apr 20 22:26:49 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module t_Lab2_half_add $end
+$var wire 1 ! sum $end
+$var wire 1 " cout $end
+$var reg 1 # a $end
+$var reg 1 $ b $end
+$scope module M1 $end
+$var wire 1 # a $end
+$var wire 1 $ b $end
+$var wire 1 " cout $end
+$var wire 1 ! sum $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+0$
+0#
+x"
+x!
+$end
+#2
+0"
+#4
+0!
+#50
+1$
+#54
+1!
+#100
+0$
+1#
+#150
+1$
+#152
+1"
+#154
+0!
+#200

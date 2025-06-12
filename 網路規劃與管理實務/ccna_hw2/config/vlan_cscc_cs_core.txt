@@ -1,0 +1,66 @@
+vlan 30
+name VLAN30
+exit
+interface vlan 30
+ip address 140.113.10.254 255.255.255.0
+exit
+
+vlan 101
+name VLAN101
+exit
+interface vlan 101
+ip address 140.113.20.1 255.255.255.224
+exit
+
+vlan 102
+name VLAN102
+exit
+interface vlan 102
+ip address 140.113.20.33 255.255.255.224
+exit
+
+vlan 316
+name VLAN316
+exit
+interface vlan 316
+ip address 140.113.16.254 255.255.255.0
+exit
+
+vlan 321
+name VLAN321
+exit
+interface vlan 321
+ip address 140.113.21.254 255.255.255.0
+exit
+
+vlan 324
+name VLAN324
+exit
+interface vlan 324
+ip address 140.113.24.254 255.255.255.0
+exit
+
+# don't do this first
+ip routing
+
+# 1/0/1 之後處理
+
+interface range gi 1/0/2-3
+switchport mode trunk
+switchport trunk allowed vlan 30,102
+exit
+
+interface gi 1/0/4
+switchport mode trunk
+switchport trunk allowed vlan 30,101,102
+exit
+
+interface gi 1/0/5
+switchport mode trunk
+switchport trunk allowed vlan 30,316,321,324
+exit
+
+
+
+
+copy running-config startup-config

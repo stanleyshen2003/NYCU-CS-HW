@@ -1,0 +1,8 @@
+network:
+    version: 2
+    ethernets:
+        enp0s3:
+            addresses:
+                - 10.0.0.1/30
+            gateway4: 10.0.0.2
+            dhcp4: no

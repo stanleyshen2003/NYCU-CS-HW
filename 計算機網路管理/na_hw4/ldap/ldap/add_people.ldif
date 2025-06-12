@@ -1,0 +1,35 @@
+dn: uid=generalta,ou=People,dc=51,dc=nasa
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: ldapPublicKey
+cn: generalta
+sn: generalta
+uid: generalta
+uidNumber: 10000
+gidNumber: 10000
+homeDirectory: /home/generalta
+loginShell: /bin/bash
+userPassword: {SSHA}2bdvIM0xlqTmu85Dhwg3/U3ZB6NL1nQq
+sshPublicKey:  ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFfg2DMY3DfBBvZCnqN8Az5tUnVQca+qXkJ9HceOcRAy 2025-na-hw4
+
+dn: uid=stu51,ou=People,dc=51,dc=nasa
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: ldapPublicKey
+cn: stu51
+sn: stu51
+uid: stu51
+uidNumber: 10051
+gidNumber: 20000
+homeDirectory: /home/stu51
+loginShell: /bin/bash
+userPassword: {SSHA}2bdvIM0xlqTmu85Dhwg3/U3ZB6NL1nQq
+sshPublicKey:  ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFfg2DMY3DfBBvZCnqN8Az5tUnVQca+qXkJ9HceOcRAy 2025-na-hw4

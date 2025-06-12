@@ -1,0 +1,1 @@
+srun --mpi=pmix ./sudoku_mpi_main --file medium --algorithm 1

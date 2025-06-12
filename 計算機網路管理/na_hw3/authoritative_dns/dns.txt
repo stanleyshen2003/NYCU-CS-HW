@@ -1,0 +1,28 @@
+$TTL 100
+@   IN  SOA ns1.51.nasa. root.ns1.51.nasa. (
+    2025032201 ; Serial
+    3600       ; Refresh
+    1800       ; Retry
+    1209600    ; Expire
+    100 )    ; Minimum TTL
+
+; Nameservers
+@   IN  NS   ns1.51.nasa.
+
+; A Records
+whoami    IN  A   10.113.51.1
+dns      IN  A   192.168.51.153
+ns1      IN  A   192.168.51.53
+
+; @     IN MX 10 51.nasa.
+@     IN MX 10 mail.51.nasa.
+@     IN TXT "v=spf1 mx ip4:192.168.51.25 -all"
+mail  IN A     192.168.51.25
+mail  IN MX 10 mail.51.nasa.
+
+mail      IN      TXT     "v=spf1 a -all"
+;dkim._domainkey IN TXT ( "v=DKIM1; k=rsa; p=MHcCAQEEIHsbANBX/3ILGAYzoia+YtcGE3tDyMUlyeOFDAKg9uYzoAoGCCqGSM49AwEHoUQDQgAEqVaAwrVFrrDvDl/jQExE7Iw9nSJnY9MrYtpr4wvMl6cLzJ5bzRNSsC+CfpzCHsycd3KnP12ZGb/Mz50c4dohjg==;" )
+_dmarc.51.nasa.  IN  TXT  "v=DMARC1; p=reject; adkim=s; aspf=s; rua=mailto:dmarc-report-rua@51.nasa;"
+
+;51.nasa. IN DNSKEY 256 3 13 FHHfW8gVL7UdFZGFdegjZynlFvGfX1V+vS3iPC9I3SX5Sq5PVSt4r/YP NZ9ikH81toBtKb3YZesn4JYQ12gaIA==
+;51.nasa. IN DNSKEY 257 3 13 W1haoVIx/lcGTpqNLSpR+zXemeCGmFV6yYiwj8YdVX9C9INDDp5t9fcM qRNrX2Obqq0wcAqLMfXaCMt9EBS0OQ==

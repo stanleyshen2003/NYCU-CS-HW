@@ -1,0 +1,216 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+@import url("nav.css");
+
+*{
+	margin:0;
+	padding:0;
+}
+
+body{
+	font-family: 'Times New Roman', 'Noto Serif TC', serif;
+	background: rgba(255, 190, 10, .1);
+}
+
+::-moz-selection{ /* Firefox */
+    color:rgba(255, 255, 255, 1);
+    background: rgba(9, 93, 66, 1);
+}
+
+::selection{
+    color:rgba(255, 255, 255, 1);
+    background: rgba(9, 93, 66, 1);
+}
+
+
+/*header*/
+header{
+	width:100%;
+	height:100px;
+	background: rgba(255, 255, 255, 1);
+	box-sizing:border-box;
+	margin:auto;
+	position: -webkit-sticky;/* Safari */
+  	position: sticky;
+  	top:0;
+	z-index:2000;
+}
+
+.h_box{
+	width:80%;
+	margin:auto;
+}
+
+.h_box img{
+	float: left;
+}
+
+nav{
+	float: right;
+	z-index: 10000;
+}
+
+/*banner*/
+.banner{
+	position: relative;
+	overflow:hidden;
+	width:100%;
+	min-width:1200px;
+	height:550px;
+	background:url(../images/banner.jpg) no-repeat;
+	background-size:100%;
+}
+
+.anitext{
+	position:absolute;
+	top:30%;
+	left:0%;
+	font-family: 'Courgette', cursive;
+	color:rgba(255, 255, 255, 1);
+	font-size:20px;
+	opacity:0;
+	
+	animation-name: ant;
+	animation-duration: 4s;
+	animation-iteration-count: 1;
+	animation-timing-function: ease;
+	animation-delay: 1s;
+	animation-direction: normal;
+	animation-fill-mode: forwards;
+	
+	-webkit-animation-name: ant; /* 動畫名稱 */
+	-webkit-animation-duration: 4s; /* 動畫時間3秒 */
+	-webkit-animation-iteration-count: 1; /* 播放次數1次 */
+	-webkit-animation-timing-function: ease; /* 動態方式漸慢開始與結束 */
+	-webkit-animation-delay: 1s; /* 1秒後播放 */
+	-webkit-animation-direction: normal; /* 動畫播放順序為順向 */
+	-webkit-animation-fill-mode: forwards; /* 動畫結束後停格於最後一格，需搭配direction */
+}
+
+@keyframes ant{
+    from   { /*第一格的設定*/
+		
+	}
+	
+    to  {
+		left:10%;
+		font-size:120px;
+		opacity:1;
+	}
+}
+
+/* section */
+/* section */
+section{
+	width:80%;
+	margin:auto;
+}
+
+article{
+	float:left;
+	width:100%;
+	box-sizing:border-box;
+	margin:50px 0px 0px;
+	background:rgba(255,255,255,.5);
+}
+
+article:nth-child(2n){
+	background: rgba(255, 190, 10, .1);	
+}
+
+article .picbox, article .desbox{
+	float: left;
+	position:relative;
+	width:50%;
+	box-sizing:border-box;
+}
+
+article .desbox{
+	padding:80px;
+	line-height:2em;
+	text-align: justify;
+}
+
+.desbox h1{
+	font-family: 'Noto Serif TC', serif;
+	font-weight:900;
+	font-size:40px;
+	color:rgba(229, 94, 56, 1);
+	line-height:2em;
+}
+
+.desbox p::after{
+	content: url(../images/sq.jpg);
+}
+
+.picbox img{
+	width:100%;
+}
+
+.picbox:hover img{
+	  -webkit-filter: brightness(30%);
+	  filter: brightness(30%);
+}
+
+.picbox:hover .fadebox{
+	  opacity: 1;
+}
+
+.fadebox{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);/* IE 9 */
+	-webkit-transform: translate(-50%, -50%); /* Safari */
+	transform: translate(-50%, -50%);
+	opacity: 0;
+}
+
+.fadebox a{
+	display:block;
+	font-size:25px;
+	padding: 16px 32px;
+	color:rgba(255,255,255,1);
+	text-decoration:none;
+	background: rgba(229, 94, 56, 1);
+}
+
+.fadebox a:hover{
+	color:rgba(229, 94, 56, 1);
+	background: rgba(255,255,255,1);
+}
+
+
+
+/* aside */
+aside{
+	position:fixed;
+	right:10px;
+	bottom:10px;
+	z-index:100000;
+}
+
+.totop{
+	width:44px;
+	height:44px;
+	background:rgba(255, 190, 10, .5) url(../images/top2x.png) no-repeat;
+	background-size:200%;
+	background-position:0px 0px;
+}
+
+.totop:hover{
+	background:rgba(255, 190, 10, .5) url(../images/top2x.png) no-repeat;
+	background-size:200%;
+	background-position:-44px 0px;
+}
+
+/*footer*/
+footer{
+	clear:both;
+	padding:20px 0px;
+	text-align:center;
+	color:rgba(9, 93, 66, 1);
+}

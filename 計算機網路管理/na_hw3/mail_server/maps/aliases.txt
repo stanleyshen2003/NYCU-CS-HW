@@ -1,0 +1,12 @@
+NASATA@51.nasa         ta
+NASATA@mail.51.nasa    ta
+
+TA+@51.nasa            ta
+TA+@mail.51.nasa       ta
+
+TA@mail.51.nasa        ta
+TA@51.nasa             ta
+TA                     ta
+cool-TA                cool-ta
+cool-TA@51.nasa         cool-ta
+cool-TA@mail.51.nasa    cool-ta

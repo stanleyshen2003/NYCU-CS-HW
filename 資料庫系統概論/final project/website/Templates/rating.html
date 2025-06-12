@@ -1,0 +1,144 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+    <link href="{% static 'css/fontfamily.css' %}" rel="stylesheet">
+    <script type="text/javascript" src="{% static 'js/highcharts.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/highcharts-more.js' %}"></script>
+    <script src="{% static 'js/wordcloud.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>update data</title>
+  </head>
+  <body>
+    <div class="intro color1">
+        <h1 class="logo-header">
+            <div class="row align-items-center justify-content-around">
+                <div class="col-2 offset-1 logo"> 
+                    <img src="{% static 'img/head.jpg' %}" class="logoimage w-100" >    
+                </div>
+                <div class="col-1 offset-1 logo">
+                    <div class="decorate0 p-0"></div>
+                </div>
+                <div class="col logo">
+                    <div class="logoname">
+                        Update data !!!
+                        {% for message in messages %}
+                        {{message}}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </h1>
+    </div>
+    <div class="decorate p-0 color1"></div>
+    <div class="container-fluid h-100 fade_in">
+        <div class="row  mb-2 align-items-center ">
+            <div class="col-2 offset-1 "> 
+                <img src="{% static 'img/head.jpg' %}" class="image w-100" >    
+            </div>
+            <div class="col-1 offset-1 ">
+                <div class="decorate1 p-0"></div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="stname">
+                        Update data !!!
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="stid">
+                        input new cellphone/rate
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-50 justify-content-around ">
+            <div class="col-4 m-0 p-0">
+                <div class="l_card slide_in_l" >
+                    <div class="row l_tag color2 align-items-center" onclick="openMenu(3)" id="menu_bg3">
+                        <div class="col-1 offset-1 l_icon" id="menu_icon1">
+                            <i class="bi bi-caret-right-fill"></i>
+                        </div>
+                        <p class="col l_title">add new cellphone</p>
+                    </div>
+                    <div class="l_item hide color4" id="menu3">
+                        <form action = '/rating/' method = 'POST'>
+                            {% csrf_token %}
+                            <p style="margin-bottom:0;">Brand: (Ex: Apple, Samsung...)</p>
+                            <input type = 'text' name = 'brand' style="width: 85%;padding:2px 0;margin: 0px 0;margin-bottom: 50;border-left: 0;border-top: 0;border-right: 0;border-bottom: 2px solid rgb(114, 78, 16);margin-left: 0px;outline: none;background: transparent;font-size: 15px;" required/>
+                            <p style="margin-bottom:0;">Model: (Ex: iPhone 13...)</p>
+                            <input type = 'text' name = 'model' style="width:85%;padding:2px 0;margin: 0px 0;margin-bottom: 50;border-left: 0;border-top: 0;border-right: 0;border-bottom: 2px solid rgb(114, 78, 16);margin-left: 0px;outline: none;background: transparent;font-size: 15px;" required/>
+                            <p style="margin-bottom:0;">Internal Memory: (Ex: 128 (GB) )</p>
+                            <input type = 'number' name = 'internal_memory' style="width:85%;padding:2px 0;margin: 0px 0;margin-bottom: 50;border-left: 0;border-top: 0;border-right: 0;border-bottom: 2px solid rgb(114, 78, 16);margin-left: 0px;outline: none;background: transparent;font-size: 15px;" required/>
+                            <p style="margin-bottom:0;">	RAM: (Ex: 4 (GB) )</p>
+                            <input type = 'number' name = 'ram' style="width:85%;padding:2px 0;margin: 0px 0;margin-bottom: 50;border-left: 0;border-top: 0;border-right: 0;border-bottom: 2px solid rgb(114, 78, 16);margin-left: 0px;outline: none;background: transparent;font-size: 15px;" required/>
+                            <p style="margin-bottom:0;">	Performance: </p>
+                            <input type = 'number' step="0.01" name = 'performance' style="width:85%;padding:2px 0;margin: 0px 0;margin-bottom: 50;border-left: 0;border-top: 0;border-right: 0;border-bottom: 2px solid rgb(114, 78, 16);margin-left: 0px;outline: none;background: transparent;font-size: 15px;" required/>
+                            <p style="margin-bottom:0;">	Main Camera: </p>
+                            <input type = 'number' name = 'main_camera' style="width:85%;padding:2px 0;margin: 0px 0;margin-bottom: 50;border-left: 0;border-top: 0;border-right: 0;border-bottom: 2px solid rgb(114, 78, 16);margin-left: 0px;outline: none;background: transparent;font-size: 15px;" required/>
+                            <p style="margin-bottom:0;">	Selfie Camera: </p>
+                            <input type = 'number' name = 'selfie_camera' style="width:85%;padding:2px 0;margin: 0px 0;margin-bottom: 50;border-left: 0;border-top: 0;border-right: 0;border-bottom: 2px solid rgb(114, 78, 16);margin-left: 0px;outline: none;background: transparent;font-size: 15px;" required/>
+                            <p style="margin-bottom:0;">	Battery Size: </p>
+                            <input type = 'number' name = 'battery_size' style="width:85%;padding:2px 0;margin: 0px 0;margin-bottom: 50;border-left: 0;border-top: 0;border-right: 0;border-bottom: 2px solid rgb(114, 78, 16);margin-left: 0px;outline: none;background: transparent;font-size: 15px;" required/>
+                            <p style="margin-bottom:0;">	Screen Size: </p>
+                            <input type = 'number' name = 'screen_size' style="width:85%;padding:2px 0;margin: 0px 0;margin-bottom: 50;border-left: 0;border-top: 0;border-right: 0;border-bottom: 2px solid rgb(114, 78, 16);margin-left: 0px;outline: none;background: transparent;font-size: 15px;" required/>
+                            <p style="margin-bottom:0;">	Weight: </p>
+                            <input type = 'number' name = 'weight' style="width:85%;padding:2px 0;margin: 0px 0;margin-bottom: 50;border-left: 0;border-top: 0;border-right: 0;border-bottom: 2px solid rgb(114, 78, 16);margin-left: 0px;outline: none;background: transparent;font-size: 15px;" required/>
+                            <p style="margin-bottom:0;">	Price: (US Dollar) </p>
+                            <input type = 'number' name = 'price' style="width:85%;padding:2px 0;margin: 0px 0;margin-bottom: 50;border-left: 0;border-top: 0;border-right: 0;border-bottom: 2px solid rgb(114, 78, 16);margin-left: 0px;outline: none;background: transparent;font-size: 15px;" required/>
+                            <p style="margin-bottom:0;">	Release Date: (yyyy-mm-dd)</p>
+                            <input type = 'text' name = 'release_date' style="width:85%;padding:2px 0;margin: 0px 0;margin-bottom: 50;border-left: 0;border-top: 0;border-right: 0;border-bottom: 2px solid rgb(114, 78, 16);margin-left: 0px;outline: none;background: transparent;font-size: 15px;" required/>
+                            <p> </p>
+                            <input type = 'submit' style="width: 25%;cursor: pointer;display: block;margin-left:100px;margin-top: 0;margin-bottom: 30;background: #9eb9df;border: 0;outline: 0;border-radius: 10px;" />
+                          </form>
+                    </div>
+                </div>
+                <div class="l_card slide_in_l" >
+                    <div class="row l_tag color2 align-items-center" onclick="openMenu(2)" id="menu_bg2">
+                        <div class="col-1 offset-1 l_icon" id="menu_icon2">
+                            <i class="bi bi-caret-right-fill"></i>
+                        </div>
+                        <p class="col l_title">give rate</p>
+                    </div>
+                    <div class="l_item hide all-tooltips color4" id="menu2">
+                        <form action = '/rating2/' method = 'POST'>
+                            {% csrf_token %}
+                            <p style="margin-bottom:0;">cellphone_id: </p>
+                            <input type = 'number' name = 'cellphone_id' style="width:285px;padding:2px 0;margin: 0px 0;margin-bottom: 50;border-left: 0;border-top: 0;border-right: 0;border-bottom: 2px solid rgb(114, 78, 16);margin-left: 0px;outline: none;background: transparent;font-size: 15px;" required/>
+                            <p style="margin-bottom:0;">Rate:</p>
+                            <select name='rate' style="border-top:none;border-left:0;border-right:0;border-bottom: 2px solid rgb(114, 78, 16);">
+                              {% with ''|center:10 as range %}
+                              {% for _ in range %}
+                              <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+                              {% endfor %}
+                              {% endwith %}
+                            </select><br>
+                            <p> </p>
+                            <input type = 'submit' style="width: 20%;cursor: pointer;display: block;margin-left:100px;margin-top: 0;margin-bottom: 3px;background: #9eb9df;border: 0;outline: 0;border-radius: 10px;"/> 
+                          </form>
+                    </div>
+                </div>
+                
+                
+            </div> 
+                            
+            </div>
+        </div>
+    </div>
+    
+    <script src="{% static 'js/jquery-3.2.1.slim.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/menu.js' %}"></script>
+    <script src="{% static 'js/welcome.js' %}"></script>
+    <script src="{% static 'js/cloud.js' %}"></script>
+    <!script src="{% static 'js/tooltip.js' %}"></script>
+    <button type="button" style="margin-left:860px;background: #fff;border:none"><a href="/operation/" style="text-align: center;text-decoration: none;color: rgb(123, 111, 44);">> Back</a></button>
+  </body>
+</html>

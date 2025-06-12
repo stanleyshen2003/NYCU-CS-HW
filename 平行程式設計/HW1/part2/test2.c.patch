@@ -1,0 +1,13 @@
+--- test2.c
++++ test2.c
+@@ -14,9 +14,8 @@
+     for (int j = 0; j < N; j++)
+     {
+       /* max() */
+-      c[j] = a[j];
+-      if (b[j] > a[j])
+-        c[j] = b[j];
++      if (b[j] > a[j]) c[j] = b[j];
++      else c[j] = a[j];
+     }
+   }

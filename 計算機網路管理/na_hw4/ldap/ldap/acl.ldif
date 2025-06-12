@@ -1,0 +1,32 @@
+dn: olcDatabase={1}mdb,cn=config
+changetype: modify
+replace: olcAccess
+olcAccess: to attrs=userPassword
+  by dn.exact="uid=generalta,ou=People,dc=51,dc=nasa" =wscdx
+  by dn.exact="cn=admin,dc=51,dc=nasa" write
+  by dn.exact="cn=admin,dc=51,dc=nasa" read
+  by self write
+  by self read
+  by anonymous auth
+  by * none
+olcAccess: to attrs=loginShell,sshPublicKey
+  by dn.exact="cn=admin,dc=51,dc=nasa" write
+  by dn.exact="cn=admin,dc=51,dc=nasa" read
+  by self write
+  by * read
+olcAccess: to dn.subtree="ou=People,dc=51,dc=nasa"
+  by dn.exact="cn=admin,dc=51,dc=nasa" manage
+  by dn.exact="uid=generalta,ou=People,dc=51,dc=nasa" write
+  by self read
+  by users read
+  by * none
+olcAccess: to dn.subtree="ou=Group,dc=51,dc=nasa"
+  by dn.exact="cn=admin,dc=51,dc=nasa" manage
+  by dn.exact="uid=generalta,ou=People,dc=51,dc=nasa" write
+  by users read
+  by * none
+olcAccess: to dn.subtree="dc=51,dc=nasa"
+  by dn.exact="cn=admin,dc=51,dc=nasa" manage
+  by dn.exact="uid=generalta,ou=People,dc=51,dc=nasa" read
+  by users read
+  by * none

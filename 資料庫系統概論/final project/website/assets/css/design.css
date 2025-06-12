@@ -1,0 +1,127 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.hero{
+    height: 100%;
+    width: 100%;
+    background-image: url(bg.jpg);
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+}
+.form-box{
+    width: 380px;
+    height: 480px;
+    position: relative;
+    margin: 6% auto;
+    background: #fff;
+    padding: 5px;
+}
+.button-box{
+    width: 110px;
+    margin: 35px auto;
+    position: relative;
+    box-shadow: 0 0 20px 9px #ff61241f;
+    border-radius: 30px;
+}
+.toggle-btn{
+    padding: 10px 30px;
+    cursor: pointer;
+    background:transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+}
+#btn{
+    top:0;
+    left:0;
+    position:absolute;
+    width: 110px;
+    height:100%;
+    background: linear-gradient(to right,#ff105f,#ffad06);
+    border-radius: 30px;
+    transition: .5s;
+}
+.input-group{
+    top:120px;
+    position: absolute;
+    width: 280px;
+    transition: .5s;
+}
+.input-field{
+    width:100%;
+    padding:2px 0;
+    margin: 0px 0;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: transparent;
+}
+.submit-btn{
+    width: 50%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin-top: 40;
+    margin-left: auto;
+    margin-right: auto;
+    background: linear-gradient(to right, #ff105f,#ffad06);
+    border: 0;
+    outline: 0;
+    border-radius: 30px;
+}
+#register{
+    left: 60px;
+}
+.words{
+    color: #777;
+    font-size: 15px;
+    height: 16px;
+    font-weight: bolder;
+    margin-top: 8;
+}
+.wordfor{
+    color: #777;
+    font-size: 15px;
+    height: 16px;
+    font-weight: bolder;
+    margin-top: 10;
+    margin-bottom: 2;
+}
+span{
+    color: #777;
+    font-size: 10px;
+    position: auto;
+}
+.cbox{
+    margin-top: 3px;
+}
+.errwords{
+    color: #FF0000;
+    font-size: 15px;
+    position: absolute;
+    top : 288px;
+    left: 5px;
+}
+.login-icon{
+    margin:10px auto;
+    text-align: center;
+}
+.login-icon img{
+    width: 200px;
+    height: 80;
+    margin-top: 10;
+
+}
+.registerwords{
+    color: #01499f;
+    font-size: 50px;
+    position: absolute;
+    top : 30px;
+    left: 137;
+    font-weight: bolder;
+    font-family: "Brush Script MT",cursive;
+}

@@ -1,0 +1,73 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_0000019a1652af40 .scope module, "t_Simple_Circuit" "t_Simple_Circuit" 2 1;
+ .timescale 0 0;
+v0000019a1652d180_0 .var "A", 0 0;
+v0000019a1652d220_0 .var "B", 0 0;
+v0000019a1652d2c0_0 .var "C", 0 0;
+v0000019a1652b860_0 .net "D1", 0 0, L_0000019a16402ce0;  1 drivers
+v0000019a1652b900_0 .net "E1", 0 0, L_0000019a1652ee30;  1 drivers
+S_0000019a1652cf50 .scope module, "M1" "Simple_Circuit" 2 6, 3 1 0, S_0000019a1652af40;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "A";
+    .port_info 1 /INPUT 1 "B";
+    .port_info 2 /INPUT 1 "C";
+    .port_info 3 /OUTPUT 1 "D";
+    .port_info 4 /OUTPUT 1 "E";
+L_0000019a1652d360 .functor AND 1, v0000019a1652d180_0, v0000019a1652d220_0, C4<1>, C4<1>;
+L_0000019a1652ee30 .functor NOT 1, v0000019a1652d2c0_0, C4<0>, C4<0>, C4<0>;
+L_0000019a16402ce0 .functor OR 1, L_0000019a1652d360, L_0000019a1652ee30, C4<0>, C4<0>;
+v0000019a16402e60_0 .net "A", 0 0, v0000019a1652d180_0;  1 drivers
+v0000019a16402b20_0 .net "B", 0 0, v0000019a1652d220_0;  1 drivers
+v0000019a164033e0_0 .net "C", 0 0, v0000019a1652d2c0_0;  1 drivers
+v0000019a1652b0d0_0 .net "D", 0 0, L_0000019a16402ce0;  alias, 1 drivers
+v0000019a1652ed90_0 .net "E", 0 0, L_0000019a1652ee30;  alias, 1 drivers
+v0000019a1652d0e0_0 .net "w1", 0 0, L_0000019a1652d360;  1 drivers
+    .scope S_0000019a1652af40;
+T_0 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0000019a1652d180_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0000019a1652d220_0, 0, 1;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0000019a1652d2c0_0, 0, 1;
+    %delay 100, 0;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0000019a1652d180_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0000019a1652d220_0, 0, 1;
+    %pushi/vec4 1, 0, 1;
+    %store/vec4 v0000019a1652d2c0_0, 0, 1;
+    %end;
+    .thread T_0;
+    .scope S_0000019a1652af40;
+T_1 ;
+    %delay 200, 0;
+    %vpi_call 2 14 "$finish" {0 0 0};
+    %end;
+    .thread T_1;
+    .scope S_0000019a1652af40;
+T_2 ;
+    %vpi_call 2 18 "$dumpfile", "t_Simple_Circuit.vcd" {0 0 0};
+    %vpi_call 2 19 "$dumpvars" {0 0 0};
+    %delay 199, 0;
+    %vpi_call 2 22 "$display", " ______   __     __   __     __     ______     __  __    " {0 0 0};
+    %vpi_call 2 23 "$display", "/\134  ___\134 /\134 \134   /\134 \042-.\134 \134   /\134 \134   /\134  ___\134   /\134 \134_\134 \134   " {0 0 0};
+    %vpi_call 2 24 "$display", "\134 \134  __\134 \134 \134 \134  \134 \134 \134-.  \134  \134 \134 \134  \134 \134___  \134  \134 \134  __ \134  " {0 0 0};
+    %vpi_call 2 25 "$display", " \134 \134_\134    \134 \134_\134  \134 \134_\134\134\042\134_\134  \134 \134_\134  \134/\134_____\134  \134 \134_\134 \134_\134 " {0 0 0};
+    %vpi_call 2 26 "$display", "  \134/_/     \134/_/   \134/_/ \134/_/   \134/_/   \134/_____/   \134/_/\134/_/ " {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "t_Simple_Circuit.v";
+    "Simple_Circuit.v";

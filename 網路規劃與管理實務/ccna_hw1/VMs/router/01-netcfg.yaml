@@ -1,0 +1,17 @@
+network:
+    version: 2
+    ethernets:
+        enp0s8:
+            addresses:
+                - 192.168.10.254/24
+            dhcp4: no
+#            routes:
+#                - to: 192.168.10.11/32
+#                  via: 192.168.10.1
+        enp0s9:
+            addresses:
+                - 192.168.20.254/24
+            dhcp4: no
+            routes:
+                - to: 10.0.0.0/30
+                  via: 192.168.20.1

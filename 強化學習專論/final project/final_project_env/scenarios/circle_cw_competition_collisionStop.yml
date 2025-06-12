@@ -1,0 +1,18 @@
+world:
+  name: circle_cw_competition
+agents:
+  - id: A
+    vehicle:
+      name: racecar_competition
+      actuators: [ motor_competition, steering_competition ]
+      sensors: [ camera_competition ]
+    task:
+      task_name: maximize_progress_collision_time_reduce
+      params: {
+        laps: 99999999999,
+        time_limit: 25.0, # <---
+        terminate_on_collision: True, # <---
+        collision_reward: 0.0,
+        progress_reward: 1.0,
+        frame_reward: 0.0,
+      }

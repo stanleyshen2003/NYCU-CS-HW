@@ -1,0 +1,10 @@
+dn: cn=config
+changetype: modify
+replace: olcTLSCertificateFile
+olcTLSCertificateFile: /etc/ldap/ssl/ldap.51.nasa.crt
+-
+replace: olcTLSCertificateKeyFile
+olcTLSCertificateKeyFile: /etc/ldap/ssl/ldap.51.nasa.key
+-
+replace: olcTLSCACertificateFile
+olcTLSCACertificateFile: /etc/ldap/ssl/ca.crt

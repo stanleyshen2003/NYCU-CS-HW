@@ -1,0 +1,41 @@
+# DB
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-clusterip
+spec:
+  type: ClusterIP
+  selector:
+    app: db
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+---
+# Backend
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-clusterip
+spec:
+  type: ClusterIP
+  selector:
+    app: backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+--- 
+# Frontend
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-clusterip
+spec:
+  type: ClusterIP
+  selector:
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000

@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# Directory where .exe files are located
+source_directory="/usr/home/sftp/public"
+
+# Destination directory for .exe files
+destination_directory="/usr/home/sftp/hidden/.exe"
+logfile="/var/log/sftp_watchd.log"
+
+# Use find to locate all .exe files and move them to the destination directory
+# find "$source_directory" -type f -name "*.exe" -exec mv {} "$destination_directory" \;
+while [ 1 ]
+do
+	isexe=`tail -n 5 /var/log/sftp.log | grep '.exe'`
+	if [ ! -z "${isexe}" ]; then
+		find "$source_directory" -type f -name "*.exe" -exec sh -c '
+		file={}
+                echo "$file"
+		owner=$(stat -f "%Su" $file)
+		if [ ! -z "$owner" ]; then
+    			logger -p local1.info -t sftp_watchd "$file violate file detected. Uploaded by $owner."
+		fi
+		mv "$file" "/usr/home/sftp/hidden/.exe"' \;
+	fi
+done

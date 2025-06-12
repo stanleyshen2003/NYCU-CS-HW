@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stacked bar chart</title>
+    <link rel="stylesheet" href="110705013_style.css">
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  </head>
+  <body>
+ 			<div class='container'>
+    	<svg id="svg" width="100vh" height="100vh"></svg>
+    	</div>
+    	<script src="bundle.js"></script>
+    
+    <div class="radio-container">
+      <text class = 'radio-title'>Sort by</text>
+      <div class="radio-option">
+        <input type="radio" name="options" id="option1" value="total_score" checked>
+        <label for="option1" class="custom-radio">Total</label>
+      </div>
+
+      <div class="radio-option">
+        <input type="radio" name="options" id="option2" value="teaching_score">
+        <label for="option2" class="custom-radio">Teaching</label>
+      </div>
+
+      <div class="radio-option">
+        <input type="radio" name="options" id="option3" value="research_score">
+        <label for="option3" class="custom-radio">Reasearch</label>
+      </div>
+
+      <div class="radio-option">
+        <input type="radio" name="options" id="option4" value="citations_score">
+        <label for="option4" class="custom-radio">Citations</label>
+      </div>
+      
+      <div class="radio-option">
+        <input type="radio" name="options" id="option4" value="industry_income_score">
+        <label for="option4" class="custom-radio">Indistry income</label>
+      </div>
+      
+      <div class="radio-option">
+        <input type="radio" name="options" id="option4" value="international_score">
+        <label for="option4" class="custom-radio">International outlook</label>
+      </div>
+    </div>
+    
+    <! ascend / descend>
+    <div class="radio-container2">
+      <text class = 'radio-title'>Sort score by</text>
+      <div class="radio-option">
+        <input type="radio" name="options2" id="option1" value="1" checked>
+        <label for="option1" class="custom-radio">Descending</label>
+      </div>
+
+      <div class="radio-option">
+        <input type="radio" name="options2" id="option2" value="0">
+        <label for="option2" class="custom-radio">Ascending</label>
+      </div>
+    </div>
+		
+    <div class="range-container">
+      <text class = 'radio-title'>Sort by</text>
+      <div class="radio-option">
+        <text> min:</text>
+        <input type="number" name="head1" id="head" value=1 min="1" style="width: 60px;">
+      </div>
+      <div class="radio-option">
+        <text> max:</text>
+        <input type="number" name="head2" id="tail" value=20 min="1" style="width: 60px;">
+      </div>
+    </div>
+    
+    		
+    <div class="d-flex">
+      <div class="legend">
+      	<div class="dot international_score">
+        </div>
+          <text class="showclass">International</text>
+      </div>
+      <div class="legend">
+      	<div class="dot industry_income_score">
+        </div>
+          <text class="showclass">Industry income</text>
+      </div>
+      <div class="legend">
+        <div class="dot citations_score"></div>
+        <text class="showclass">Citations</text>
+      </div>
+      <div class="legend">
+      	<div class="dot research_score"></div>
+        <text class="showclass">Reasearch</text>
+      </div>
+      <div class="legend">
+        <div class="dot teaching_score"></div>
+        <text class="showclass">Teaching</text>
+      </div>
+      
+       
+        
+        
+      	   
+      </div>
+    </div>
+
+  </body>
+  
+</html>

@@ -1,0 +1,9 @@
+create table country_code(
+	continent_name varchar(20),
+	continent_code char(2),
+	country_name varchar(55),
+	two_letter_country_code char(2),
+	three_letter_country_code char(3),
+	country_number numeric(3,0),
+	primary key(continent_name,country_name)
+);

@@ -1,0 +1,237 @@
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.10.0.0/16
+
+  R1h1br:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
+
+  R2h2br:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.0.0/16
+
+  R1R2br:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.19.0.0/16
+
+  R3h3br:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.22.0.0/16
+  
+  R4R5br:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.23.0.0/16
+  
+  R5h4br:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.24.0.0/16
+
+    
+services:
+  onos:
+    image: onosproject/onos:latest
+    container_name: onos
+    hostname: onos
+    privileged: true
+    networks:
+      - default
+    environment:
+      - ONOS_APPS=drivers,fpm,fwd
+    ports:
+      - "2620:2620"
+      - "6653:6653"
+      - "8101:8101"
+      - "8181:8181"
+    tty: true
+    stdin_open: true
+  
+  h1:
+    image: host
+    container_name: h1
+    privileged: true
+    build:
+      context: .
+      dockerfile: host.Dockerfile
+    cap_add:
+      - NET_ADMIN
+      - NET_BROADCAST
+    networks:
+      R1h1br:
+        ipv4_address: 172.18.0.3
+    entrypoint: ["/bin/sh","-c"]
+    command:
+    - |
+      ip route del default 
+      ip route add default via 172.18.0.2
+      sleep infinity
+
+  h2:
+    image: host
+    container_name: h2
+    privileged: true
+    build:
+      context: .
+      dockerfile: host.Dockerfile
+    cap_add:
+      - NET_ADMIN
+      - NET_BROADCAST
+    networks:
+      R2h2br:
+        ipv4_address: 172.21.0.3
+    entrypoint: ["/bin/sh","-c"]
+    command:
+    - |
+      ip route del default 
+      ip route add default via 172.21.0.2
+      sleep infinity
+  
+  h3:
+    image: host
+    container_name: h3
+    privileged: true
+    build:
+      context: .
+      dockerfile: host.Dockerfile
+    cap_add:
+      - NET_ADMIN
+      - NET_BROADCAST
+    networks:
+      R3h3br:
+        ipv4_address: 172.22.0.3
+    entrypoint: ["/bin/sh","-c"]
+    command:
+    - |
+      ip route del default 
+      ip route add default via 172.22.0.2
+      sleep infinity
+
+  h4:
+    image: host
+    container_name: h4
+    privileged: true
+    build:
+      context: .
+      dockerfile: host.Dockerfile
+    cap_add:
+      - NET_ADMIN
+      - NET_BROADCAST
+    networks:
+      R5h4br:
+        ipv4_address: 172.24.0.3
+    entrypoint: ["/bin/sh","-c"]
+    command:
+    - |
+      ip route del default 
+      ip route add default via 172.24.0.2
+      sleep infinity
+
+  R1:
+    image: frrouting/frr-debian
+    container_name: R1
+    hostname: R1
+    privileged: true
+    sysctls:
+      - net.ipv4.ip_forward=1
+    cap_add:
+      - NET_ADMIN
+      - NET_BROADCAST
+    networks:
+      R1h1br:
+        ipv4_address: 172.18.0.2
+      R1R2br:
+        ipv4_address: 172.19.0.2
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./config/daemons:/etc/frr/daemons
+      - ./config/R1/frr.conf:/etc/frr/frr.conf
+
+  R2:
+    image: frrouting/frr-debian
+    container_name: R2
+    hostname: R2
+    privileged: true
+    sysctls:
+      - net.ipv4.ip_forward=1
+    cap_add:
+      - NET_ADMIN
+      - NET_BROADCAST
+    networks:
+      R2h2br:
+        ipv4_address: 172.21.0.2
+      R1R2br:
+        ipv4_address: 172.19.0.3
+    volumes:
+      - ./config/daemons:/etc/frr/daemons
+      - ./config/R2/frr.conf:/etc/frr/frr.conf
+
+  R3:
+    image: frrouting/frr-debian
+    container_name: R3
+    hostname: R3
+    privileged: true
+    sysctls:
+      - net.ipv4.ip_forward=1
+    cap_add:
+      - NET_ADMIN
+      - NET_BROADCAST
+    networks:
+      R3h3br:
+        ipv4_address: 172.22.0.2
+    volumes:
+      - ./config/daemons:/etc/frr/daemons
+      - ./config/R3/frr.conf:/etc/frr/frr.conf
+
+  R4:
+    image: frrouting/frr-debian
+    container_name: R4
+    hostname: R4
+    privileged: true
+    sysctls:
+      - net.ipv4.ip_forward=1
+    cap_add:
+      - NET_ADMIN
+      - NET_BROADCAST
+    networks:
+      R4R5br:
+        ipv4_address: 172.23.0.2
+    volumes:
+      - ./config/daemons:/etc/frr/daemons
+      - ./config/R4/frr.conf:/etc/frr/frr.conf
+  
+  R5:
+    image: frrouting/frr-debian
+    container_name: R5
+    hostname: R5
+    privileged: true
+    sysctls:
+      - net.ipv4.ip_forward=1
+    cap_add:
+      - NET_ADMIN
+      - NET_BROADCAST
+    networks:
+      R4R5br:
+        ipv4_address: 172.23.0.3
+      R5h4br:
+        ipv4_address: 172.24.0.2
+    volumes:
+      - ./config/daemons:/etc/frr/daemons
+      - ./config/R5/frr.conf:/etc/frr/frr.conf
+      
+
+

@@ -1,0 +1,6 @@
+[Match]
+Name=host*
+
+[Network]
+Address=192.168.10.11/24
+Gateway=192.168.10.254

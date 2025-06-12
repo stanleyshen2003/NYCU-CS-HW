@@ -1,0 +1,16 @@
+network:
+    version: 2
+    ethernets:
+        enp0s8:
+            addresses:
+                - 192.168.20.1/24
+            gateway4: 192.168.20.254
+            dhcp4: no
+            nameservers:
+                addresses:
+                   - 8.8.8.8
+                   - 8.8.4.4
+        enp0s3:
+            addresses:
+                - 10.0.0.2/30
+            dhcp4: no

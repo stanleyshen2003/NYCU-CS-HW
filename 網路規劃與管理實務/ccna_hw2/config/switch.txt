@@ -1,0 +1,42 @@
+enable
+conf t
+
+# set hostname
+hostname [HOSTNAME]
+
+
+# add user with password encryption
+username ccna secret ccna
+
+# ONLY CS-Core console need account
+line console 0
+login local
+exit
+
+# enable need password
+enable secret project2
+
+# set ssh (mod length, version)
+ip domain-name cs.nycu.edu.tw
+crypto key generate rsa
+  # INPUT
+  2048
+ip ssh version 2
+
+# close telnet
+line vty 0 15
+transport input ssh
+login local
+exit
+
+# turn off unused interface
+interface range [FA0/2-24]
+shutdown
+exit
+
+# disable cdp for edge links
+interface range [FA0/2-24]
+no cdp enable
+
+# save config
+copy running-config startup-config

@@ -1,0 +1,49 @@
+text {
+  font-family: sans-serif;
+}
+#button-container {
+  position: absolute;
+  left: 85%;
+  top: 30%;
+  width: 10%;
+}
+
+.sortable-button {
+  background-color: transparent;
+  color: #000;
+  border: 0px;
+  padding: 5px;
+  margin-top: 1.5vh;
+  cursor: grab;
+  text-align: left;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+}
+
+.first {
+  color: #1b9e77;
+}
+.second {
+  color: #d95f02;
+}
+
+.third {
+  color: #7570b3;
+}
+.forth {
+  color: #e7298a;
+}
+.fifth {
+  color: #66a61e;
+}
+.sixth {
+  color: #e6ab02;
+}
+.seventh {
+  color: #a6761d;
+}

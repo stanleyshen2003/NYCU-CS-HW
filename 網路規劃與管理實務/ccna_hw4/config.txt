@@ -1,0 +1,803 @@
+##### NYCU-IT #####
+# gig 0/0/0 to NYCU-IT-aggr
+hostname NYCU-IT
+// shutdown interfaces
+interface gig 0/0/0
+no shutdown
+exit
+// SPT
+spanning-tree mode rapid-pvst
+// ip config
+interface gig0/0/0
+ip address 172.168.10.3 255.255.255.248
+ip ospf 42 area 0
+exit
+// OSPF
+router ospf 42
+default-information originate
+exit
+// GRE tunnel
+interface tunnel 69
+ip address 69.69.69.1 255.255.255.252
+tunnel source gig0/0/0
+tunnel destination 172.168.10.13
+exit
+ip route 0.0.0.0 0.0.0.0 69.69.69.2
+
+---
+CSIT-Core
+---
+##### EIC7F-sw #####
+# fa 0/1 to Core-1
+# fa 0/2 to Core-2
+# gig 0/1 to EIC769-sw
+hostname EIC7F-sw
+// shutdown interfaces
+interface range fa0/3-24,gig0/2
+shutdown
+exit
+// SPT
+spanning-tree mode rapid-pvst
+// AAA
+aaa new-model
+radius-server host 140.113.100.175 auth-port 1812 key 1l0v3T4
+aaa authentication login ssh_login group radius local
+line vty 0 15
+login authentication ssh_login
+exit
+ip domain-name cs.nctu.edu.tw
+ip ssh version 2
+crypto key generate rsa general-keys modulus 2048
+// ip config
+vlan 100
+exit
+interface vlan 100
+ip address 140.113.100.173 255.255.255.224
+exit
+// VLAN config
+vlan 111
+exit
+interface range fa0/1-2,gig0/1
+switchport mode trunk
+switchport trunk allowed vlan 100,111
+exit
+
+
+##### EC3F-sw #####
+# fa 0/1 to Core-1
+# fa 0/2 to Core-2
+# gig 0/1-2 to EC369-sw
+hostname EC3F-sw
+// shutdown interfaces
+interface range fa0/3-24
+shutdown
+exit
+// SPT
+spanning-tree mode rapid-pvst
+// AAA
+aaa new-model
+radius-server host 140.113.100.175 auth-port 1812 key 1l0v3T4
+aaa authentication login ssh_login group radius local
+line vty 0 15
+login authentication ssh_login
+exit
+ip domain-name cs.nctu.edu.tw
+ip ssh version 2
+crypto key generate rsa general-keys modulus 2048
+// ip config
+vlan 100
+exit
+interface vlan 100
+ip address 140.113.100.171 255.255.255.224
+exit
+// VLAN config
+vlan 38
+exit
+vlan 369
+exit
+interface range fa0/1-2
+switchport mode trunk
+switchport trunk allowed vlan 38,100,369
+exit
+// PAG
+interface range gig0/1-2
+channel-protocol lacp
+channel-group 2 mode active
+exit
+interface port-channel 2
+switchport mode trunk
+switchport trunk allowed vlan 38,100,369
+exit
+
+##### Core-1 #####
+# gig 1/0/1-2 to Core-2
+# gig 1/0/3 to EIC7F-sw
+# gig 1/0/4 to EC3F-sw
+# gig 1/0/6 to EC169-sw
+# gig 1/0/7 to CSIT-server-sw
+# gig 1/0/8 to EC111-sw
+# gig 1/0/9 to CHT-aggr
+# gig 1/0/10 to NYCU-IT-aggr
+hostname Core-1
+// shutdown interfaces
+interface range gig1/0/5,gig1/0/11-24,gig1/1/1-4
+shutdown
+exit
+// SPT
+spanning-tree mode rapid-pvst
+// AAA
+aaa new-model
+radius server radius
+address ipv4 140.113.100.175 auth-port 1812
+key 1l0v3T4
+exit
+aaa authentication login ssh_login group radius local
+line vty 0 15
+login authentication ssh_login
+exit
+ip domain-name cs.nctu.edu.tw
+ip ssh version 2
+crypto key generate rsa general-keys modulus 2048
+// ip config
+vlan 100
+exit
+interface vlan 100
+ip address 140.113.100.165 255.255.255.224
+exit
+vlan 111
+exit
+interface vlan 111
+ip address 140.113.111.180 255.255.255.224
+standby version 2
+standby 111 ip 140.113.111.190
+exit
+vlan 169
+exit
+interface vlan 169
+ip address 140.113.169.110 255.255.255.128
+standby version 2
+standby 169 ip 140.113.169.126
+exit
+vlan 369
+exit
+interface vlan 369
+ip address 140.113.69.250 255.255.255.0
+standby version 2
+standby 369 ip 140.113.69.254
+standby 369 priority 100
+exit
+vlan 38
+exit
+interface vlan 38
+ip address 140.113.38.10 255.255.255.240
+standby version 2
+standby 38 ip 140.113.38.14
+exit
+vlan 209
+exit
+interface vlan 209
+ip address 172.168.10.11 255.255.255.248
+exit
+interface gig1/0/10
+no switch-port
+ip address 172.168.10.1 255.255.255.248
+exit
+// VLAN config
+interface gig1/0/3
+switchport mode trunk
+switchport trunk allowed vlan 100,111
+exit
+interface gig1/0/4
+switchport mode trunk
+switchport trunk allowed vlan 38,100,369
+exit
+interface gig1/0/6
+switchport mode trunk
+switchport trunk allowed vlan 100,169
+exit
+interface gig1/0/7
+switchport mode trunk
+switchport trunk allowed vlan 100
+exit
+interface gig1/0/8
+switchport mode trunk
+switchport trunk allowed vlan 100,111
+exit
+interface gig1/0/9
+switchport mode access
+switchport access vlan 209
+no cdp enable
+exit
+// PAG
+interface range gig1/0/1-2
+channel-group 1 mode on
+exit
+interface Port-channel 1
+switchport mode trunk
+switchport trunk allowed vlan 38,100,111,169,209,369
+exit
+// OSPF
+router ospf 42
+network 140.113.111.160 255.255.255.224 area 0
+network 140.113.169.0 255.255.255.128 area 0
+network 140.113.69.0 255.255.255.0 area 0
+network 140.113.38.0 255.255.255.240 area 0
+network 172.168.10.0 255.255.255.248 area 0
+network 172.168.10.8 255.255.255.248 area 0
+exit
+// ACL1
+ip access-list standard Outgoing
+deny 140.113.100.160 0.0.0.31
+permit any
+exit
+interface gig1/0/10
+ip access-group Outgoing out
+exit
+// ACL2
+ip access-list standard Incoming
+deny 192.168.0.0 0.0.0.255
+deny 10.0.0.0 0.255.255.255
+permit any
+exit
+interface gig1/0/10
+ip access-group Incoming in
+exit
+// ACL4
+ip access-list extended GAMEROOM-OUTBOUND
+deny ip 140.113.38.0 0.0.0.15 140.113.0.0 0.0.255.255
+permit ip any any
+exit
+interface vlan 38
+ip access-group GAMEROOM-OUTBOUND in
+exit
+// ACL5
+access-list 30 permit 140.113.100.176
+line vty 0 15
+access-class 30 in
+exit
+// ACL6
+access-list 110 deny tcp any any eq 80
+access-list 110 deny tcp any any eq 443
+access-list 110 permit ip any any
+interface vlan 369
+ip access-group 110 in
+exit
+
+
+
+##### Core-2 #####
+# gig 1/0/1-2 to Core-1
+# gig 1/0/3 to EIC7F-sw
+# gig 1/0/4 to EC3F-sw
+# gig 1/0/6 to EC169-sw
+# gig 1/0/7 to CSIT-server-sw
+# gig 1/0/8 to EC111-sw
+# gig 1/0/10 to NYCU-IT-aggr
+hostname Core-2
+// shutdown interfaces
+interface range gig1/0/5,gig1/0/9,gig1/0/11-24,gig1/1/1-4
+shutdown
+exit
+// SPT
+spanning-tree mode rapid-pvst
+// AAA
+aaa new-model
+radius server radius
+address ipv4 140.113.100.175 auth-port 1812
+key 1l0v3T4
+exit
+aaa authentication login ssh_login group radius local
+line vty 0 15
+login authentication ssh_login
+exit
+ip domain-name cs.nctu.edu.tw
+ip ssh version 2
+crypto key generate rsa general-keys modulus 2048
+// ip config
+vlan 100
+exit
+interface vlan 100
+ip address 140.113.100.166 255.255.255.224
+exit
+vlan 111
+exit
+interface vlan 111
+ip address 140.113.111.182 255.255.255.224
+standby version 2
+standby 111 ip 140.113.111.190
+exit
+vlan 169
+exit
+interface vlan 169
+ip address 140.113.169.112 255.255.255.128
+standby version 2
+standby 169 ip 140.113.169.126
+exit
+vlan 369
+exit
+interface vlan 369
+ip address 140.113.69.252 255.255.255.0
+standby version 2
+standby 369 ip 140.113.69.254
+standby 369 priority 200
+exit
+vlan 38
+exit
+interface vlan 38
+ip address 140.113.38.12 255.255.255.240
+standby version 2
+standby 38 ip 140.113.38.14
+exit
+vlan 209
+exit
+interface vlan 209
+ip address 172.168.10.12 255.255.255.248
+exit
+interface gig1/0/10
+no switch-port
+ip address 172.168.10.2 255.255.255.248
+exit
+// VLAN config
+interface gig1/0/3
+switchport mode trunk
+switchport trunk allowed vlan 100,111
+exit
+interface gig1/0/4
+switchport mode trunk
+switchport trunk allowed vlan 38,100,369
+exit
+interface gig1/0/6
+switchport mode trunk
+switchport trunk allowed vlan 100,169
+exit
+interface gig1/0/7
+switchport mode trunk
+switchport trunk allowed vlan 100
+exit
+interface gig1/0/8
+switchport mode trunk
+switchport trunk allowed vlan 100,111
+exit
+// PAG
+interface range gig1/0/1-2
+channel-group 1 mode on
+exit
+interface Port-channel 1
+switchport mode trunk
+switchport trunk allowed vlan 38,100,111,169,209,369
+exit
+// OSPF
+router ospf 42
+network 140.113.111.160 255.255.255.224 area 0
+network 140.113.169.0 255.255.255.128 area 0
+network 140.113.69.0 255.255.255.0 area 0
+network 140.113.38.0 255.255.255.240 area 0
+network 172.168.10.0 255.255.255.248 area 0
+network 172.168.10.8 255.255.255.248 area 0
+exit
+// ACL1
+ip access-list standard Outgoing
+deny 140.113.100.160 0.0.0.31
+permit any
+exit
+interface gig1/0/10
+ip access-group Outgoing out
+exit
+// ACL2
+ip access-list standard Incoming
+deny 192.168.0.0 0.0.0.255
+deny 10.0.0.0 0.255.255.255
+permit any
+exit
+interface gig1/0/10
+ip access-group Incoming in
+exit
+// ACL4
+ip access-list extended GAMEROOM-OUTBOUND
+deny ip 140.113.38.0 0.0.0.15 140.113.0.0 0.0.255.255
+permit ip any any
+exit
+interface vlan 38
+ip access-group GAMEROOM-OUTBOUND in
+exit
+// ACL5
+access-list 30 permit 140.113.100.176
+line vty 0 15
+access-class 30 in
+exit
+// ACL6
+access-list 110 deny tcp any any eq 80
+access-list 110 deny tcp any any eq 443
+access-list 110 permit ip any any
+interface vlan 369
+ip access-group 110 in
+exit
+
+
+---
+CSIT-server
+---
+##### CSIT-server-sw #####
+# fa 0/1 to CSIT-Radius
+# fa 0/2 to netmon
+# gig 0/1 to Core-1
+# gig 0/2 to Core-2
+hostname CSIT-server-sw
+// shutdown interfaces
+interface range fa0/3-24
+shutdown
+exit
+// SPT
+spanning-tree mode rapid-pvst
+// AAA
+aaa new-model
+radius-server host 140.113.100.175 auth-port 1812 key 1l0v3T4
+aaa authentication login ssh_login group radius local
+line vty 0 15
+login authentication ssh_login
+exit
+ip domain-name cs.nctu.edu.tw
+ip ssh version 2
+crypto key generate rsa general-keys modulus 2048
+// ip config
+vlan 100
+exit
+interface vlan 100
+ip address 140.113.100.167 255.255.255.224
+exit
+// VLAN config
+interface range fa0/1-2
+switchport mode access
+switchport access vlan 100
+exit
+interface range gig0/1-2
+switchport mode trunk
+switchport trunk allowed vlan 100
+exit
+
+##### CSIT-Radius #####
+// configure in service tab
+// host IP
+# 140.113.100.175
+# 255.255.255.224
+# 140.113.100.190
+
+##### netmon #####
+// host IP
+# 140.113.100.176
+# 255.255.255.224
+# 140.113.100.190
+
+
+---
+EC169
+---
+##### EC169-sw #####
+# fa 0/1 to CHT-AMP
+# fa 0/2 to 169-1
+# gig 0/1 to Core-1
+# gig 0/2 to Core-2
+hostname EC169-sw
+// shutdown interfaces
+interface range fa0/3-24
+shutdown
+exit
+// SPT
+spanning-tree mode rapid-pvst
+// AAA
+aaa new-model
+radius-server host 140.113.100.175 auth-port 1812 key 1l0v3T4
+aaa authentication login ssh_login group radius local
+line vty 0 15
+login authentication ssh_login
+exit
+ip domain-name cs.nctu.edu.tw
+ip ssh version 2
+crypto key generate rsa general-keys modulus 2048
+// ip config
+vlan 100
+exit
+interface vlan 100
+ip address 140.113.100.169 255.255.255.224
+exit
+// VLAN config
+vlan 169
+exit
+interface range fa0/1-2
+switchport mode access
+switchport access vlan 169
+exit
+interface range gig0/1-2
+switchport mode trunk
+switchport trunk allowed vlan 100,169
+exit
+
+
+##### 中華 Telecom-AMP #####
+# gig 0/0/0 to EC169-sw
+# gig 0/0/1 to UE
+hostname CHT-AMP
+// shutdown interfaces
+interface range gig0/0/0-1
+no shutdown
+exit
+// SPT
+spanning-tree mode rapid-pvst
+// ip config
+interface gig0/0/0
+ip address 140.113.169.2 255.255.255.128
+exit
+interface gig0/0/1
+ip address 210.211.99.2 255.255.255.0
+exit
+// GRE tunnel
+interface tunnel 0
+ip address 10.0.0.1 255.255.255.252
+tunnel source gig0/0/0
+tunnel destination 172.168.10.13
+exit
+ip route 0.0.0.0 0.0.0.0 10.0.0.2
+ip route 172.168.10.13 255.255.255.255 140.113.169.126
+// ACL3
+ip access-list extended UE-OUTBOUND
+deny ip 210.211.99.0 0.0.0.255 140.113.0.0 0.0.255.255
+deny ip 210.211.99.0 0.0.0.255 172.168.10.0 0.0.0.15
+permit ip any any
+exit
+interface gig0/0/1
+ip access-group UE-OUTBOUND in
+exit
+
+
+
+##### 169-1 #####
+// host IP
+# 140.113.169.1
+# 255.255.255.128
+# 140.113.169.126
+
+
+##### UE #####
+// host IP
+# 210.211.99.1
+# 255.255.255.0
+# 210.211.99.254
+
+
+---
+EC111
+---
+##### EC111-sw #####
+# fa 0/1 to Prof.K-PC
+# gig 0/1 to Core-1
+# gig 0/2 to Core-2
+hostname EC111-sw
+// shutdown interfaces
+interface range fa0/2-24
+shutdown
+exit
+// SPT
+spanning-tree mode rapid-pvst
+// AAA
+aaa new-model
+radius-server host 140.113.100.175 auth-port 1812 key 1l0v3T4
+aaa authentication login ssh_login group radius local
+line vty 0 15
+login authentication ssh_login
+exit
+ip domain-name cs.nctu.edu.tw
+ip ssh version 2
+crypto key generate rsa general-keys modulus 2048
+// ip config
+vlan 100
+exit
+interface vlan 100
+ip address 140.113.100.170 255.255.255.224
+exit
+// VLAN config
+interface fa0/1
+switchport mode access
+switchport access vlan 111
+exit
+interface range gig0/1-2
+switchport mode trunk
+switchport trunk allowed vlan 100,111
+exit
+
+
+##### Prof.K-PC #####
+// host IP
+# 140.113.111.165
+# 255.255.255.224
+# 140.113.111.190
+
+---
+EC369
+---
+##### EC369-sw #####
+# fa 0/1-3 to 369-1-3
+# fa 0/4 to 水牛交換機
+# gig 0/1-2 to EC3F-sw
+hostname EC369-sw
+// shutdown interfaces
+interface range fa0/5-24
+shutdown
+exit
+// SPT
+spanning-tree mode rapid-pvst
+// AAA
+aaa new-model
+radius-server host 140.113.100.175 auth-port 1812 key 1l0v3T4
+aaa authentication login ssh_login group radius local
+line vty 0 15
+login authentication ssh_login
+exit
+ip domain-name cs.nctu.edu.tw
+ip ssh version 2
+crypto key generate rsa general-keys modulus 2048
+// ip config
+vlan 100
+exit
+interface vlan 100
+ip address 140.113.100.172 255.255.255.224
+exit
+// VLAN config
+vlan 369
+exit
+vlan 38
+exit
+interface range fa0/1-3
+switchport mode access
+switchport access vlan 369
+exit
+interface fa0/4
+switchport mode access
+switchport access vlan 38
+exit
+// PAG
+interface range gig0/1-2
+channel-protocol lacp
+channel-group 2 mode passive
+exit
+interface port-channel 2
+switchport mode trunk
+switchport trunk allowed vlan 38,100,369
+exit
+
+##### 369-1 #####
+// host IP
+# 140.113.69.1
+# 255.255.255.0
+# 140.113.69.254
+
+##### 369-2 #####
+// host IP
+# 140.113.69.2
+# 255.255.255.0
+# 140.113.69.254
+
+##### 369-3 #####
+// host IP
+# 140.113.69.3
+# 255.255.255.0
+# 140.113.69.254
+
+
+---
+Game Room
+---
+##### yts-PC #####
+// host IP
+# 140.113.38.1
+# 255.255.255.240
+# 140.113.38.14
+
+##### public-PC #####
+// host IP
+# 140.113.38.2
+# 255.255.255.240
+# 140.113.38.14
+
+---
+EIC769
+---
+##### EIC769-sw #####
+# fa 0/1-3 to GPU-cluster-1/3
+# gig 0/1 to EIC7F-sw
+hostname EIC769-sw
+// shutdown interfaces
+interface range fa0/4-24,gig0/2
+shutdown
+exit
+// SPT
+spanning-tree mode rapid-pvst
+// AAA
+aaa new-model
+radius-server host 140.113.100.175 auth-port 1812 key 1l0v3T4
+aaa authentication login ssh_login group radius local
+line vty 0 15
+login authentication ssh_login
+exit
+ip domain-name cs.nctu.edu.tw
+ip ssh version 2
+crypto key generate rsa general-keys modulus 2048
+// ip config
+vlan 100
+exit
+interface vlan 100
+ip address 140.113.100.174 255.255.255.224
+exit
+// VLAN config
+vlan 111
+exit
+interface range fa0/1-3
+switchport mode access
+switchport access vlan 111
+exit
+interface gig0/1
+switchport mode trunk
+switchport trunk allowed vlan 100,111
+exit
+
+
+##### GPU-cluster-1 #####
+// host IP
+# 140.113.111.166
+# 255.255.255.224
+# 140.113.111.190
+
+##### GPU-cluster-2 #####
+// host IP
+# 140.113.111.167
+# 255.255.255.224
+# 140.113.111.190
+
+##### GPU-cluster-3 #####
+// host IP
+# 140.113.111.168
+# 255.255.255.224
+# 140.113.111.190
+
+---
+Outside
+---
+##### 中華 Telecom #####
+# gig 0/0/0 to CHT-aggr
+# gig 0/0/1 to 1.1.1.1
+hostname CHT
+// shutdown interfaces
+interface range gig 0/0/0-1
+no shutdown
+exit
+// SPT
+spanning-tree mode rapid-pvst
+// ip config
+interface gig0/0/0
+ip address 172.168.10.13 255.255.255.248
+ip ospf 42 area 0
+exit
+interface gig0/0/1
+ip address 1.1.1.0 255.0.0.0
+exit
+// RIP
+router rip
+version 2
+no auto-summary
+network 1.0.0.0
+exit
+// OSPF
+router ospf 42
+exit
+// GRE tunnel
+interface tunnel 69
+ip address 69.69.69.2 255.255.255.252
+tunnel source gig0/0/0
+tunnel destination 172.168.10.3
+exit
+interface tunnel 0
+ip address 10.0.0.2 255.255.255.252
+tunnel source gig0/0/0
+tunnel destination 140.113.169.2
+exit
+ip route 210.211.99.0 255.255.255.0 10.0.0.1
+

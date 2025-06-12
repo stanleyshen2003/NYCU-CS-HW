@@ -1,0 +1,86 @@
+Algo1:
+    fold1:
+        training accuracy: 0.963333
+        validation accuracy: 0.68
+        
+    fold2:
+        training accuracy: 0.9767
+        validation accuracy: 0.7
+    fold3:
+        training accuracy: 0.9367
+        validation accuracy: 0.63
+    fold4:
+        training accuracy: 0.9567
+        validation accuracy: 0.68
+    
+    baseline
+        training accuracy: 0.97
+        testing accuracy: 0.66
+
+    grayscale size32
+        training accuracy: 0.7
+        testing accuracy: 0.46
+
+    grayscale size64
+        training accuracy: 
+        testing accuracy: 
+
+    grayscale size128
+        training accuracy: 0.9575
+        testing accuracy: 0.619
+    
+    data aug -> 320 rotate
+        training accuracy:  0.8964
+        test accuracy:  0.6283
+
+    data aug -> crop middle
+        training accuracy:  0.90
+        test accuracy:  0.66
+
+    4 class
+        training accuracy: 0.9867
+        testing accuracy: 0.834375
+    
+    data size -> 160, with crop middle
+        training accuracy: 0.9
+        testing accuracy: 0.65
+
+Algo2 - RF, training all 1:
+    fold1:
+        validation accuracy: 0.95
+        testing accuracy: 0.94
+
+    fold2:
+        validation accuracy: 1.0
+        testing accuracy: 0.96
+
+    fold3:
+        validation accuracy: 0.95
+        testing accuracy: 0.98
+
+    fold4:
+        validation accuracy: 0.85
+        testing accuracy: 0.96
+
+
+    data -> 320
+        testing accuracy: 0.935
+
+
+clustering 
+    normal:
+        Accuracy using k-means clustering: 0.88
+        Davies Bouldin score using k-means clustering: 2.70000116000314
+        Entropy sum of all clusters: 2.0010719373075645
+    rotate:
+        Accuracy using k-means clustering: 0.8045
+        Davies Bouldin score using k-means clustering: 2.857276466476626
+        Entropy sum of all clusters: 2.50054432440374
+    cut middle:
+        Accuracy using k-means clustering: 0.853
+        Davies Bouldin score using k-means clustering: 2.799104756443239
+        Entropy sum of all clusters: 2.3671050547917662
+    grayscale:
+        Accuracy using k-means clustering: 0.894
+        Davies Bouldin score using k-means clustering: 2.8519085186478645
+        Entropy sum of all clusters: 1.91693172061907

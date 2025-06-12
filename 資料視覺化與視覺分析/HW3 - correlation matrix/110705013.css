@@ -1,0 +1,53 @@
+  body {
+    margin: 0 auto;
+    display: table;
+    font-family: "Helvetica Neue", sans-serif;
+  }
+
+  rect.selected {
+    stroke: #000;
+    stroke-width: 2px;
+  }
+  .axis .domain {
+    display: none;
+  }
+  .axis .tick text.selected {
+    font-weight: bold;
+    font-size: 1.2em;
+    fill: #47ff63;
+  }
+  .axis .tick line.selected {
+    stroke: #47ff63;  
+  }
+  .tip {
+    position: absolute;
+    font-size: .8em;
+    text-align: center;
+    text-shadow: -1px -1px 1px #ffffff, -1px 0px 1px #ffffff, -1px 1px 1px #ffffff, 0px -1px 1px #ffffff, 0px 1px 1px #ffffff, 1px -1px 1px #ffffff, 1px 0px 1px #ffffff, 1px 1px 1px #ffffff;
+  }    
+
+  #legend {
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+  }
+  #legend text {
+    font-size: .8em;
+  }
+.container {
+  display: flex;
+  justify-content: space-between; 
+  margin-top: 10vh
+}
+.containerup{
+  display: flex;
+  justify-content: space-between; 
+  
+}
+.title{
+  font-size: 1.5em;
+  margin-bottom: 30px;
+}
+/* .item {
+	border:solid red;
+} */

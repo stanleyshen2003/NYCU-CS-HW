@@ -1,0 +1,17 @@
+create table CovidInfo1011(
+	fips int, 
+	admin2 varchar(50),
+	province_state varchar(50),
+	country_region varchar(50),
+	last_update timestamp,
+	lat float(12),
+	long_ float(12),
+	confirmed int,
+	deaths int,
+	recovered varchar(20),
+	active varchar(20),
+	combined_key varchar(60),
+	incident_rate double precision,
+	case_fatality_ratio double precision,
+	primary key (combined_key)
+);

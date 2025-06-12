@@ -1,0 +1,8 @@
+---
+    MODEL_NAME: Discriminator
+
+
+    model_param:
+      image_channels: 3
+      num_filters_last: 64
+      n_layers: 3

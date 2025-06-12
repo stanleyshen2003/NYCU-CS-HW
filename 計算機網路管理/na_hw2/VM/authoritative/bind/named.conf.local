@@ -1,0 +1,37 @@
+//
+// Do any local configuration here
+//
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
+zone "51.nasa" {
+    type master;
+    file "/etc/bind/db.51.nasa.signed";
+    key-directory "keys";
+    //auto-dnssec maintain;
+    //inline-signing yes;
+    
+};
+
+
+zone "51.168.192.in-addr.arpa" {
+    type master;
+    file "/etc/bind/db.51.168.192.signed";
+    // auto-dnssec maintain;
+    key-directory "keys";
+    //auto-dnssec maintain;
+    // dnssec-policy default;
+    //inline-signing yes;
+};
+
+zone "51.113.10.in-addr.arpa" {
+    type master;
+    file "/etc/bind/db.51.113.10.signed";
+    //auto-dnssec maintain;
+    // dnssec-policy default;
+    //inline-signing yes;
+    key-directory "keys";
+};
+

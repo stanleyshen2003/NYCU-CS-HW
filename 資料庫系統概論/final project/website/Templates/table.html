@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Table V04</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <meta name="robots" content="noindex, follow">
+</head>
+
+<body>
+    <div class="limiter">
+        <div class="container-table100">
+            <div class="wrap-table100">
+                <div class="table100 ver1 m-b-110">
+                    <div class="table100-head">
+                        <table>
+                            {% for item in rate %}
+                            <tr class="row100 head">
+                                <td>{{ item.user_id }}</td>
+                                <td>{{ item.cellphone_id }}</td>
+                                <td>{{ item.rating }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    <div class="table100-body js-pscroll">
+                        <table>
+                            {% for item in data %}
+                            <tbody>
+                                <tr class="row100 body">
+                                    <td>{{ item.cellphone_id }}</td>
+                                    <td>{{ item.brand }}</td>
+                                    <td>{{ item.model }}</td>
+                                    <td>{{ item.operating system }}</td>
+                                    <td>{{ item.internal memory }}</td>
+                                    <td>{{ item.RAM }}</td>
+                                    <td>{{ item.performance }}</td>
+                                    <td>{{ item.main camera }}</td>
+                                    <td>{{ item.selfie camera }}</td>
+                                    <td>{{ item.battery size }}</td>
+                                    <td>{{ item.screen size }}</td>
+                                    <td>{{ item.weight }}</td>
+                                    <td>{{ item.price }}</td>
+                                    <td>{{ item.release date }}</td>
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('.js-pscroll').each(function ()
+        {
+            var ps = new PerfectScrollbar(this);
+
+            $(window).on('resize', function () 
+            {
+                ps.update();
+            })
+        });
+
+
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-23581568-13');
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+dn: cn=ta,ou=Group,dc=51,dc=nasa
+objectClass: posixGroup
+cn: ta
+gidNumber: 10000
+memberUid: generalta
+
+dn: cn=stu,ou=Group,dc=51,dc=nasa
+objectClass: posixGroup
+cn: stu
+gidNumber: 20000
+memberUid: stu51

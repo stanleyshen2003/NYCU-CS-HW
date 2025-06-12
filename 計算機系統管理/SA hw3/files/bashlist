@@ -1,0 +1,30 @@
+#!/usr/local/bin/bash
+
+# Your variable containing text
+out=$(zfs list -H -t snapshot -o name  | grep "mypool")
+
+
+new=""
+dataset="${1-mypool}"
+# Delete lines that start with v1 and end with t2
+while [ ! -z "$out" ]; do
+  
+  first=$(echo "$out" | head -n 1)
+  if [ -z "$new" ]; then
+    new=$(printf "%s" "" "$first")
+    # echo "$new"
+  else
+    new=$(printf "%s\n%s" "$new" "$first")
+  fi
+  dir=$(echo "$first" | cut -d "@" -f 1)
+  time=$(echo "$first" | cut -d "@" -f 2)
+  # echo "$time"
+  # echo "$dir"
+  # echo "$out"
+  out=$(echo "$out" | awk -v start="$dir" -v end="$time" '!($0 ~ ("^" start) && $0 ~ (end "$"))')
+  # echo "$out"
+  # echo "$new"
+done
+
+out=$(echo "$new" | sort -s -t '@' -k2,2 | grep "$dataset" | tr '@' '\t' | awk '{print NR "\t" $0}' | sed 's/zfsbak_//')
+echo "$out"

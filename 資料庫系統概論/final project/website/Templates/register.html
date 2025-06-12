@@ -1,0 +1,48 @@
+{% load static %}
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/design.css'%}">
+</head>
+<body>
+    <div class="hero">
+        
+        <div class="form-box">
+            <div class="login-icon">
+                <img src="{% static 'img/login.png'%}">
+            </div>
+            <p class="registerwords">register</p>
+            <form id="register" class="input-group" method="POST" action="/register/">
+                {% csrf_token %}
+                <p class="words">choose an user id:</p>
+                <input type="text" class="input-field" name="id" place-holder="choose your user id" required>
+                <p class="words">your occupation:</p>
+                <input type="text" class="input-field" name="occupation" required>
+                <p class="wordfor">Age:</p>
+                <select name="age" class="cbox">
+                    {% with ''|center:100 as range %}
+                    {% for _ in range %}
+                    <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+                    {% endfor %}
+                    {% endwith %}
+                </select>
+                <p class="wordfor">Gender:</p>
+                <input type="radio" name="gender" value="Male" required=""> <span>Male</span>
+                <input type="radio" name="gender" value="Female" required=""> <span>Female</span>
+                <input type="radio" name="gender" value="null" required=""><span>Secret</span>
+                <p class="words">Password:</p>
+                <input type="password" class="input-field" name="password" required="">
+                <p class="words">Repeat Password:</p>
+                <input type="password" class="input-field" name="password2" required=""><br>
+                {% for message in messages %}
+                <h5 class="errwords">{{message}}</h5>
+                {% endfor %}
+                <button type="submit" class="submit-btn">Register</button>
+
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
+
+

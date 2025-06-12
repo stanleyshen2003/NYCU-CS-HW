@@ -1,0 +1,40 @@
+{
+    "flows": [
+      {
+        "priority": 40008,
+        "isPermanent": true,
+        "timeout": 0,
+        "deviceId": "of:0000000000000001",
+        "appId": 1,
+        "selector": {
+          "criteria": [
+            {
+              "type": "IN_PORT",
+              "port": 1
+            },
+            {
+              "type": "IPV4_SRC",
+              "ip": "192.168.63.1/32"
+            },
+            {
+              "type": "IPV4_DST",
+              "ip": "192.168.63.2/32"
+            },
+            {
+                "type": "ETH_TYPE",
+                "ethType": "0x800"
+            }
+          ]
+        },
+        "treatment": {
+          "instructions": [
+            {
+              "type": "OUTPUT",
+              "port": 3
+            }
+          ]
+        }
+      }
+    ]
+  }
+  

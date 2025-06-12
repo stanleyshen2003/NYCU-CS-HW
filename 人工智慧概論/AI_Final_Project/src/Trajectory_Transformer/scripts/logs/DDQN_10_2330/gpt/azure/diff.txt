@@ -1,0 +1,26 @@
+diff --git a/Trajectory_Transformer/config/offline.py b/Trajectory_Transformer/config/offline.py
+index a3a9eb7..16e8fd4 100644
+--- a/Trajectory_Transformer/config/offline.py
++++ b/Trajectory_Transformer/config/offline.py
+@@ -17,7 +17,7 @@ args_to_watch = [
+ base = {
+ 
+     'train': {
+-        'N': 50,
++        'N': 100,
+         'discount': 0.99,
+         'n_layer': 4,
+         'n_head': 4,
+diff --git a/Trajectory_Transformer/scripts/train.py b/Trajectory_Transformer/scripts/train.py
+index 6fb3789..e9bfcde 100644
+--- a/Trajectory_Transformer/scripts/train.py
++++ b/Trajectory_Transformer/scripts/train.py
+@@ -92,7 +92,7 @@ trainer_config = utils.Config(
+ 
+ trainer = trainer_config()
+ 
+-n_epochs = 600
++n_epochs = 500
+ save_freq = 50
+ 
+ train_loss_writer = SummaryWriter(tb_save_path + '/train_loss/TT/' + args.dataset)

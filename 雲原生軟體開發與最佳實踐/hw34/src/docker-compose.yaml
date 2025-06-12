@@ -1,0 +1,28 @@
+version: '3'
+services:
+  db:
+    image: mongo
+    ports: 
+      - "27017:27017"
+    volumes:
+      - ./db:/var/lib/mongo
+
+  backend:
+    build:
+      context: backend
+    ports:
+      - "8888:8888"
+    environment:
+        - PORT=8888
+        - HOST=0.0.0.0
+        - MONGO_CONNECTION_STRING=mongodb://db:27017/myMernApp
+    depends_on:
+      - db
+
+  frontend:
+    build: 
+      context: frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend

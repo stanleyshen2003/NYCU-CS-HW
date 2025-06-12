@@ -1,0 +1,34 @@
+vlan 324
+name VLAN324
+exit
+
+vlan 316
+name VLAN316
+exit
+
+vlan 321
+name VLAN321
+exit
+
+interface range fa 0/1-2
+switchport mode access
+switchport access vlan 324
+exit
+
+interface range fa 0/3-4
+switchport mode access
+switchport access vlan 316
+exit
+
+interface fa 0/10
+switchport mode trunk
+switchport trunk native vlan 321
+switchport trunk allowed vlan 30,321
+exit
+
+interface gi 0/1
+switchport mode trunk
+switchport trunk allowed vlan 30,316,321,324
+exit
+
+copy running-config startup-config

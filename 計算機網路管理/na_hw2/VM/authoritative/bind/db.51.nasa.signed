@@ -1,0 +1,82 @@
+; File written on Sun Mar 23 13:55:20 2025
+; dnssec_signzone version 9.18.30-0ubuntu0.22.04.2-Ubuntu
+51.nasa.		5	IN SOA	ns1.51.nasa. root.ns1.51.nasa. (
+					2025032201 ; serial
+					3600       ; refresh (1 hour)
+					1800       ; retry (30 minutes)
+					1209600    ; expire (2 weeks)
+					86400      ; minimum (1 day)
+					)
+			5	RRSIG	SOA 13 2 86400 (
+					20250422125520 20250323125520 37614 51.nasa.
+					3T/LD+Q0EG3HRTDNw10jcjRHOg+MI+pC/Vpa
+					rkNdSwLAroLs9tD9VMFRw5SFcXcYorsFLtb6
+					4pyh2vIcA5LaXw== )
+			5	NS	ns1.51.nasa.
+			5	RRSIG	NS 13 2 86400 (
+					20250422125520 20250323125520 37614 51.nasa.
+					4JHLOuhrlHySZd5T11dxczIBXv6Mu6LVVNDV
+					Z/wXyR8z37Apiq2b7i+uYerKDTn2UAb/76Rc
+					3+Ls+tS9k2tK7w== )
+			5	NSEC	dns.51.nasa. NS SOA RRSIG NSEC DNSKEY
+			5	RRSIG	NSEC 13 2 86400 (
+					20250422125520 20250323125520 37614 51.nasa.
+					MJUFQVmMx0Z/Sn8tnpH4ZBTmdkkslSOXb4yg
+					GdWvCpTSKvxf/OycAiauL30Iiau1JqPOjHEA
+					QvprR+UsPrtR1g== )
+			5	DNSKEY	256 3 13 (
+					FHHfW8gVL7UdFZGFdegjZynlFvGfX1V+vS3i
+					PC9I3SX5Sq5PVSt4r/YPNZ9ikH81toBtKb3Y
+					Zesn4JYQ12gaIA==
+					) ; ZSK; alg = ECDSAP256SHA256 ; key id = 37614
+			5	DNSKEY	257 3 13 (
+					W1haoVIx/lcGTpqNLSpR+zXemeCGmFV6yYiw
+					j8YdVX9C9INDDp5t9fcMqRNrX2Obqq0wcAqL
+					MfXaCMt9EBS0OQ==
+					) ; KSK; alg = ECDSAP256SHA256 ; key id = 40818
+			5	RRSIG	DNSKEY 13 2 86400 (
+					20250422125520 20250323125520 37614 51.nasa.
+					mwET3B9siX61uCSAZsvaQwD/8qGa1qRHoDBb
+					iq7q01KWyLl8j4PUx9AZfdI1KwtQ7cx5CIFo
+					CwX7koIV3+JIzw== )
+			5	RRSIG	DNSKEY 13 2 86400 (
+					20250422125520 20250323125520 40818 51.nasa.
+					/HEEjLbn7BUeG1NpsFymSRkYuG+UUrKPswGZ
+					FOG5haZf8VIJzdZtzvzyoUVur6TBrXtxM1JE
+					OoqYUQ8SXpOYcg== )
+dns.51.nasa.		5	IN A	192.168.51.153
+			5	RRSIG	A 13 3 86400 (
+					20250422125520 20250323125520 37614 51.nasa.
+					crdmRrA5ogd6jehxeN7DX1D1/Z7l4vH17CLA
+					fomY4QiuYic+4iUV/eS9Ccj6SkbwThLuoSnm
+					6fYrEx5CSePXiw== )
+			5	NSEC	ns1.51.nasa. A RRSIG NSEC
+			5	RRSIG	NSEC 13 3 86400 (
+					20250422125520 20250323125520 37614 51.nasa.
+					FNlfk7uJzChsk4E6U03YgngM6iotYCY9gxOG
+					tg6MTx6RkE/anS4tYw3jhjo4H8yCMJtejm0G
+					rKYZ8xXwbouE5w== )
+ns1.51.nasa.		5	IN A	192.168.51.53
+			5	RRSIG	A 13 3 86400 (
+					20250422125520 20250323125520 37614 51.nasa.
+					GwkF5OUvwqP1jgI1aSrQXaEt6BfQhB+tbJla
+					JmBoh3kjZN+DSvSQBHoEWvR6pk4eOn501cE+
+					VaCKrBNi67/mbA== )
+			5	NSEC	whoami.51.nasa. A RRSIG NSEC
+			5	RRSIG	NSEC 13 3 86400 (
+					20250422125520 20250323125520 37614 51.nasa.
+					Cl+IRovATxSL8PNIvb4ToDhd/EyioF7CflwF
+					anSX5ORZXdTLZ3v4rI/kZQUA5W/OqwhvX7Nf
+					PeG3bkGa8o1DSQ== )
+whoami.51.nasa.		5	IN A	10.113.51.1
+			5	RRSIG	A 13 3 86400 (
+					20250422125520 20250323125520 37614 51.nasa.
+					BvNoi44OHSiz+VCqdFCQXNyGwzaU2v2RWw+o
+					xhXjpE6XlsdecdXGDpsrM+lmWhdTlWjm15nE
+					79chXqoZs8BxMw== )
+			5	NSEC	51.nasa. A RRSIG NSEC
+			5	RRSIG	NSEC 13 3 86400 (
+					20250422125520 20250323125520 37614 51.nasa.
+					5uU6LueF2kP9LH4CPeDaVYfba2fIn27wdp6m
+					tGEYlxgglUUpjz59OJJ01NarcWKDgSpiXPAK
+					yYnEbT1Pwhg0rg== )

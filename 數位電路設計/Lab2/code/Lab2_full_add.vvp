@@ -1,0 +1,108 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_000002646f426f90 .scope module, "t_Lab2_full_add" "t_Lab2_full_add" 2 1;
+ .timescale 0 0;
+v000002646f46fc50_0 .var "a", 0 0;
+v000002646f46f250_0 .var "b", 0 0;
+v000002646f46f930_0 .var "cin", 0 0;
+v000002646f46f9d0_0 .net "cout", 0 0, L_000002646f415880;  1 drivers
+v000002646f46fcf0_0 .var/i "i", 31 0;
+v000002646f46ff70_0 .net "sum", 0 0, L_000002646f3f3700;  1 drivers
+S_000002646f427120 .scope module, "M1" "Lab2_full_add" 2 5, 3 1 0, S_000002646f426f90;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /INPUT 1 "cin";
+    .port_info 3 /OUTPUT 1 "sum";
+    .port_info 4 /OUTPUT 1 "cout";
+L_000002646f415880/d .functor OR 1, L_000002646f3f32c0, L_000002646f416ad0, C4<0>, C4<0>;
+L_000002646f415880 .delay 1 (2,2,2) L_000002646f415880/d;
+v000002646f56d320_0 .net "a", 0 0, v000002646f46fc50_0;  1 drivers
+v000002646f56d3c0_0 .net "b", 0 0, v000002646f46f250_0;  1 drivers
+v000002646f56d460_0 .net "c1", 0 0, L_000002646f416ad0;  1 drivers
+v000002646f46f020_0 .net "c2", 0 0, L_000002646f3f32c0;  1 drivers
+v000002646f46f7f0_0 .net "cin", 0 0, v000002646f46f930_0;  1 drivers
+v000002646f46fb10_0 .net "cout", 0 0, L_000002646f415880;  alias, 1 drivers
+v000002646f46fbb0_0 .net "s1", 0 0, L_000002646f56d500;  1 drivers
+v000002646f46f6b0_0 .net "sum", 0 0, L_000002646f3f3700;  alias, 1 drivers
+S_000002646f56d0f0 .scope module, "half1" "Lab2_half_add" 3 4, 4 1 0, S_000002646f427120;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /OUTPUT 1 "sum";
+    .port_info 3 /OUTPUT 1 "cout";
+L_000002646f56d500/d .functor XOR 1, v000002646f46fc50_0, v000002646f46f250_0, C4<0>, C4<0>;
+L_000002646f56d500 .delay 1 (4,4,4) L_000002646f56d500/d;
+L_000002646f416ad0/d .functor AND 1, v000002646f46fc50_0, v000002646f46f250_0, C4<1>, C4<1>;
+L_000002646f416ad0 .delay 1 (2,2,2) L_000002646f416ad0/d;
+v000002646f3f3860_0 .net "a", 0 0, v000002646f46fc50_0;  alias, 1 drivers
+v000002646f3f3440_0 .net "b", 0 0, v000002646f46f250_0;  alias, 1 drivers
+v000002646f3f30e0_0 .net "cout", 0 0, L_000002646f416ad0;  alias, 1 drivers
+v000002646f3f39e0_0 .net "sum", 0 0, L_000002646f56d500;  alias, 1 drivers
+S_000002646f424e10 .scope module, "half2" "Lab2_half_add" 3 5, 4 1 0, S_000002646f427120;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a";
+    .port_info 1 /INPUT 1 "b";
+    .port_info 2 /OUTPUT 1 "sum";
+    .port_info 3 /OUTPUT 1 "cout";
+L_000002646f3f3700/d .functor XOR 1, L_000002646f56d500, v000002646f46f930_0, C4<0>, C4<0>;
+L_000002646f3f3700 .delay 1 (4,4,4) L_000002646f3f3700/d;
+L_000002646f3f32c0/d .functor AND 1, L_000002646f56d500, v000002646f46f930_0, C4<1>, C4<1>;
+L_000002646f3f32c0 .delay 1 (2,2,2) L_000002646f3f32c0/d;
+v000002646f416a30_0 .net "a", 0 0, L_000002646f56d500;  alias, 1 drivers
+v000002646f4272b0_0 .net "b", 0 0, v000002646f46f930_0;  alias, 1 drivers
+v000002646f427350_0 .net "cout", 0 0, L_000002646f3f32c0;  alias, 1 drivers
+v000002646f56d280_0 .net "sum", 0 0, L_000002646f3f3700;  alias, 1 drivers
+    .scope S_000002646f426f90;
+T_0 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v000002646f46fcf0_0, 0, 32;
+T_0.0 ;
+    %load/vec4 v000002646f46fcf0_0;
+    %cmpi/s 8, 0, 32;
+    %jmp/0xz T_0.1, 5;
+    %load/vec4 v000002646f46fcf0_0;
+    %parti/s 1, 2, 3;
+    %store/vec4 v000002646f46fc50_0, 0, 1;
+    %load/vec4 v000002646f46fcf0_0;
+    %parti/s 1, 1, 2;
+    %store/vec4 v000002646f46f250_0, 0, 1;
+    %load/vec4 v000002646f46fcf0_0;
+    %parti/s 1, 0, 2;
+    %store/vec4 v000002646f46f930_0, 0, 1;
+    %delay 25, 0;
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v000002646f46fcf0_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %store/vec4 v000002646f46fcf0_0, 0, 32;
+    %jmp T_0.0;
+T_0.1 ;
+    %end;
+    .thread T_0;
+    .scope S_000002646f426f90;
+T_1 ;
+    %delay 200, 0;
+    %vpi_call 2 17 "$finish" {0 0 0};
+    %end;
+    .thread T_1;
+    .scope S_000002646f426f90;
+T_2 ;
+    %vpi_call 2 21 "$dumpfile", "Lab2_full_add.vcd" {0 0 0};
+    %vpi_call 2 22 "$dumpvars" {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "t_Lab2_full_add.v";
+    "Lab2_full_add.v";
+    "Lab2_half_add.v";

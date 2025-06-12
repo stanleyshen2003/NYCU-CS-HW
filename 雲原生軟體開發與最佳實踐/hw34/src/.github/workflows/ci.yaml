@@ -1,0 +1,68 @@
+name: CI Workflow
+
+on: 
+  push:
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm install
+      working-directory: ./backend
+
+    - name: Run tests and generate report
+      run: npm run test
+      working-directory: ./backend
+
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage-report
+        path: ./backend/coverage
+
+    - name: Check coverage
+      id: coverage-check
+      working-directory: ./backend
+      run: |
+        current_coverage=$(grep -Po '(?<=<span class="strong">)\d+\.\d+(?=%)' coverage/lcov-report/index.html)
+        echo "Current coverage: $current_coverage"
+        if [ -f coverage/last-coverage.txt ]; then
+          last_coverage=$(cat coverage/last-coverage.txt)
+          echo "Last coverage: $last_coverage"
+          if [ "$current_coverage" -lt "$last_coverage" ]; then
+            echo "Coverage decreased from $last_coverage to $current_coverage"
+            exit 1
+          fi
+        fi
+        echo $current_coverage > coverage/last-coverage.txt
+
+    - name: Save last coverage
+      uses: actions/upload-artifact@v2
+      with:
+        name: last-coverage
+        path: backend/coverage/last-coverage.txt
+
+    - name: Format code
+      run: npx prettier --write "backend/src/**/*.ts"
+
+    - name: Check for uncommitted changes
+      run: |
+        if [[ `git status --porcelain` ]]; then
+          git config --global user.name 'stanleyshen2003'
+          git config --global user.email 'stanley.shen2003@gmail.com' 
+          git add .
+          git commit -m "Format code with Prettier"
+          git push
+        else
+          echo "No changes to commit."
+        fi

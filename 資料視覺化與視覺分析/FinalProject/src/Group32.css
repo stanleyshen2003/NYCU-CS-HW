@@ -1,0 +1,200 @@
+body {
+  margin: 0;
+  overflow:  hidden;
+  cursor:default;
+}
+/* Navigation bar================================ */
+.Nav_Btn{
+	background-color: #e8e8e8;
+  padding: 5px;
+  font-size: 1.4em;
+  border: solid #e8e8e8;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: none;
+  cursor: pointer;
+  z-index:10;
+}
+
+.Nav_Btn.active {
+  background-color: #cedaed;
+  border: solid #cedaed;
+  border-bottom: none;
+}
+
+#Navigation_Bar{
+	border-bottom: solid #e8e8e8 3px;
+  background-color: #fff;
+  z-index:100;
+  
+}
+/* Svg Layout ================================ */
+#Svg_Container {
+  display: flex;
+/*   grid-template-columns: 3fr 1fr; */
+  width:100vw;
+  height: 95vh;
+  z-index:1;
+  overflow:hidden;
+}
+
+#Svg_Main {
+  width: 75vw;
+  z-index:1
+}
+
+#Svg_Tool {
+  background-color: #f5f5f5;
+  width:25vw;
+  z-index:10;
+}
+
+.Tool_Container{
+	display:none;
+}
+
+.Tool_Container.active {
+  display: block;
+}
+/* Tool Btn ================================ */
+.radio-item input[type="radio"] {
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.radio-item label {
+  display: flex;
+  align-items: left;
+}
+
+.Tools{
+	margin-top: 10px;
+  margin-left: 10px;
+}
+
+.Tool_Title{
+	margin-bottom:5px;
+}
+
+/*Slider =======================================================================  */
+.slider text{
+  font-size: 0.9em;
+  transform: rotate(30deg) translate(5px, -10px);
+  transform-origin: left;
+  fill: black;
+}
+
+.legend-text{
+  font-size: 0.8em; 
+}
+.legend-label-text{
+  font-size: 0.8em; 
+  fill:red;
+}
+
+.left-rect {
+  border-right: 2px solid red;
+  cursor: e-resize;
+}
+
+
+.right-rect {
+  border-left: 2px solid red;
+  cursor: e-resize;
+}
+
+/*Input box============================================================================ */
+#D_Country_Btns label,#R_Country_Btns label{
+  position: relative;
+  display: inline-block;
+}
+
+#D_input,#D_input2,#R_input{
+  padding: 5px;
+  width: 150px;
+  box-sizing: border-box;
+}
+#D_Btn{
+  padding: 5px;
+  width: 100px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+#R_Max_input,#R_Min_input {
+  padding: 5px;
+  width: 50px;
+  box-sizing: border-box;
+}
+
+#D_sug,#D_sug2,#R_sug {
+  position: absolute;
+  top: 100%;
+  left:10%;
+  max-height: 100px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 5px;
+  width: 150px;
+  box-sizing: border-box;
+  z-index: 999;
+  background-color: #fff;
+}
+#R_sug{
+  left:14%;
+
+}
+#D_sug2 {
+  top: 206px;
+  left:1077px;
+}
+.suggestion-item {
+  cursor: pointer;
+  padding: 8px;
+}
+
+.suggestion-item:hover {
+  background-color: #eee;
+}
+/* map=========================================================================== */
+.country:hover {
+	fill: #FF0000 
+}
+
+/* R_tooltip ==================================================================== */
+.tooltip {
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    opacity: 0;
+    z-index: 3;
+  }
+
+rect.selected {
+    stroke: #000;
+    stroke-width: 2px;
+  }
+  .axis .domain {
+    display: none;
+  }
+  .axis .tick text.selected {
+    font-weight: bold;
+    font-size: 1.2em;
+    fill: #47ff63;
+  }
+  .axis .tick line.selected {
+    stroke: #47ff63;  
+  }
+  .tip {
+  position: absolute;
+  font-size: .8em;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.8); 
+  padding: 5px; 
+  border-radius: 5px; 
+  z-index: 10;
+}  
+.highlighted-dot {
+  stroke: black;
+  stroke-width: 2;
+}

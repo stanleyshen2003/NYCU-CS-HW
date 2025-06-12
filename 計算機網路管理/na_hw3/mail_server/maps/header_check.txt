@@ -1,0 +1,4 @@
+/From: cool-TA@(.*)/ REPLACE From: supercooool-TA@${1}
+/Subject:.*Graduate School.*/ REJECT
+/Subject:.*5Y2a5aOr54\+t.*/ REJECT
+/Subject:.*博士班.*/ REJECT

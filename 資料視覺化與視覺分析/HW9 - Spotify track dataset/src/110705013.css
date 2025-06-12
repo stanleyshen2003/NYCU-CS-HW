@@ -1,0 +1,168 @@
+body {
+  margin: 0;
+  overflow: scroll;
+}
+
+/* Navigation Bar and Header button */
+#NavigationBar {
+  width: 100vw;
+  padding-bottom: 10px;
+  font-size: 1.2em;
+}
+
+label {
+  float: left;
+  display: inline-block;
+  text-align: left;
+  margin-right: 5px;
+}
+
+#L,
+#A {
+  float: left;
+  padding: 10px;
+  background-color: lightsteelblue;
+  width: 100vw;
+  height: 90px;
+  font-family: sans-serif;
+}
+
+#A {
+  height: 60px;
+  font-family: sans-serif;
+}
+#A *, #L * {
+  font-family: inherit;
+}
+
+#LBtn,
+#ABtn,
+#HBtn {
+  background-color: lightsteelblue;
+  padding: 10px;
+  font-size: 1.5em;
+  font-family: sans-serif;
+  border: solid lightsteelblue;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: solid lightsteelblue;
+  cursor: pointer;
+}
+
+#ABtn,
+#HBtn {
+  background-color: lightgrey;
+}
+
+.radio-group {
+  padding-top: 1px;
+  margin-top: 3px;
+}
+
+/* Setting */
+input[type="number"] {
+  font-size: 1em;
+  width: 50px;
+}
+
+#input_g,
+#input_a {
+  float: left;
+  margin-left: 4px;
+  font-size: 0.9em;
+  width: 120px;
+}
+
+#g_sug,
+#a_sug {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  max-height: 100px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 5px;
+  width: 200px;
+  display: block;
+  background-color: white;
+  width: 110px;
+  z-index: 1000;
+}
+
+.suggestion-item {
+  cursor: pointer;
+  padding: 8px;
+}
+
+.suggestion-item:hover {
+  background-color: #eee;
+}
+
+#BarPlotHead {
+  font-size: 1.3em;
+}
+
+.tooltip {
+  position: absolute;
+  text-align: left;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  pointer-events: none;
+}
+
+rect.selected {
+  stroke: #000;
+  stroke-width: 2px;
+}
+
+.axis .domain {
+  display: none;
+}
+
+.axis .tick text.selected {
+  font-weight: bold;
+  font-size: 1.2em;
+  fill: #47ff63;
+}
+
+.axis .tick line.selected {
+  stroke: #47ff63;
+}
+
+#legend {
+  margin-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+#legend text {
+  font-size: 0.8em;
+}
+
+.lgd {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.tip {
+  position: absolute;
+  font-size: .8em;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.8); 
+  padding: 5px; 
+  border-radius: 5px; 
+  z-index: 999; 
+}  
+
+.sans{
+  font-family: "sans-serif";
+
+}
+
+
+label{
+  font-family: "sans-serif";
+
+}

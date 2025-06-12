@@ -1,0 +1,19 @@
+dn: ou=Fortune,dc=51,dc=nasa
+objectClass: organizationalUnit
+ou: Fortune
+
+dn: ou=People,dc=51,dc=nasa
+objectClass: organizationalUnit
+ou: People
+
+dn: ou=Group,dc=51,dc=nasa
+objectClass: organizationalUnit
+ou: Groups
+
+dn: ou=SUDOers,dc=51,dc=nasa
+objectClass: organizationalUnit
+ou: SUDOers
+
+dn: ou=Ppolicy,dc=51,dc=nasa
+objectClass: organizationalUnit
+ou: Ppolicy

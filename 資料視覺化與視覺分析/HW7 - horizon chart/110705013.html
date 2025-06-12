@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Horizon chart</title>
+    <link rel="stylesheet" href="110705013.css" />
+  </head>
+  <body>
+    <div id="space">
+
+    </div>
+    <div id="select_container">
+      <text class="down first"> Selected Year:</text>
+      <select class="down" id="fruit-select">
+        <option value="2017">2017</option>
+        <option value="2018">2018</option>
+        <option value="2019">2019</option>
+      </select>
+      <text class="down" id="band"> band:</text>
+      <input class="down" type="number" id="bands" value=2 min="1" max="8" style="width: 60px;">
+      <text class="shift down">Filter outlier for CO, PM2.5, and PM10:</text>
+      <input class="down" type="checkbox" id="myCheckbox" name="myCheckbox" checked>
+    </div>
+    <svg id="svg1" class="svgg"></svg>
+    <svg id="svg2" class="svgg"></svg>
+    <svg id="svg3" class="svgg"></svg>
+    <svg id="svg4" class="svgg"></svg>
+    <svg id="svg5" class="svgg"></svg>
+    <svg id="svg6" class="svgg"></svg>
+
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="https://d3js.org/d3.v7.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <div id="plot"></div>
+    <script src="110705013.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+vlan 30
+name VLAN30
+exit
+
+# pcroom
+interface vlan 30
+ip address 140.113.10.10 255.255.255.0
+ip default-gateway 140.113.10.254
+exit
+
+# intranet
+interface vlan 30
+ip address 140.113.10.11 255.255.255.0
+ip default-gateway 140.113.10.254
+exit
+
+# lab1
+interface vlan 30
+ip address 140.113.10.12 255.255.255.0
+ip default-gateway 140.113.10.254
+exit
+
+# lab2
+interface vlan 30
+ip address 140.113.10.13 255.255.255.0
+ip default-gateway 140.113.10.254
+exit
+
+# ec321
+interface vlan 30
+ip address 140.113.10.14 255.255.255.0
+ip default-gateway 140.113.10.254
+exit
+

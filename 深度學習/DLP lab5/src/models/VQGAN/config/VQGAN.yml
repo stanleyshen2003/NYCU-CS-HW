@@ -1,0 +1,12 @@
+---
+    MODEL_NAME: VQ_GAN
+
+    model_param:
+      image_channels: 3
+      enc_channels: [128, 128, 128, 256, 256, 512]
+      dec_channels: [128, 128, 256, 256, 512]
+      latent_dim: 256
+      img_resolution: 64
+      latent_resolution: 16
+      num_codebook_vectors: 1024
+      beta: 0.25

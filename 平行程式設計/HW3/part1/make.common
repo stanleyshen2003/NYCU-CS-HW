@@ -1,0 +1,56 @@
+#---------------------------------------------------------------------------
+# Compiler configurations
+#---------------------------------------------------------------------------
+CC = gcc
+CLINK	= $(CC)
+C_LIB  = -lm
+C_INC = -Icommon
+CFLAGS	= -g -O3 -mcmodel=medium -fopenmp
+CLINKFLAGS = -O3 -mcmodel=medium -fopenmp
+UCC	= gcc
+BINDIR	= bin
+RAND   = randdp
+WTIME  = wtime.c
+
+CCOMPILE = $(CC)  -c $(C_INC) $(CFLAGS)
+CCOMPILE_pp = $(CC_pp)  -c $(C_INC_pp) $(CFLAGS_pp)
+
+# Class "U" is used internally by the setparams program to mean
+# "unknown". This means that if you don't specify CLASS=
+# on the command line, you'll get an error. It would be nice
+# to be able to avoid this, but we'd have to get information
+# from the setparams back to the make program, which isn't easy. 
+CLASS=U
+
+config:
+COMMON=common
+${COMMON}/${RAND}.o: ${COMMON}/${RAND}.c
+	cd ${COMMON}; ${CCOMPILE} ${RAND}.c
+
+#${COMMON}/print_results.o: ${COMMON}/print_results.c
+#	cd ${COMMON}; ${CCOMPILE} print_results.c
+
+#${COMMON}/c_print_results.o: ${COMMON}/c_print_results.c
+#	cd ${COMMON}; ${CCOMPILE} c_print_results.c
+
+${COMMON}/timers.o: ${COMMON}/timers.c
+	cd ${COMMON}; ${CCOMPILE} timers.c
+
+${COMMON}/c_timers.o: ${COMMON}/c_timers.c
+	cd ${COMMON}; ${CCOMPILE} c_timers.c
+
+${COMMON}/wtime.o: ${COMMON}/${WTIME}
+	cd ${COMMON}; ${CCOMPILE} ${MACHINE} -o wtime.o ${WTIME}
+# For most machines or CRAY or IBM
+#	cd ${COMMON}; ${CCOMPILE} ${MACHINE} ${COMMON}/wtime.c
+# For a precise timer on an SGI Power Challenge, try:
+#	cd ${COMMON}; ${CCOMPILE} -o wtime.o ${COMMON}/wtime_sgi64.c
+
+${COMMON}/c_wtime.o: ${COMMON}/${WTIME}
+	cd ${COMMON}; ${CCOMPILE} -o c_wtime.o ${WTIME}
+
+# So that "make benchmark-name" works
+${BENCHMARK}:  default
+${BENCHMARKU}: default
+
+

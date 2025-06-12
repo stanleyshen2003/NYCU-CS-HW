@@ -1,0 +1,11 @@
+#!/bin/sh
+ip=$1
+choice=$3
+
+if [ "$choice" = 'ssh' ]; then
+	fail2ban-client set sshd unbanip "$ip"
+fi
+
+if [ "$choice' = 'web' ]; then
+	fail2ban-client set nginx-http-auth unbanip "$ip"
+fi

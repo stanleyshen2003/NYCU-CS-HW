@@ -1,0 +1,160 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	font-family:Verdana, Geneva, sans-serif;
+	margin:0;
+	padding:0;
+	background: rgba(229,229,229,1);
+}
+
+/*header*/
+header{
+	width:100%;
+	box-sizing:border-box;
+	text-align:center;
+}
+
+header img{
+	display: block;
+	padding:20px;
+	margin:auto;
+}
+
+/* nav bar */
+nav{
+	width:100%;
+	margin:auto;
+	text-align:center;
+	background: rgba(38, 70, 83, 1);
+	position: -webkit-sticky;
+  	position: sticky;
+  	top: 0;
+	z-index:2000;
+}
+
+
+nav ul{
+	margin: 0; 
+	padding: 0;
+}
+
+nav li{
+	display: inline-block;
+}
+
+nav li a{
+	display: inline-block;
+	padding:20px;
+	color: rgba(255,255,255,1);
+	text-decoration: none;
+}
+
+nav li a:hover{
+	color: rgba(221,120,47,1);
+}
+
+section{
+	width: 80%;
+	margin: auto;
+	-webkit-column-count: 3;
+	column-count: 3;
+
+	-webkit-column-gap: 20px;
+	column-gap: 20px;
+}
+
+.box{
+	display: inline-block;
+	box-sizing: border-box;
+	width: 100%;
+	background: rgba(255,255,255,1);
+	margin: 12px 0px 0px;
+	z-index: 10;
+	box-shadow: 2px 2px 8px rgba(173, 181, 189 ,1);
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.box:hover{
+	cursor: pointer;
+}
+
+.imgbox{
+	width: 100%;
+	overflow: hidden;
+}
+
+.box .imgbox img{
+	float: left;
+	width:100%;
+
+	-ms-transform: scale(1,1);
+	-webkit-transform: scale(1,1);
+	transform: scale(1,1);
+
+	-webkit-transition: transform 1.5s;
+	transition: transform 1.5s;
+
+	-webkit-transition-timing-function: ease-in-out;
+	transition-timing-function: ease-in-out;
+}
+
+.box:hover .imgbox img{
+	-ms-transform: scale(2,2);
+	-webkit-transform: scale(2,2);
+	transform: scale(2,2);
+}
+
+.box h3{
+	box-sizing: border-box;
+	padding: 0px 20px;
+	color: rgba(221,120,47,1);
+}
+
+.box p{
+	box-sizing: border-box;
+	padding: 0px 20px;
+	color: rgba(42,157,143,1);
+}
+
+.head{
+	display: inline-block;
+	padding: 0px 20px 20px;
+}
+
+.head img{
+	float: left;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
+
+.head span{
+	float: left;
+	font-size: 13px;
+	color: rgba(42,157,143,1);
+	line-height: 40px;
+	margin-left: 10px;
+}
+
+aside{
+	position: fixed;
+	right: 10px;
+	bottom: 10px;
+	z-index: 100000;
+}
+
+.totop{
+	width:44px;
+	height:44px;
+	background: rgba(38,70,83,1) url(../images/top2x.png) no-repeat;
+	background-size: 200%;
+	background-position: 0px 0px;
+}
+
+.totop:hover{
+	background: rgba(38,70,83,1) url(../images/top2x.png) no-repeat;
+	background-size: 200%;
+	background-position: 0px 0px;
+}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Observation</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Evaluation Observation</h1>
+    <img id="game_obs" src="/get_img" alt="Game Observation">
+    <script>
+        // 這個函數將會每秒執行一次，從伺服器獲取圖片
+        setInterval(function(){
+            // 為圖片元素設置新的src屬性，每次都會向服務器發出GET請求
+            document.getElementById('game_obs').src = '/get_img?' + new Date().getTime();
+        }, 50); // 每1000毫秒（1秒）更新一次
+    </script>
+</body>
+</html>

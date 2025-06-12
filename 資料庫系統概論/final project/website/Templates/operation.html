@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+
+<head>
+  <title>Main</title>
+  <link rel="stylesheet" href="{% static 'css/today.css'%}">
+  <!--nav-->
+  <!--<header id="top">
+    <img src="images/LOGO.png" width="8%" />
+  </header>-->
+
+  <nav>
+    <ul>
+      <!--<button class="bt" onclick="getData('/rate/')"><li><a href="#">Rate</a></li>
+      </button>-->
+      <button class="bt" onclick="getData('/data/')">
+        <li><a href="#">Data</a></li>
+      </button>
+      <!--<button class="bt" onclick="getData('/users/')">
+        <li><a href="#">Users</a></li>
+      </button>-->
+    </ul>
+  </nav>
+  <script>
+    function getData(url) {
+      // 創建 XHR 對象  
+      var xhr = new XMLHttpRequest();
+      // 設置回調函數
+      xhr.onload = function () {
+        if (xhr.status == 200) {
+          // 從服務器接收到的是 JSON 格式的數據
+          var response = JSON.parse(xhr.responseText);
+          // 生成表格
+          var table = document.createElement('table');
+          table.style.border = "1px solid black"; // 加入表格的樣式
+          // 檢查服務器返回的數據是由哪種模型生成的
+          var data = JSON.parse(xhr.responseText).all;
+          var table = document.querySelector('table');
+          if (table) {
+            table.parentNode.removeChild(table);
+          }
+          // 生成表格
+          var table = document.createElement('table');
+          table.style.border = "1px solid black"; // 加入表格的樣式
+
+          // 生成表頭行
+          var thead = document.createElement('thead');
+          var th = '';
+          for (var attr in data[0]) {
+            th += '<th>' + attr + '</th>';
+          }
+          thead.innerHTML = th;
+          table.appendChild(thead);
+
+          // 生成表格主体
+          for (var i = 0; i < data.length; i++) {
+            var tr = document.createElement('tr');
+            var td = '';
+            for (var attr in data[i]) {
+              td += '<td>' + data[i][attr] + '</td>';
+            }
+            tr.innerHTML = td;
+            tr.innerHTML = td;
+            table.appendChild(tr);
+          }
+          // 在頁面中插入表格
+          document.body.appendChild(table);
+        }
+      };
+      // 發送請求
+      xhr.open('GET', url);
+      xhr.send();
+    }
+  </script>
+  <style type="text/css">
+    table thead th {
+      background-color: rgb(215, 206, 206);
+      border:none;
+      align-self: center;
+    }
+    table{
+      border:none;
+      align-self:center;
+      position: relative;
+      margin:auto;
+    }
+    table td {
+      padding:3;
+      vertical-align: middle;
+      text-align:center;
+      border-top:3px #7b5dbb solid;
+      border-bottom:3px #82FFFF solid;
+    }
+  </style>
+</head>
+
+
+<body>
+  <!--section-->
+  <section>
+    <div class="box">
+      <!--<div class="imgbox"><img src="images/a1.jpg" alt="work3"></div>>-->
+
+      <button class="bt2" onclick="getData('/cellphone_avg_rate/')"><h3>Cellphone Average Rating</h3></button>
+      <p>The average rating of each cellphone model.</p>
+
+      <!--<div class="head"><img src="images/2.jpg" alt="head"><span>2017.03.05</span></div>-->
+    </div>
+    <div class="box">
+      <!--<div class="imgbox">
+        <img src="images/a2.jpg" alt="work3">
+      </div>-->
+      
+      <button class="bt2" onclick="getData('/favorite_cell_phone_of_users/')"><h3>Favorite cellphone of users</h3></button>
+      <p>Count the cell which has the highest rating given by individual user.</p>
+
+      <!--<div class="head">
+        <img src="images/2.jpg" alt="head">
+        <span>2017.03.05</span>
+      </div>-->
+    </div>
+    <div class="box">
+      <!--<div class="imgbox">
+        <img src="images/a3.jpg" alt="work3">
+      </div>-->
+      
+      <button class="bt2" onclick="getData('/amount_of_cellphone_ratings/')"><h3>Amount of cellphone ratings</h3></button>
+      <p>List the amount of cellphone ratings of each model.</p>
+
+      <!--<div class="head">
+        <img src="images/2.jpg" alt="head">
+        <span>2017.03.05</span>
+      </div>-->
+    </div>
+    <div class="box">
+      <!--<div class="imgbox">
+        <img src="images/a4.jpg" alt="work3">
+      </div>-->
+
+      <button class="bt2" onclick="getData('/better_cellphone/')"><h3>Better Cellphone</h3></button>
+      <p>List the cell phones which has average rating bigger than total average.</p>
+
+      <!--<div class="head">
+        <img src="images/2.jpg" alt="head">
+        <span>2017.03.05</span>
+      </div>-->
+    </div>
+    <div class="box">
+      <!--<div class="imgbox">
+        <img src="images/a5.jpg" alt="work3">
+      </div>-->
+
+      <button class="bt2" onclick="getData('/market_share/')"><h3>Market Share</h3></button>
+      <p>The market share of each cellphone brand.</p>
+
+      <!--<div class="head">
+        <img src="images/2.jpg" alt="head">
+        <span>2017.03.05</span>
+      </div>-->
+    </div>
+    <div class="box">
+      <!--<div class="imgbox">
+        <img src="images/a6.jpg" alt="work3">
+      </div>-->
+
+      <button class="bt2" onclick="getData('/avg_sex_F/')"><h3>Average rating & Number of Ratings given by Females</h3></button>
+      <p>List the average rating and number given by females.</p>
+
+      <!--<div class="head">
+        <img src="images/2.jpg" alt="head">
+        <span>2017.03.05</span>
+      </div>-->
+    </div>
+    <div class="box">
+      <!--<div class="imgbox">
+        <img src="images/a7.jpg" alt="work3">
+      </div>-->
+
+      <button class="bt2" onclick="getData('/avg_sex_M/')"><h3>Average rating & Number of Ratings given by Males</h3></button>
+      <p>List the average rating and number given by males.</p>
+
+      <!--<div class="head">
+        <img src="images/2.jpg" alt="head">
+        <span>2017.03.05</span>
+      </div>-->
+    </div>
+    <div class="box">
+      <!--<div class="imgbox">
+        <img src="images/a7.jpg" alt="work3">
+      </div>-->
+
+      <button class="bt2" onclick="getData('/top_elder/')"><h3>Top 10 cellphone for elders</h3></button>
+      <p>List the top cellphone for elders.</p>
+
+      <!--<div class="head">
+        <img src="images/2.jpg" alt="head">
+        <span>2017.03.05</span>
+      </div>-->
+    </div>
+    <div class="box">
+      <!--<div class="imgbox">
+        <img src="images/a7.jpg" alt="work3">
+      </div>-->
+      <button class="bt2" onclick="location.href='/rating/';"><h3>Rating</h3></button>
+      <!--<a href="/rating/">Rating</a>-->
+      <p>Rate the cellphone.</p>
+
+      <!--<div class="head">
+        <img src="images/2.jpg" alt="head">
+        <span>2017.03.05</span>
+      </div>-->
+    </div>
+<!--
+  </section>
+  <h1>Access data table</h1>
+  <button onclick="getData('/data/')">Data</button>
+  <h1></h1>
+  <button onclick="getData('/cellphone_avg_rate/')">Cellphone Average Rating</button>
+  <button onclick="getData('/favorite_cell_phone_of_users/')">Favorite cellphone of users</button>
+  <button onclick="getData('/amount_of_cellphone_ratings/')">Amount of cellphone ratings</button>
+  <button onclick="getData('/better_cellphone/')">Better cellphone</button>
+  <button onclick="getData('/market_share/')">market share</button>
+  <button onclick="getData('/avg_sex_F/')">average rating & number of ratings given by females</button>
+  <button onclick="getData('/avg_sex_M/')">average rating & number of ratings given by males</button>
+  <button onclick="getData('/top_elder/')">top 10 cellphone for elders</button>
+  <button><a href="/rating/">Rating</a></button>
+-->
+
+</body>
+
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Parallel coordinates plot</title>
+    
+    <style>
+      
+        text {
+         font-family: sans-serif; 
+        }
+        #button-container {
+            display: flex;
+            margin-left: 6.3%;
+            margin-right: 7.5%;
+        }
+        .sortable-button {
+            background-color: #3498db;
+            color: #fff;
+            border: 1px solid #2980b9;
+            padding: 5px;
+            margin-top: 3%;
+            cursor: pointer;
+          	margin-left: 8.5%;
+            margin-right: 7.2%;
+          	text-align: center; 
+          	width: 8%;
+          	font-family: sans-serif; 
+        }
+      
+      	
+        .d-flex{
+          position: absolute; /* Position it relative to the viewport */
+          left: 38%; /* Adjust the horizontal position */
+          top: 92%; /* Adjust the vertical position */
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          align-items: flex-start;
+        }
+				
+
+        .legend {
+          display: flex;
+          align-items: center;
+        }
+
+        .dot {
+          margin: 0 3px 0px 10px;
+          height: 10px;
+          width: 10px;
+          border-radius: 50%;
+          display: inline-block;
+        }
+
+        .Iris-versicolor {
+          background-color: #ff5733;
+          fill: #106155;
+        }
+
+        .Iris-virginica {
+          background-color: #9367e7;
+          fill: #050934;
+        }
+
+        .Iris-setosa {
+          background-color: #69b3a2;
+          fill: #259518;
+        }
+    </style>
+</head>
+<body>
+    <div id="button-container">
+        <div class="sortable-button first" id="sepal width" draggable="true">sepal width</div>
+        <div class="sortable-button second" id="sepal length" draggable="true">sepal length</div>
+        <div class="sortable-button third" id="petal width" draggable="true">petal width</div>
+        <div class="sortable-button forth" id="petal length" draggable="true">petal length</div>
+    
+    </div>
+  	<div class="d-flex">
+        <div class="legend">
+          <div class="dot Iris-setosa"></div>
+          <text class="showclass">Iris-setosa</text>
+        </div>
+        <div class="legend">
+          <div class="dot Iris-versicolor"></div>
+          <text class="showclass">Iris-versicolor</text>
+        </div>
+        <div class="legend">
+          <div class="dot Iris-virginica"></div>
+          <text class="showclass">Iris-virginica</text>
+       </div>                    
+      </div>
+    </div>
+ 		<script src="https://d3js.org/d3.v4.js"></script>
+  	<div id="plot"></div>
+  	<script>
+
+		// set the dimensions and margins of the graph
+    
+
+    // Parse the Data
+    var data1,data2,data3;
+    function render(dimensions){
+      var windowW = window.innerWidth-50;
+      var windowH = window.innerHeight;
+      console.log(windowW)
+      var margin = {top: windowH*0.05, right: 0, bottom: windowH*0.1, left: 0},
+          width = windowW - margin.left - margin.right,
+          height = windowH * 0.7;
+      var svg = d3.select("#plot");
+			svg.selectAll('*').remove();
+      // append the svg object to the body of the page
+      svg = d3.select("#plot")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform",
+              "translate(" + margin.left + "," + margin.top + ")");
+      d3.csv("https://raw.githubusercontent.com/stanleyshen2003/Data-Visualization/main/HW1%20-%20scattered%20plot/iris.csv", function(data) {
+          data.pop()
+          // Separate data into different arrays based on the "class" column
+          data1 = data.filter(function(d) { return d.class === "Iris-setosa"; });
+          data2 = data.filter(function(d) { return d.class === "Iris-versicolor"; });
+          data3 = data.filter(function(d) { return d.class === "Iris-virginica"; });
+
+          // Extract the list of dimensions we want to keep in the plot.
+          //let dimensions = ['sepal length', 'sepal width', 'petal length', 'petal width']
+          console.log(dimensions)
+          // For each dimension, build a linear scale. Store all in a y object
+          var y = {};
+          for (var i = 0; i < dimensions.length; i++) {
+              var name = dimensions[i];
+              y[name] = d3.scaleLinear()
+                  .domain(d3.extent(data, function(d) { return +d[name]; }))
+                  .range([height, 0]);
+          }
+
+          // Build the X scale -> it finds the best position for each Y axis
+          var x = d3.scalePoint()
+              .range([0, width])
+              .padding(0.8)
+              .domain(dimensions);
+
+          // The path function takes a row of the CSV as input and returns x and y coordinates of the line to draw for this row.
+          function path(d) {
+              return d3.line()(dimensions.map(function(p) { return [x(p), y[p](d[p])]; }));
+          }
+
+          // Draw the lines for each class
+          svg
+              .selectAll("myPath")
+              .data(data1)
+              .enter().append("path")
+              .attr("d", path)
+              .style("fill", "none")
+              .style("stroke", "#69b3a2")
+        			.style("stroke-width", 2)
+              .style("opacity", 20);
+        			
+
+          svg
+              .selectAll("myPath")
+              .data(data2)
+              .enter().append("path")
+              .attr("d", path)
+              .style("fill", "none")
+              .style("stroke", "#ff5733")
+        			.style("stroke-width", 2)
+              .style("opacity", 0.5);
+
+          svg
+              .selectAll("myPath")
+              .data(data3)
+              .enter().append("path")
+              .attr("d", path)
+              .style("fill", "none")
+              .style("stroke", "#9367e7")
+        			.style("stroke-width", 2)
+              .style("opacity", 0.5);
+
+          // Draw the axis:
+          svg.selectAll("myAxis")
+              // For each dimension of the dataset, add a 'g' element:
+              .data(dimensions).enter()
+              .append("g")
+              // Translate this element to its right position on the x-axis
+              .attr("transform", function(d) { return "translate(" + x(d)  + ")"; })
+              // And build the axis with the call function
+              .each(function(d) { d3.select(this).call(d3.axisLeft().scale(y[d])); })
+              //.append("text")
+        			//.style("text-anchor", "middle")
+        			//.attr("y", -9)
+        			//.text(function(d) { return d; })
+        			//.style("fill", "black");
+
+
+      	})
+    }
+    render(['sepal width', 'sepal length',  'petal width', 'petal length' ]);
+    
+		const buttonContainer = document.getElementById("button-container");
+buttonContainer.addEventListener("dragstart", (e) => {
+    e.dataTransfer.setData("text/plain", e.target.id);
+    });
+    buttonContainer.addEventListener("dragover", (e) => {
+        e.preventDefault();
+    });
+  	buttonContainer.addEventListener("drop", (e) => {
+        e.preventDefault();
+        const fromId = e.dataTransfer.getData("text/plain");
+        const toId = e.target.id;
+        
+        if (fromId !== toId) {
+            const fromButton = document.getElementById(fromId);
+            const toButton = document.getElementById(toId);
+          	const fromRect = fromButton.getBoundingClientRect();
+            const toRect = toButton.getBoundingClientRect();
+           	console.log(fromRect);
+           	console.log(toRect);
+            //buttonContainer.insertBefore(fromButton, toButton);
+            if (fromRect.left<toRect.left) {
+                if (toButton.nextSibling === null) {
+                    buttonContainer.appendChild(fromButton);
+             	  }
+                else{
+                    buttonContainer.insertBefore(fromButton, toButton.nextSibling);  	
+                }
+            } 
+            else {
+                buttonContainer.insertBefore(fromButton, toButton);
+            }
+            printButtonSequence()
+            }
+        });
+      	function printButtonSequence() {
+            const buttons = Array.from(buttonContainer.getElementsByClassName("sortable-button"));
+            const sequence = buttons.map((button) => button.id);
+            render(sequence);
+        }
+
+</script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</body>
+</html>

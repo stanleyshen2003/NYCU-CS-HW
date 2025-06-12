@@ -1,0 +1,122 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Group 32</title>
+  <link rel="stylesheet" href="Group32.css">
+  <script src="https://unpkg.com/d3@7/dist/d3.min.js"></script>  
+  <script src="https://unpkg.com/d3-simple-slider"></script>
+  <script src="https://unpkg.com/jeezy@1.12.11/lib/jeezy.min.js"></script>
+  <script src="https://unpkg.com/data2grid@1.0.0/build/data2grid.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/1.3.5/chroma.min.js"></script>
+  <script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+</head>
+
+<body>
+  <div class="Container">
+    <div id="Navigation_Bar">
+      <div id="Button">
+        <button class="Nav_Btn active" id="Nav_Btn_M">Choropleth Map</button>
+        <button class="Nav_Btn " id="Nav_Btn_R">Leaderboard</button>
+        <button class="Nav_Btn" id="Nav_Btn_D">Detail</button>
+        <button class="Nav_Btn" id="Nav_Btn_C">Correlation Matrix</button>
+      </div>
+    </div>
+    <div id="Svg_Container">
+      <div id="Svg_Main"></div>
+    	<div id="Svg_Tool">
+        <div id="Svg_Tool_M" class="Tool_Container  active">
+          <div id="M_Feature_Btns" class="Btns Tools">
+            <div class="Tool_Title">Colored by</div>
+            <input type="radio" name="M_Feature_Btn" value="happiness" checked=""> Happiness<br>
+            <input type="radio" name="M_Feature_Btn" value="economy"> Economy<br>
+            <input type="radio" name="M_Feature_Btn" value="family"> Family<br>
+            <input type="radio" name="M_Feature_Btn" value="health"> Health<br>
+            <input type="radio" name="M_Feature_Btn" value="freedom"> Freedom<br>
+            <input type="radio" name="M_Feature_Btn" value="trust"> Trust<br>
+            <input type="radio" name="M_Feature_Btn" value="generosity"> Generosity
+          </div>
+          <div id="M_Year_Slider" class="Slider Tools">
+            <div class="Tool_Title">Year</div>
+          </div>
+          <div id="M_Legend" class="Conti_Legend Tools">
+            <div class="Tool_Title">Range</div>
+            <svg id="M_Legend_Svg"></svg>
+          </div>
+        </div>
+        <div id="Svg_Tool_R" class="Tool_Container">
+          <div id="R_Feature_Btns" class="Btns Tools">
+            <div class="Tool_Title">Rank by</div>
+            <input type="radio" name="R_Feature_Btn" value="happiness" checked=""> Happiness<br>
+            <input type="radio" name="R_Feature_Btn" value="economy"> Economy<br>
+            <input type="radio" name="R_Feature_Btn" value="family"> Family<br>
+            <input type="radio" name="R_Feature_Btn" value="health"> Health<br>
+            <input type="radio" name="R_Feature_Btn" value="freedom"> Freedom<br>
+            <input type="radio" name="R_Feature_Btn" value="trust"> Trust<br>
+            <input type="radio" name="R_Feature_Btn" value="generosity"> Generosity
+          </div>
+          <div id="R_Year_Slider" class="Slider Tools">
+            <div class="Tool_Title">Year</div>
+          </div>
+      		<div id="R_Country_Btns" class="Btns Tools">
+            <div class="Tool_Title">Region</div>
+            <label>
+              <input type="radio" name="R_Country_Btn" value="all" checked>All countries
+            </label>
+            <br>
+            <label>
+              <input type="radio" name="R_Country_Btn" value="region">
+              <input type="text" id="R_input" placeholder="Input region">
+              <div id="R_sug" style="display:none"></div>
+            </label>
+          </div>
+          <div id="R_Rank_range" class="Tools">
+            <div class="Tool_Title">Rank range</div>
+            <div class="MinMax">
+              <input type="number" id="R_Min_input" value="1"> to 
+              <input type="number" id="R_Max_input" value="20">
+            </div>
+          </div>
+        </div>
+        <div id="Svg_Tool_D" class="Tool_Container">
+          <div id="D_Country_Btns" class="Btns Tools">
+            <div class="Tool_Title">Country</div>
+            <label>
+              <input type="radio" name="D_Country_Btn" value="country" >
+              <input type="text" id="D_input" placeholder="Input country" value="Taiwan">
+              <div id="D_sug" style="display:none"></div>/
+              <button class="D_Btn" id="D_Btn">Select on map</button>
+            </label>
+            <br>
+            <label>
+              <input type="radio" name="D_Country_Btn" value="average" checked="">Countries' average
+            </label>
+          </div>
+          <div id="D_Data_Btns" class="Btns Tools">
+            <div class="Tool_Title">Data</div>
+            <input type="radio" name="D_Data_Btn" value="raw" checked=""> Raw data<br>
+            
+            <label>
+              <input type="radio" name="D_Data_Btn" value="normalize" disabled>Comepare to 
+              <input type="text" id="D_input2" placeholder="Input country" value="year_average">
+              <div id="D_sug2" style="display:none"></div>
+            </label>
+          </div>
+          <div id="D_Legend" class="Cat_Legend Tools">
+            <div class="Tool_Title">Legend</div>
+            <svg id="D_Legend_Svg"></svg>
+          </div>
+        </div>
+        <div id="Svg_Tool_C" class="Tool_Container">
+          <div id="C_Legend" class="Conti_Legend Tools">
+            <div class="Tool_Title">Legend</div>
+            <svg id="C_Legend_Svg"></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<script src="Group32.js"></script></body></html>

@@ -1,0 +1,8 @@
+dn: olcOverlay=ppolicy,olcDatabase={1}mdb,cn=config
+objectClass: olcOverlayConfig
+objectClass: olcPPolicyConfig
+olcOverlay: ppolicy
+olcPPolicyDefault: cn=pwdDefault,ou=Ppolicy,dc=51,dc=nasa
+olcPPolicyHashCleartext: TRUE
+olcPPolicyUseLockout: FALSE
+olcPPolicyForwardUpdates: FALSE

@@ -1,0 +1,1 @@
+g++ mcts_yz.cpp mcts_yz.h team32_agent2.cpp -lwsock32 -lws2_32 STcpClient.h -o test_execute/sample/team32_agent2.exe

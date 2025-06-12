@@ -1,0 +1,156 @@
+$date
+	Fri Apr 21 21:44:48 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module t_Lab2_BCD_9c $end
+$var wire 4 ! BCD_9c2 [3:0] $end
+$var wire 4 " BCD_9c1 [3:0] $end
+$var reg 4 # BCD [3:0] $end
+$var integer 32 $ i [31:0] $end
+$scope module BCD_9c_beh $end
+$var wire 4 % BCD [3:0] $end
+$var reg 4 & BCD_9c [3:0] $end
+$upscope $end
+$scope module BCD_9c_df $end
+$var wire 4 ' BCD [3:0] $end
+$var wire 4 ( BCD_9c [3:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b1001 (
+b0 '
+b1001 &
+b0 %
+b0 $
+b0 #
+b1001 "
+b1001 !
+$end
+#15
+b1000 "
+b1000 (
+b1000 !
+b1000 &
+b1 #
+b1 %
+b1 '
+b1 $
+#30
+b111 "
+b111 (
+b111 !
+b111 &
+b10 #
+b10 %
+b10 '
+b10 $
+#45
+b110 "
+b110 (
+b110 !
+b110 &
+b11 #
+b11 %
+b11 '
+b11 $
+#60
+b101 "
+b101 (
+b101 !
+b101 &
+b100 #
+b100 %
+b100 '
+b100 $
+#75
+b100 "
+b100 (
+b100 !
+b100 &
+b101 #
+b101 %
+b101 '
+b101 $
+#90
+b11 "
+b11 (
+b11 !
+b11 &
+b110 #
+b110 %
+b110 '
+b110 $
+#105
+b10 "
+b10 (
+b10 !
+b10 &
+b111 #
+b111 %
+b111 '
+b111 $
+#120
+b1 "
+b1 (
+b1 !
+b1 &
+b1000 #
+b1000 %
+b1000 '
+b1000 $
+#135
+b0 "
+b0 (
+b0 !
+b0 &
+b1001 #
+b1001 %
+b1001 '
+b1001 $
+#150
+b111 "
+b111 (
+b111 !
+b111 &
+b1010 #
+b1010 %
+b1010 '
+b1010 $
+#165
+b110 "
+b110 (
+b110 !
+b110 &
+b1011 #
+b1011 %
+b1011 '
+b1011 $
+#180
+b101 "
+b101 (
+b101 !
+b101 &
+b1100 #
+b1100 %
+b1100 '
+b1100 $
+#195
+b100 "
+b100 (
+b100 !
+b100 &
+b1101 #
+b1101 %
+b1101 '
+b1101 $
+#200

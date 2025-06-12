@@ -1,0 +1,16 @@
+vlan 321
+name VLAN321
+exit
+
+interface fa 0/1
+switchport mode trunk
+switchport trunk native vlan 321
+switchport trunk allowed vlan 30,321
+exit
+
+interface fa 0/2
+switchport mode access
+switchport access vlan 321
+exit
+
+copy running-config startup-config
