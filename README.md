@@ -11,7 +11,7 @@ This repo contains all hw for courses in NYCU CS.
     <th style="text-align:center;">Lecturer</th>
     <th style="text-align:center;">Score</th>
   </tr>
-<tr><td colspan="6" align="center"><strong>人工智慧、數據科學、多媒工程</strong></td></tr>
+<tr><td colspan="6" align="center"><strong>🧠 人工智慧、數據科學、多媒工程</strong></td></tr>
   <tr>
     <td align=center>111上</td>
     <td>資訊共同</td>
@@ -100,7 +100,7 @@ This repo contains all hw for courses in NYCU CS.
     <td align=center>林奕成</td>
     <td align=center>A+</td>
   </tr>
-<tr><td colspan="6" align="center"><strong>網路工程</strong></td></tr>
+<tr><td colspan="6" align="center"><strong>🌐 網路工程</strong></td></tr>
   <tr>
     <td align=center>113上</td>
     <td>網工所</td>
@@ -125,7 +125,7 @@ This repo contains all hw for courses in NYCU CS.
     <td align=center>蔡孟勳</td>
     <td align=center>dono</td>
   </tr>
-<tr><td colspan="6" align="center"><strong>資訊安全</strong></td></tr>
+<tr><td colspan="6" align="center"><strong>🔐 資訊安全</strong></td></tr>
   <tr>
     <td align=center>111下</td>
     <td>資工系</td>
@@ -134,7 +134,7 @@ This repo contains all hw for courses in NYCU CS.
     <td align=center>易志偉</td>
     <td align=center>A+</td>
   </tr>
-<tr><td colspan="6" align="center"><strong>系統</strong></td></tr>
+<tr><td colspan="6" align="center"><strong>🖥️ 系統</strong></td></tr>
   <tr>
     <td align=center>112上</td>
     <td>資工系</td>
@@ -151,7 +151,7 @@ This repo contains all hw for courses in NYCU CS.
     <td align=center>蔡文錦</td>
     <td align=center>A-</td>
   </tr>
-<tr><td colspan="6" align="center"><strong>軟硬整合</strong></td></tr>
+<tr><td colspan="6" align="center"><strong>🔧 軟硬整合</strong></td></tr>
   <tr>
     <td align=center>111下</td>
     <td>資訊共同</td>
@@ -176,7 +176,7 @@ This repo contains all hw for courses in NYCU CS.
     <td align=center>蔡淳仁</td>
     <td align=center>B+</td>
   </tr>
-<tr><td colspan="6" align="center"><strong>計算理論</strong></td></tr>
+<tr><td colspan="6" align="center"><strong>🧮 計算理論</strong></td></tr>
   <tr>
     <td align=center>111下</td>
     <td>資訊共同</td>
@@ -185,7 +185,7 @@ This repo contains all hw for courses in NYCU CS.
     <td align=center>林文杰</td>
     <td align=center>A+</td>
   </tr>
-<tr><td colspan="6" align="center"><strong>外部課程</strong></td></tr>
+<tr><td colspan="6" align="center"><strong>🌍 外部課程</strong></td></tr>
   <tr>
     <td align=center>112下</td>
     <td>資科工碩</td>
@@ -202,7 +202,7 @@ This repo contains all hw for courses in NYCU CS.
     <td align=center>張智星;陳君明</td>
     <td align=center>A-</td>
   </tr>
-<tr><td colspan="6" align="center"><strong>程式設計</strong></td></tr>
+<tr><td colspan="6" align="center"><strong>👨‍💻 程式設計</strong></td></tr>
   <tr>
     <td align=center>111上</td>
     <td>資訊共同</td>
