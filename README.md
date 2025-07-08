@@ -115,7 +115,7 @@ This repo contains all hw for courses in NYCU CS.
     <td>網路規劃與管理實務</td>
     <td align=center>3.00</td>
     <td align=center>曾建超</td>
-    <td align=center>dono</td>
+    <td align=center>A+</td>
   </tr>
   <tr>
     <td align=center>113下</td>
@@ -123,7 +123,7 @@ This repo contains all hw for courses in NYCU CS.
     <td>計算機網路管理</td>
     <td align=center>3.00</td>
     <td align=center>蔡孟勳</td>
-    <td align=center>dono</td>
+    <td align=center>A+</td>
   </tr>
 <tr><td colspan="6" align="center"><strong>🔐 資訊安全</strong></td></tr>
   <tr>
@@ -233,7 +233,7 @@ This repo contains all hw for courses in NYCU CS.
     <td>競技程式設計(一)</td>
     <td align=center>3.00</td>
     <td align=center>謝旻錚</td>
-    <td align=center>dono</td>
+    <td align=center>A+</td>
   </tr>
 </table>
 </div>
